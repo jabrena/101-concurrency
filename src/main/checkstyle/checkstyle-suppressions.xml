@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+        "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+
+<suppressions>
+    <!-- Rules supressed by the project nature -->
+    <suppress checks="Javadoc" files="." />
+    <suppress checks="Indentation" files="." />
+    <suppress checks="LocalVariableName" files="." />
+    <suppress checks="OneTopLevelClass" files="." /> <!-- Enabled for this particular project -->
+    <suppress checks="AbbreviationAsWordInName" files="." />
+    <suppress checks="LineLength" files="." />
+    <suppress checks="MemberName" files="." />
+    <suppress checks="ParameterName" files="." />
+    <suppress checks="TypeName" files="." />
+</suppressions>

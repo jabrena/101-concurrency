@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id "io.github.reyerizo.gradle.jcstress" version "0.8.13"
+}
+
+ext {
+    jcstressVersion = '0.15'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(18)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.openjdk.jcstress:jcstress-core:${jcstressVersion}"
+    implementation "net.jcip:jcip-annotations:1.0"
+}
+
+jcstress {
+    jcstressDependency "org.openjdk.jcstress:jcstress-core:${jcstressVersion}"
+    verbose = true
+    timeMillis = "200"
+    spinStyle = "THREAD_YIELD"
+}
