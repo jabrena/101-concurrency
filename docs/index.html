@@ -1,0 +1,501 @@
+<!doctype html>
+<html>
+	<head>
+
+		<title>101 Concurrency</title>
+		<link rel="shortcut icon" href="images/favicon.ico" />
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="./reveal.js/dist/reset.css">
+		<link rel="stylesheet" href="./reveal.js/dist/reveal.css">
+		<link rel="stylesheet" href="./reveal.js/dist/theme/white.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="./reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<section>
+						<img src="images/duke-threads.jpg" width="40%">
+						<!-- <img src="images/rosetta_stone.svg.png" width="40%" /> -->
+						<p>
+							A review about Concurrency on the JVM for <br />modern Java developers.<br />
+							<small>Juan Antonio Breña Moral</small>
+						</p>
+					</section>
+					<!-- TODO Update links -->
+					<section>
+						<h2>Concurrency rosseta stone</h2>
+						<p>Follow the talk from your smartphone:</p>
+						<img src="images/qrcode.png" width="40%" />
+					</section>
+					<section>
+						<h2>Concurrency rosseta stone</h2>
+						<p>Example repository:</p>
+						<a href="https://github.com/jabrena/101-concurrency" target="_blank">
+							<img src="images/github.png" width="35%">
+						</a>
+						<p>
+							<a href="https://github.com/jabrena/101-concurrency" target="_blank">
+								https://github.com/jabrena/101-concurrency
+							</a>
+						</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Agenda</h2>
+						<ol>
+							<li>Who I am</li>
+							<li>Expectations</li>
+							<li>Context</li>
+							<li>Concurrency concepts</li>
+							<li>Concurrency evolution in the JVM</li>
+							<li>Design patterns that impacts you</li>
+							<li>Other concurrency approaches</li>
+							<li>Concurrency tools: JCStress</li>
+							<li>How to help the team?</li>
+							<li>References</li>
+							<li>Q&A</li>
+						</ol>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Who I am</h2>
+						<h3>Juan Antonio Breña Moral</h3>
+						<table>
+							<tr>
+								<td>
+									<img src="./images/jab-avatar.png" width="100%"/>
+								</td>
+								<td style="vertical-align: top">
+									<!-- Computer Science and Engineering (B.S.) <br /> -->
+									Engineering in Industrial Organization (M.S.) @ <span>ICAI</span> <br />
+									Head of Developer Relations @ <span>Amadeus for developers</span> <br />
+									Associate Professor @ <span>ICAI</span> <br />
+									STEAM Teacher @ <span>Space Math</span> <br />
+									<a target="_blank" style="text-decoration: underline;" href="https://twitter.com/juanantoniobm">@juanantoniobm</a> |
+									<a target="_blank" style="text-decoration: underline;" href="https://github.com/jabrena">Github</a></li>
+								</td>
+							</tr>
+						</table>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Expectations</h2>
+						<ul>
+							<li>Generate curiosity about potential issues by concurrency.</li>
+							<li>Understand better the Java Memory Model.</li>
+							<li>Understand the evolution of concurrency in Java.</li>
+							<li>Learn how to use JCStress in your projects</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Context</h2>
+						<ul>
+							<li>The Java programming language has included Multithreading features since 1996 (Java 1.0).</li>
+							<li>Not all Java developers understand how to program thread-safety code.</li>
+							<li>Handling shared memory is the main approach in Java but it is not the unique approach.</li>
+							<li>Is it still valid the term: "Write once, run everywhere"? (When you deploy multithreading code in production).</li>
+						</ul>
+					</section>
+					<section>
+						<img src="images/quiz.png" width="50%"/>
+					</section>
+					<!--
+					<section>
+						<h2>Context</h2>
+						<h4>Question: What is the java version used in production?</h4>
+						<p>
+							<a href="https://pollev.com/juanantoniobrenamoral114" target="_blank">https://pollev.com/juanantoniobrenamoral114</a>
+						</p>
+					</section>
+					-->
+					<section>
+						<h2>Context</h2>
+						<h4>Question: Did all your team members read "Concurrent Programming in Java" or "Java concurrency in practice" at least once?</h4>
+						<p>
+							<a href="https://pollev.com/juanantoniobrenamoral114" target="_blank">https://pollev.com/juanantoniobrenamoral114</a>
+						</p>
+						<img src="images/book-java-concurrency-in-practice.jpg" width="24%" />&nbsp;
+						<img src="images/book-concurrent-programming-in-java.jpg" width="25%" />
+					</section>
+					<section>
+						<h2>Context</h2>
+						<h4>Question: Did you face in the past a Concurrency issue?</h4>
+						<p>
+							<a href="https://pollev.com/juanantoniobrenamoral114" target="_blank">https://pollev.com/juanantoniobrenamoral114</a>
+						</p>
+					</section>
+					<section>
+						<h2>Context & Concepts</h2>
+						<h4>Question: What kind of concurrency objects or language resources, do you use in your daily job?</h4>
+						<p>
+							<a href="https://pollev.com/juanantoniobrenamoral114" target="_blank">https://pollev.com/juanantoniobrenamoral114</a>
+						</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Concurrency concepts</h2>
+						<ul>
+							<li>Concurrency & Parallelism</li>
+							<li>Amdahl's law</li>
+							<li>Cache coherency</li>
+							<li>JMM, Java memory model</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Concurrency concepts</h2>
+						<h4>Concurrency & Parallelism</h4>
+						<img src="images/concurrency-parallelism.png" width="70%" />
+					</section>
+					<section>
+						<h2>Concurrency concepts</h2>
+						<h4>Amdahl's law</h4>
+						<p>
+							Amdahl's law is a formula which gives the theoretical speedup in latency
+							of the execution of a task at fixed workload that can be expected of
+							a system whose resources are improved.
+							Specifically, it states that "the overall performance improvement gained by optimizing
+							a single part of a system is limited by the fraction of time that the improved part
+							is actually used".
+						</p>
+						<a href="https://en.wikipedia.org/wiki/Amdahl%27s_law" target="_blank">https://en.wikipedia.org/wiki/Amdahl%27s_law</a>
+					</section>
+					<!--
+					http://www.cs.umd.edu/~pugh/java/memoryModel/Dagstuhl.pdf
+					https://chowdera.com/2022/04/202204030513095225.html
+					https://www.cs.umd.edu/~pugh/java/memoryModel/jsr133.pdf
+					https://www.slideshare.net/instinctools_EE_Labs/java-memory-model-66558368
+					https://shipilev.net/talks/geecon-May2018-jmm.pdf
+					https://shipilev.net/blog/2014/safe-public-construction/
+					https://shipilev.net/blog/2014/jmm-pragmatics/
+					https://shipilev.net/talks/narnia-2555-jmm-pragmatics-en.pdf
+					https://shipilev.net/blog/2016/close-encounters-of-jmm-kind/
+					-->
+					<section>
+						<h2>Concurrency concepts</h2>
+						<h4>JMM, Java memory model</h4>
+						<p>
+							Defines the semantics of multithreaded programs
+						</p>
+						<p>
+							The Java memory model describes how threads in the Java programming language
+							interact through memory. Together with the description of single-threaded execution of code,
+							the memory model provides the semantics of the Java programming language.
+						</p>
+						<a href="https://en.wikipedia.org/wiki/Java_memory_model" target="_blank">https://en.wikipedia.org/wiki/Java_memory_model</a>
+					</section>
+					<section>
+						<h2>Concurrency concepts</h2>
+						<h4>JMM, Java memory model</h4>
+						<ul>
+							<li>Modern hardware architecture</li>
+							<li>How JVM interacts with hardware</li>
+							<li>What is shared memory?</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Concurrency concepts</h2>
+						<h4>JMM, Java memory model</h4>
+						<ul>
+							<li>Atomicity:
+								Which instructions must have indivisible effects.
+								For purposes of the model, these rules need to be stated only for simple reads
+								and writes of memory cells representing fields - instance and static variables,
+								also including array elements, but not including local variables inside methods.</li>
+							<li>Visibility:
+								Under what conditions the effects of one thread are visible to another.
+								The effects of interest here are writes to fields, as seen via reads of those fields.</li>
+							<li>Ordering:
+								Under what conditions the effects of operations can appear out of order
+								to any given thread. The main ordering issues surround reads and writes associated
+								with sequences of assignment statements.</li>
+
+						</ul>
+					</section>
+					<section>
+						<h2>Concurrency concepts</h2>
+						<h4>JMM, Java memory model</h4>
+						<img src="images/jmm-1.png" width="70%" />
+					</section>
+					<section>
+						<h2>Concurrency concepts</h2>
+						<h4>JMM, Java memory model</h4>
+						<img src="images/jmm-2.png" width="70%" />
+					</section>
+				</section>
+				<section>
+					<!--
+					https://www.baeldung.com/java-thread-lifecycle
+					https://dzone.com/articles/java-concurrency-evolution
+					-->
+					<section>
+						<h2>Concurrency evolution in the JVM</h2>
+						<ul>
+							<li>Java 1.0 / Java Threads (23/01/1996)</li>
+							<li>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</li>
+							<li>Java 1.7 / Fork/join framework (07/07/2011)</li>
+							<li>Java 1.8 / CompletableFuture (18/03/2014)</li>
+							<li>Java 19 / Virtual Threads, Structured Concurrency (20/09/2022)</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Concurrency evolution in the JVM</h2>
+						<h3>Java 1.0 / Java Threads (23/01/1996)</h3>
+						<ul>
+							<li>PENDING</li>
+							<li>PENDING</li>
+							<li>PENDING</li>
+							<li>PENDING</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Concurrency evolution in the JVM</h2>
+						<h3>Java 1.0 / Java Threads (23/01/1996)</h3>
+						<img src="images/thread-life-cycle.jpg" width="50%"/>
+					</section>
+					<section>
+						<h2>Concurrency evolution in the JVM</h2>
+						<h3>Java 1.0 / Java Threads (23/01/1996)</h3>
+						<img src="images/os-threads.png" width="70%"/>
+					</section>
+					<section>
+						<h2>Concurrency evolution in the JVM</h2>
+						<h3>Java 1.0 / Java Threads (23/01/1996)</h3>
+						<pre><code data-trim>
+class Process implements Runnable {
+    public void run() {
+        System.out.println("Thread is running...");
+    }
+}
+public class ThreadBasic {
+    public static void main(String args[]) throws InterruptedException {
+        Process m1 = new Process();
+        Thread t1 =new Thread(m1);
+        t1.start();
+        t1.join();
+        System.out.println("Example finished");
+    }
+}
+
+						</code></pre>
+					</section>
+					<section>
+						<h2>Concurrency evolution in the JVM</h2>
+						<h3>Java 1.0 / Java Threads (23/01/1996)</h3>
+						<pre><code data-trim>
+Thread is running...
+Example finished
+						</code></pre>
+					</section>
+					<section>
+						<h2>Concurrency evolution in the JVM</h2>
+						<h3>Java 1.0 / Java Threads (23/01/1996)</h3>
+						<p>
+							Javadocs:
+						</p>
+						<ul>
+							<li><a href="http://web.archive.org/web/19990202194011/http://java.sun.com/products/jdk/1.0.2/api/" target="_blank">Java 1.0.2 Javadocs</a> (Web Archive)</li>
+							<li><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html" target="_blank">Thread</a> </li>
+							<li><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html" target="_blank">Runnable</a> </li>
+						</ul>
+					</section>
+					<!--
+					https://en.wikipedia.org/wiki/Java_memory_model
+					https://jenkov.com/tutorials/java-concurrency/java-memory-model.html
+					-->
+					<section>
+						<h2>Concurrency evolution in the JVM</h2>
+						<h3>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</h3>
+						<ul>
+							<li>PENDING</li>
+							<li>PENDING</li>
+							<li>PENDING</li>
+							<li>PENDING</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Concurrency evolution in the JVM</h2>
+						<h3>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</h3>
+						<img src="images/java-memory-model-4.png" width="40%"/>
+					</section>
+					<section>
+						<h2>Concurrency evolution in the JVM</h2>
+						<h3>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</h3>
+						<img src="images/java-memory-model-3.png" width="40%"/>
+					</section>
+					<section>
+						<h2>Concurrency evolution in the JVM</h2>
+						<h3>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</h3>
+						<img src="images/executor-service.jpg" width="60%"/>
+					</section>
+					<section>
+						<h2>Concurrency evolution in the JVM</h2>
+						<!-- <h3>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</h3> -->
+						<pre><code data-trim>
+public class ExecutorServiceBasic {
+    private static CountDownLatch latch = new CountDownLatch(1);
+    public static void main(String args[]) throws InterruptedException {
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+        executor.submit(new Process2());
+        latch.await();
+        executor.shutdown();
+        executor.awaitTermination(60, TimeUnit.SECONDS);
+        System.out.println("Example finished");
+    }
+    static class Process2 implements Runnable {
+        public void run() {
+            System.out.println("Thread is running...");
+            latch.countDown();
+        }
+    }
+}
+
+						</code></pre>
+					</section>
+					<section>
+						<h2>Concurrency evolution in the JVM</h2>
+						<h3>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</h3>
+						<pre><code data-trim>
+Thread is running...
+Example finished
+						</code></pre>
+					</section>
+					<section>
+						<h2>Concurrency evolution in the JVM</h2>
+						<!-- <h3>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</h3>-->
+						<p>
+							References:
+						</p>
+						<ul>
+							<li><a href="https://docs.oracle.com/javase/1.5.0/docs/api/" target="_blank">Java 1.5.0 Javadocs</a></li>
+							<li><a href="https://download.oracle.com/otndocs/jcp/memory_model-1.0-pfd-spec-oth-JSpec/" target="_blank">JSR-133 Java Memory Model and Thread Specification 1.0</a> </li>
+							<li><a href="https://docs.oracle.com/javase/1.5.0/docs/api/java/util/concurrent/ExecutorService.html" target="_blank">ExecutorService</a></li>
+							<li><a href="https://docs.oracle.com/javase/1.5.0/docs/api/java/util/concurrent/Future.html" target="_blank">Future</a></li>
+							<li><a href="https://docs.oracle.com/javase/1.5.0/docs/api/java/util/concurrent/atomic/package-summary.html">Package java.util.concurrent.atomic</a></li>
+							<li><a href="https://docs.oracle.com/javase/1.5.0/docs/api/java/util/concurrent/locks/package-summary.html">Package java.util.concurrent.locks</a> </li>
+						</ul>
+					</section>
+					<section>
+						<h2>Concurrency evolution in the JVM</h2>
+						<h3>Java 1.7 / Fork/join framework (07/07/2011)</h3>
+						<ul>
+							<li>PENDING</li>
+							<li>PENDING</li>
+							<li>PENDING</li>
+							<li>PENDING</li>
+						</ul>
+					</section>
+					<!--
+					http://rashidnoorani.blogspot.com/2012/08/how-to-use-fork-join-framework-features.html
+					https://github.com/bejancsaba/java-concurrency-evolution
+					https://github.com/bejancsaba/java-concurrency-evolution-loom
+					-->
+					<section>
+						<h2>Concurrency evolution in the JVM</h2>
+						<h3>Java 1.8 / CompletableFuture (18/03/2014)</h3>
+						<ul>
+							<li>PENDING</li>
+							<li>PENDING</li>
+							<li>PENDING</li>
+							<li>PENDING</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Concurrency evolution in the JVM</h2>
+						<h3>Java 19 / Virtual Threads, Structured Concurrency (20/09/2022)</h3>
+						<ul>
+							<li>PENDING</li>
+							<li>PENDING</li>
+							<li>PENDING</li>
+							<li>PENDING</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Design patterns that impacts you</h2>
+						<ul>
+							<li>CDI, Contexts and Dependency Injection</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Other concurrency approaches</h2>
+						<ul>
+							<li>Actor model</li>
+							<li>CPS, Communicating Sequential Processes</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Concurrency tools: JCStress</h2>
+						<ul>
+							<li>Introduction</li>
+							<li>Gradle plugin</li>
+							<li>How to test with JCStress</li>
+							<li>Who is using the tool?</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>How to help the team?</h2>
+						<ul>
+							<li>PENDING</li>
+							<li>PENDING</li>
+							<li>PENDING</li>
+							<li>PENDING</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>References</h2>
+						<ul>
+							<li>https://docs.oracle.com/javase/specs/jls/se8/html/jls-17.html</li>
+							<li>http://www.cs.umd.edu/~pugh/java/memoryModel/jsr-133-faq.html</li>
+							<li>https://web.archive.org/web/20220601003130/http://gee.cs.oswego.edu/dl/jmm/cookbook.html</li>
+							<li>https://web.archive.org/web/20220601003130/http://gee.cs.oswego.edu/dl/html/j9mm.html</li>
+							<li>https://openjdk.org/jeps/193</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Q&A</h2>
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="./reveal.js/dist/reveal.js"></script>
+		<script src="./reveal.js/plugin/notes/notes.js"></script>
+		<script src="./reveal.js/plugin/markdown/markdown.js"></script>
+		<script src="./reveal.js/plugin/highlight/highlight.js"></script>
+
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>

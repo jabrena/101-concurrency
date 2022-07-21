@@ -1,0 +1,5 @@
+tasks:
+  - before: sdk env
+  - init: ./gradlew clean build
+image:
+  file: .gitpod.Dockerfile

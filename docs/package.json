@@ -1,0 +1,14 @@
+{
+  "name": "concurrency-rosseta-stone",
+  "version": "0.1.0",
+  "description": "concurrency-rosseta-stone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juan Antonio Breña Moral",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "reveal.js": "^4.3.1"
+  }
+}
