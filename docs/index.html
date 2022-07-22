@@ -53,6 +53,7 @@
 							<li>Who I am</li>
 							<li>Expectations</li>
 							<li>Context</li>
+							<li>Non funcional requirements</li>
 							<li>Concurrency concepts</li>
 							<li>Concurrency evolution in the JVM</li>
 							<li>Design patterns that impacts you</li>
@@ -101,16 +102,23 @@
 					<section>
 						<h2>Context</h2>
 						<ul>
+							<li>In many cases, non funcional requirements are not well defined.</li>
+							<li>If the team are using some kind of "Agile flavour", the definition of Done, doesnt´t define aspects about non funcional requirements.</li>
 							<li>The Java programming language has included Multithreading features since 1996 (Java 1.0).</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Context</h2>
+						<ul>
 							<li>Not all Java developers understand how to program thread-safety code.</li>
 							<li>Handling shared memory is the main approach in Java but it is not the unique approach.</li>
 							<li>Is it still valid the term: "Write once, run everywhere"? (When you deploy multithreading code in production).</li>
 						</ul>
 					</section>
+					<!--
 					<section>
 						<img src="images/quiz.png" width="50%"/>
 					</section>
-					<!--
 					<section>
 						<h2>Context</h2>
 						<h4>Question: What is the java version used in production?</h4>
@@ -118,7 +126,6 @@
 							<a href="https://pollev.com/juanantoniobrenamoral114" target="_blank">https://pollev.com/juanantoniobrenamoral114</a>
 						</p>
 					</section>
-					-->
 					<section>
 						<h2>Context</h2>
 						<h4>Question: Did all your team members read "Concurrent Programming in Java" or "Java concurrency in practice" at least once?</h4>
@@ -136,11 +143,41 @@
 						</p>
 					</section>
 					<section>
-						<h2>Context & Concepts</h2>
+						<h2>Context</h2>
 						<h4>Question: What kind of concurrency objects or language resources, do you use in your daily job?</h4>
 						<p>
 							<a href="https://pollev.com/juanantoniobrenamoral114" target="_blank">https://pollev.com/juanantoniobrenamoral114</a>
 						</p>
+					</section>
+					-->
+				</section>
+				<section>
+					<section>
+						<h2>Non funcional requirements</h2>
+						<img src="images/iceberg.png" width="50%"/>
+						<h1>🤷‍♂️</h1>
+					</section>
+					<section>
+						<h2>Non funcional requirements</h2>
+						<h4>ISO 25010</h4>
+						<p>
+							ISO 25010, titled “Systems and software engineering –
+							Systems and software Quality Requirements and Evaluation (SQuaRE) –
+							System and software quality models”, is a software quality standard.
+							It describes the models, consisting of characteristics and sub-characteristics,
+							for both software product quality, and software quality in use together with practical
+							guidance on the use of the quality models.
+						</p>
+					</section>
+					<section>
+						<h2>Non funcional requirements</h2>
+						<h4>ISO 25010</h4>
+						<img src="images/iso-25010.png" />
+						<br />
+						<small><strong>Source:</strong>
+							<a href="https://iso25000.com/index.php/en/iso-25000-standards/iso-25010" target="_blank">
+								https://iso25000.com/index.php/en/iso-25000-standards/iso-25010</a>
+						</small>
 					</section>
 				</section>
 				<section>
@@ -439,16 +476,108 @@ Example finished
 						</ul>
 					</section>
 				</section>
+				<!--
+				https://foojay.io/today/jcstress/
+				https://www.baeldung.com/java-testing-multithreaded#4-java-jcstress
+				https://shipilev.net/talks/geecon-May2018-jmm.pdf
+				https://shipilev.net/blog/2014/jmm-pragmatics/#_preface
+				https://shipilev.net/talks/narnia-2555-jmm-pragmatics-en.pdf
+				https://shipilev.net/blog/2016/close-encounters-of-jmm-kind/
+
+				./gradlew clean jcstress --tests "Calculator5Test"
+				-->
 				<section>
 					<section>
 						<h2>Concurrency tools: JCStress</h2>
 						<ul>
 							<li>Introduction</li>
-							<li>Gradle plugin</li>
-							<li>How to test with JCStress</li>
-							<li>Who is using the tool?</li>
+							<li>Who is behind the library?</li>
+							<li>What are the benefits?</li>
+							<li>Creating your first JCStress test</li>
+							<li>Does exist plugins?</li>
+							<li>What projects are using the JCStress?</li>
 						</ul>
 					</section>
+					<section>
+						<h2>Concurrency tools: JCStress</h2>
+						<h3>Introduction</h3>
+						<p>
+							The Java Concurrency Stress (jcstress) is the experimental harness and
+							a suite of tests to aid the research in the correctness of concurrency support
+							in the JVM, class libraries, and hardware.
+						</p>
+						<a href="https://github.com/openjdk/jcstress" target="_blank">https://github.com/openjdk/jcstress</a>
+					</section>
+					<section>
+						<h2>Concurrency tools: JCStress</h2>
+						<h3>Who is behind the library?</h3>
+						<p>
+							Aleksey Shipilëv is working on Java performance for 10+ years.
+							Today he is employed by Red Hat, where he does OpenJDK development and performance work.
+							Aleksey develops and maintains a number of OpenJDK subprojects,
+							including
+							<a href="https://github.com/openjdk/jmh" target="_blank">JMH</a>,
+							<a href="https://github.com/openjdk/jol" target="_blank">JOL</a> and
+							<a href="https://github.com/openjdk/jcstress" target="_blank">JCStress</a>.
+						</p>
+						<a href="https://shipilev.net/" target="_blank">https://shipilev.net/</a>
+					</section>
+					<section>
+						<h2>Concurrency tools: JCStress</h2>
+						<h3>What are the benefits?</h3>
+						<ul>
+							<li>Increase the capacity to test for concurrency in your Java classes
+								that you know that the class is sharing state.</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Concurrency tools: JCStress</h2>
+						<h4>Creating your first JCStress test</h4>
+						<ul>
+							<li>Review in your project, classes where you are maintaing state</li>
+							<li>With that list of classes, try to create JCStress tests</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Concurrency tools: JCStress</h2>
+						<h4>Creating your first JCStress test</h4>
+						<pre><code data-trim>
+@NotThreadSafe
+public class Account {
+    private int balance;
+    public Account(int balance) {
+        this.balance = balance;
+    }
+    public int getBalance() {
+        return this.balance;
+    }
+    public int withdraw(int amount) {
+        this.balance = this.balance - amount;
+        return this.balance;
+    }
+}
+						</code></pre>
+					</section>
+					<section>
+						<h2>Concurrency tools: JCStress</h2>
+						<h4>Creating your first JCStress test</h4>
+						<img src="images/demo.png" />
+					</section>
+					<section>
+						<h2>Concurrency tools: JCStress</h2>
+						<ul>
+							<li>I:  int</li>
+							<li>Z:  boolean</li>
+							<li>F:  float</li>
+							<li>J:  long</li>
+							<li>S:  short</li>
+							<li>B:  byte</li>
+							<li>C:  char</li>
+							<li>D:  double</li>
+							<li>L:  object</li>
+						</ul>
+					</section>
+
 				</section>
 				<section>
 					<section>
