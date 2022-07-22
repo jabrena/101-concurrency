@@ -1,4 +1,4 @@
-package info.jab.concurrent.slides;
+package info.jab.examples.slides;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;

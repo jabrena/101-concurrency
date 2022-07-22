@@ -1,6 +1,5 @@
 package info.jab.ms.model;
 
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Calculator5 {

@@ -2,6 +2,12 @@
 
 A review about Concurrency on the JVM for modern Java developers.
 
+## How to run
+
+```
+./gradlew clean build jcstress
+```
+
 ## Documentation
 
 ```

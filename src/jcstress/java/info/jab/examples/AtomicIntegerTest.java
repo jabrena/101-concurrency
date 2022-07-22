@@ -1,4 +1,4 @@
-package info.jab.concurrent;
+package info.jab.examples;
 
 import org.openjdk.jcstress.annotations.Actor;
 import org.openjdk.jcstress.annotations.Arbiter;

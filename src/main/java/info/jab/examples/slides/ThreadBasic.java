@@ -1,4 +1,4 @@
-package info.jab.concurrent.slides;
+package info.jab.examples.slides;
 
 class Process implements Runnable {
 
