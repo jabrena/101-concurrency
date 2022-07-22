@@ -1,4 +1,4 @@
-package info.jab.concurrent;
+package info.jab.examples;
 
 public class MyCounter {
 

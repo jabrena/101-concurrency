@@ -1,2 +1,1 @@
 rootProject.name = '101-concurrency'
-include 'spring-boot'

@@ -1,4 +1,4 @@
-package info.jab.concurrent;
+package info.jab.examples;
 
 import static org.openjdk.jcstress.annotations.Expect.ACCEPTABLE;
 import static org.openjdk.jcstress.annotations.Expect.ACCEPTABLE_INTERESTING;

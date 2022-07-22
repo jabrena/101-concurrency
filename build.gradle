@@ -1,17 +1,17 @@
 plugins {
+    id 'org.springframework.boot' version '2.7.2'
+    id 'io.spring.dependency-management' version '1.0.12.RELEASE'
     id 'java'
     id 'idea'
     id "io.github.reyerizo.gradle.jcstress" version "0.8.13"
 }
 
+group = 'info.jab.ms'
+version = '0.1.0-SNAPSHOT'
+sourceCompatibility = '18'
+
 ext {
     jcstressVersion = '0.15'
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(18)
-    }
 }
 
 repositories {
@@ -19,8 +19,18 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.zalando:logbook-spring-boot-starter:2.14.0'
+    //TODO Review how to change the scope of this dependency
     implementation "org.openjdk.jcstress:jcstress-core:${jcstressVersion}"
     implementation "net.jcip:jcip-annotations:1.0"
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
 }
 
 jcstress {

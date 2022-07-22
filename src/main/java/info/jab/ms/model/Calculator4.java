@@ -1,5 +1,8 @@
 package info.jab.ms.model;
 
+/**
+ * TODO Review the design.
+ */
 public class Calculator4 {
         private final Long operator1;
         private final Long operator2;
