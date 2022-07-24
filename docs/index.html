@@ -28,13 +28,6 @@
 						</p>
 					</section>
 					<section>
-						<h2>Introduction about Concurrency bugs Hunting with JCStress.</h2>
-						<p>
-							Elevator pitch:
-						</p>
-					</section>
-					<!-- TODO Update links -->
-					<section>
 						<p>Follow the talk from your smartphone:</p>
 						<img src="images/qrcode.png" width="40%" />
 					</section>
@@ -59,7 +52,7 @@
 							<li>Root causes</li>
 							<!-- <li>Context</li> -->
 							<li>Non funcional requirements</li>
-							<li>Concurrency models & evolution</li>
+							<li>Concurrency models</li>
 							<!-- <li>Concurrency concepts</li> -->
 							<!-- <li>Concurrency evolution in the JVM</li> -->
 							<li>Design patterns that impacts you</li>
@@ -320,15 +313,20 @@
 				-->
 				<section>
 					<section>
-						<h2>Concurrency models & evolution</h2>
+						<h2>Concurrency models</h2>
 						<img src="images/lang-rank-0122.png" width="50%">
+						<br />
+						<small><strong>Source:</strong>
+							<a href="https://redmonk.com/sogrady/2022/03/28/language-rankings-1-22/" target="_blank">
+								https://redmonk.com/sogrady/2022/03/28/language-rankings-1-22/</a>
+						</small>
 					</section>
 					<section>
-						<h2>Concurrency models & evolution</h2>
+						<h2>Concurrency models</h2>
 						<small>
 							<table>
 								<tr>
-									<th>Language</th>
+									<th>Lang</th>
 									<th>Shared memory</th>
 									<th>CSP</th>
 									<th>Actors</th>
@@ -340,7 +338,7 @@
 									<th>Green Threads</th>
 								</tr>
 								<tr>
-									<td>Java</td>
+									<td><a href="https://www.java.com/" target="_blank">Java</a></td>
 									<td><a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-17.html" target="_blank">Yes</a></td>
 									<td>No</td>
 									<td>No</td>
@@ -355,7 +353,7 @@
                                 https://superfastpython.com/multiprocessing-in-python/
                                 -->
 								<tr>
-									<td>Python</td>
+									<td><a href="https://www.python.org/" target="_blank">Python</a></td>
 									<td><a href="https://docs.python.org/3/library/multiprocessing.shared_memory.html" target="_blank">Yes</a></td>
 									<td>No</td>
 									<td>No</td>
@@ -367,19 +365,19 @@
 									<td>No</td>
 								</tr>
 								<tr>
-									<td>Node.js</td>
+									<td><a href="https://nodejs.org" target="_blank">Node.js</a></td>
 									<td>No</td>
 									<td>No</td>
 									<td>No</td>
+									<td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function" target="_blank">Yes</a></td>
 									<td>Yes</td>
-									<td>Yes</td>
 									<td>No</td>
-									<td>No</td>
+									<td><a href="https://nodejs.org/api/cluster.html" target="_blank">Yes*</a></td>
 									<td>Yes</td>
 									<td>No</td>
 								</tr>
 								<tr>
-									<td>PHP</td>
+									<td><a href="https://www.php.net/" target="_blank">PHP</a></td>
 									<td>No</td>
 									<td>No</td>
 									<td>No</td>
@@ -388,13 +386,25 @@
 									<td>No</td>
 									<td>No</td>
 									<td>Yes</td>
-									<td><a href="https://wiki.php.net/rfc/fibers" target="_blank">Yes</a></td>
+									<td><a href="https://wiki.php.net/rfc/fibers" target="_blank">Yes*</a></td>
+								</tr>
+								<tr>
+									<td><a href="https://elixir-lang.org/" target="_blank">Elixir</a></td>
+									<td>No</td>
+									<td><a href="https://elixir-lang.org/getting-started/processes.html" target="_blank">Yes</a></td>
+									<td>Yes</td>
+									<td><a href="https://hexdocs.pm/elixir/1.13/Task.html" target="_blank">Yes</a></td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
 								</tr>
 								<!--
                                 https://medium.com/@aversanamichele/exploiting-multiple-cores-using-concurrency-and-task-groups-in-swift-adfbc5b7fbcf
                                 -->
 								<tr>
-									<td>Swift</td>
+									<td><a href="https://www.swift.org/" target="_blank">Swift</a></td>
 									<td>No</td>
 									<td><a href="https://www.swift.org/blog/distributed-actors/" target="_blank">Yes</a></td>
 									<td><a href="https://www.swift.org/blog/distributed-actors/" target="_blank">Yes</a></td>
@@ -403,31 +413,43 @@
 									<td><a href="https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html" target="_blank">Yes</a></td>
 									<td>Yes</td>
 									<td>Yes</td>
-									<td>Yes</td>
+									<td>No</td>
 								</tr>
 								<tr>
-									<td>Go</td>
+									<td><a href="https://dart.dev/" target="_blank">Dart</a></td>
+									<td>No</td>
+									<td><a href="https://dart.dev/guides/language/concurrency" target="_blank">Yes</a></td>
+									<td>No</td>
+									<td><a href="https://dart.dev/codelabs/async-await" target="_blank">Yes</a></td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>No</td>
+								</tr>
+								<tr>
+									<td><a href="https://go.dev/" target="_blank">Go</a></td>
 									<td>No</td>
 									<td><a href="https://go.dev/tour/concurrency/2" target="_blank">Yes</a></td>
 									<td>No</td>
 									<td>No</td>
 									<td>No</td>
-									<td>No</td>
-									<td>No</td>
+									<td>Yes</td>
+									<td>Yes</td>
 									<td>No</td>
 									<td>Yes</td>
 								</tr>
 								<tr>
-									<td>Rust</td>
+									<td><a href="https://www.rust-lang.org/" target="_blank">Rust</a></td>
 									<td>Yes</td>
 									<td>Yes</td>
 									<td>No</td>
 									<td>Yes</td>
 									<td>No</td>
-									<td>No</td>
-									<td>No</td>
 									<td>Yes</td>
 									<td>Yes</td>
+									<td>Yes</td>
+									<td>No</td>
 								</tr>
 							</table>
 						</small>
@@ -437,7 +459,7 @@
 					https://dzone.com/articles/java-concurrency-evolution
 					-->
 					<section>
-						<h2>Concurrency models & evolution</h2>
+						<h2>Concurrency models</h2>
 						<ul>
 							<li>Java 1.0 : Java Threads (23/01/1996)</li>
 							<li>Java 1.5 : JSR 133, java.util.concurrent.* (30/09/2004)</li>
