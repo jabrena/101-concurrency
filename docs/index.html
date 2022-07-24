@@ -20,21 +20,25 @@
 			<div class="slides">
 				<section>
 					<section>
+						<h2 style="color:red">WIP</h2>
 						<img src="images/duke-threads.jpg" width="40%">
-						<!-- <img src="images/rosetta_stone.svg.png" width="40%" /> -->
 						<p>
-							A review about Concurrency on the JVM for <br />modern Java developers.<br />
+							Introduction about Concurrency bugs Hunting with JCStress.<br />
 							<small>Juan Antonio Breña Moral</small>
+						</p>
+					</section>
+					<section>
+						<h2>Introduction about Concurrency bugs Hunting with JCStress.</h2>
+						<p>
+							Elevator pitch:
 						</p>
 					</section>
 					<!-- TODO Update links -->
 					<section>
-						<h2>Concurrency rosseta stone</h2>
 						<p>Follow the talk from your smartphone:</p>
 						<img src="images/qrcode.png" width="40%" />
 					</section>
 					<section>
-						<h2>Concurrency rosseta stone</h2>
 						<p>Example repository:</p>
 						<a href="https://github.com/jabrena/101-concurrency" target="_blank">
 							<img src="images/github.png" width="35%">
@@ -52,12 +56,15 @@
 						<ol>
 							<li>Who I am</li>
 							<li>Expectations</li>
-							<li>Context</li>
+							<li>Root causes</li>
+							<!-- <li>Context</li> -->
 							<li>Non funcional requirements</li>
-							<li>Concurrency concepts</li>
-							<li>Concurrency evolution in the JVM</li>
+							<li>Concurrency models & evolution</li>
+							<!-- <li>Concurrency concepts</li> -->
+							<!-- <li>Concurrency evolution in the JVM</li> -->
 							<li>Design patterns that impacts you</li>
-							<li>Other concurrency approaches</li>
+							<!-- <li>Other concurrency approaches</li> -->
+							<li>One example to ilustrate it</li>
 							<li>Concurrency tools: JCStress</li>
 							<li>How to help the team?</li>
 							<li>References</li>
@@ -100,6 +107,37 @@
 				</section>
 				<section>
 					<section>
+						<h2>Root causes</h2>
+						<ul>
+							<li>Engineering teams bad designed.</li>
+							<li>Cognitive load issues.</li>
+							<li>Lack of specialists in concurrency in BU.</li>
+							<li>Lack of internal trainings about concurrency.</li>
+							<li>Bad delegation of complex tasks.</li>
+							<li>Projects with non functional requirements well defined.</li>
+							<li>Engineers more focused on cool features from Frameworks than language fundamentals.</li>
+							<li>Project bad estimated.</li>
+							<li>...</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Root causes</h2>
+						<p>
+							And the party begin...
+						</p>
+						<img src="images/lemmings.png" width="50%"/>
+					</section>
+					<section>
+						<h2>Root causes</h2>
+						<p>
+							What root causes are missing from your point of view?
+						</p>
+						<img src="images/feedback.png" width="30%"/>
+					</section>
+				</section>
+				<!--
+				<section>
+					<section>
 						<h2>Context</h2>
 						<ul>
 							<li>In many cases, non funcional requirements are not well defined.</li>
@@ -115,7 +153,7 @@
 							<li>Is it still valid the term: "Write once, run everywhere"? (When you deploy multithreading code in production).</li>
 						</ul>
 					</section>
-					<!--
+					<! --
 					<section>
 						<img src="images/quiz.png" width="50%"/>
 					</section>
@@ -149,25 +187,30 @@
 							<a href="https://pollev.com/juanantoniobrenamoral114" target="_blank">https://pollev.com/juanantoniobrenamoral114</a>
 						</p>
 					</section>
-					-->
+					-- >
 				</section>
+				-->
 				<section>
 					<section>
 						<h2>Non funcional requirements</h2>
+						<p>
+							Do you define properly the non functional requirements in your projects?
+						</p>
 						<img src="images/iceberg.png" width="50%"/>
-						<h1>🤷‍♂️</h1>
 					</section>
 					<section>
 						<h2>Non funcional requirements</h2>
 						<h4>ISO 25010</h4>
 						<p>
-							ISO 25010, titled “Systems and software engineering –
-							Systems and software Quality Requirements and Evaluation (SQuaRE) –
-							System and software quality models”, is a software quality standard.
+							ISO 25010, titled “System and software quality models”, is a software quality standard.
 							It describes the models, consisting of characteristics and sub-characteristics,
 							for both software product quality, and software quality in use together with practical
 							guidance on the use of the quality models.
 						</p>
+						<small><strong>Source:</strong>
+							<a href="https://iso25000.com/index.php/en/iso-25000-standards/iso-25010" target="_blank">
+								https://iso25000.com/index.php/en/iso-25000-standards/iso-25010</a>
+						</small>
 					</section>
 					<section>
 						<h2>Non funcional requirements</h2>
@@ -180,6 +223,7 @@
 						</small>
 					</section>
 				</section>
+				<!--
 				<section>
 					<section>
 						<h2>Concurrency concepts</h2>
@@ -208,6 +252,7 @@
 						</p>
 						<a href="https://en.wikipedia.org/wiki/Amdahl%27s_law" target="_blank">https://en.wikipedia.org/wiki/Amdahl%27s_law</a>
 					</section>
+					-->
 					<!--
 					http://www.cs.umd.edu/~pugh/java/memoryModel/Dagstuhl.pdf
 					https://chowdera.com/2022/04/202204030513095225.html
@@ -219,6 +264,7 @@
 					https://shipilev.net/talks/narnia-2555-jmm-pragmatics-en.pdf
 					https://shipilev.net/blog/2016/close-encounters-of-jmm-kind/
 					-->
+					<!--
 					<section>
 						<h2>Concurrency concepts</h2>
 						<h4>JMM, Java memory model</h4>
@@ -271,13 +317,135 @@
 						<img src="images/jmm-2.png" width="70%" />
 					</section>
 				</section>
+				-->
 				<section>
+					<section>
+						<h2>Concurrency models & evolution</h2>
+						<img src="images/lang-rank-0122.png" width="60%">
+					</section>
+					<section>
+						<h2>Concurrency models & evolution</h2>
+						<small>
+							<table>
+								<tr>
+									<th>Nature</th>
+									<th>Language</th>
+									<th>Shared memory</th>
+									<th>CSP</th>
+									<th>Actors</th>
+									<th>Async Await</th>
+									<th>Mono thread</th>
+									<th>Multi threads</th>
+									<th>Multi core</th>
+									<th>OS Threads</th>
+									<th>Green Threads</th>
+								</tr>
+								<tr>
+									<td>General</td>
+									<td>Java</td>
+									<td><a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-17.html" target="_blank">Yes</a></td>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+								<!--
+                                https://superfastpython.com/multiprocessing-in-python/
+                                -->
+								<tr>
+									<td>General</td>
+									<td>Python</td>
+									<td><a href="https://docs.python.org/3/library/multiprocessing.shared_memory.html" target="_blank">Yes</a></td>
+									<td>No</td>
+									<td>No</td>
+									<td><a href="https://docs.python.org/3/library/asyncio.html" target="_blank">Yes</a></td>
+									<td><a href="https://docs.python.org/3/c-api/init.html#thread-state-and-the-global-interpreter-lock" target="_blank">Yes</a></td>
+									<td><a href="https://docs.python.org/3/library/threading.html" target="_blank">Yes*</a></td>
+									<td><a href="https://docs.python.org/3/library/multiprocessing.html" target="_blank">Yes*</a></td>
+									<td>Yes</td>
+									<td>No</td>
+								</tr>
+								<tr>
+									<td>Web</td>
+									<td>Node.js</td>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>No</td>
+								</tr>
+								<tr>
+									<td>Web</td>
+									<td>PHP</td>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td><a href="https://wiki.php.net/rfc/fibers" target="_blank">Yes</a></td>
+								</tr>
+								<!--
+                                https://medium.com/@aversanamichele/exploiting-multiple-cores-using-concurrency-and-task-groups-in-swift-adfbc5b7fbcf
+                                -->
+								<tr>
+									<td>Mobile</td>
+									<td>Swift</td>
+									<td>No</td>
+									<td><a href="https://www.swift.org/blog/distributed-actors/" target="_blank">Yes</a></td>
+									<td><a href="https://www.swift.org/blog/distributed-actors/" target="_blank">Yes</a></td>
+									<td><a href="https://www.swift.org/blog/distributed-actors/" target="_blank">Yes</a></td>
+									<td>No</td>
+									<td><a href="https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html" target="_blank">Yes</a></td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+								<tr>
+									<td>Systems</td>
+									<td>Go</td>
+									<td>No</td>
+									<td><a href="https://go.dev/tour/concurrency/2" target="_blank">Yes</a></td>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>Yes</td>
+								</tr>
+								<tr>
+									<td>Systems</td>
+									<td>Rust</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+							</table>
+						</small>
+					</section>
 					<!--
 					https://www.baeldung.com/java-thread-lifecycle
 					https://dzone.com/articles/java-concurrency-evolution
 					-->
 					<section>
-						<h2>Concurrency evolution in the JVM</h2>
+						<h2>Concurrency models & evolution</h2>
 						<ul>
 							<li>Java 1.0 / Java Threads (23/01/1996)</li>
 							<li>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</li>
@@ -287,7 +455,7 @@
 						</ul>
 					</section>
 					<section>
-						<h2>Concurrency evolution in the JVM</h2>
+						<h2>Concurrency models & evolution</h2>
 						<h3>Java 1.0 / Java Threads (23/01/1996)</h3>
 						<ul>
 							<li>PENDING</li>
@@ -302,12 +470,12 @@
 						<img src="images/thread-life-cycle.jpg" width="50%"/>
 					</section>
 					<section>
-						<h2>Concurrency evolution in the JVM</h2>
+						<h2>Concurrency models & evolution</h2>
 						<h3>Java 1.0 / Java Threads (23/01/1996)</h3>
 						<img src="images/os-threads.png" width="70%"/>
 					</section>
 					<section>
-						<h2>Concurrency evolution in the JVM</h2>
+						<h2>Concurrency models & evolution</h2>
 						<h3>Java 1.0 / Java Threads (23/01/1996)</h3>
 						<pre><code data-trim>
 class Process implements Runnable {
@@ -328,7 +496,7 @@ public class ThreadBasic {
 						</code></pre>
 					</section>
 					<section>
-						<h2>Concurrency evolution in the JVM</h2>
+						<h2>Concurrency models & evolution</h2>
 						<h3>Java 1.0 / Java Threads (23/01/1996)</h3>
 						<pre><code data-trim>
 Thread is running...
@@ -336,7 +504,7 @@ Example finished
 						</code></pre>
 					</section>
 					<section>
-						<h2>Concurrency evolution in the JVM</h2>
+						<h2>Concurrency models & evolution</h2>
 						<h3>Java 1.0 / Java Threads (23/01/1996)</h3>
 						<p>
 							Javadocs:
@@ -352,7 +520,7 @@ Example finished
 					https://jenkov.com/tutorials/java-concurrency/java-memory-model.html
 					-->
 					<section>
-						<h2>Concurrency evolution in the JVM</h2>
+						<h2>Concurrency models & evolution</h2>
 						<h3>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</h3>
 						<ul>
 							<li>PENDING</li>
@@ -362,22 +530,22 @@ Example finished
 						</ul>
 					</section>
 					<section>
-						<h2>Concurrency evolution in the JVM</h2>
+						<h2>Concurrency models & evolution</h2>
 						<h3>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</h3>
 						<img src="images/java-memory-model-4.png" width="40%"/>
 					</section>
 					<section>
-						<h2>Concurrency evolution in the JVM</h2>
+						<h2>Concurrency models & evolution</h2>
 						<h3>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</h3>
 						<img src="images/java-memory-model-3.png" width="40%"/>
 					</section>
 					<section>
-						<h2>Concurrency evolution in the JVM</h2>
+						<h2>Concurrency models & evolution</h2>
 						<h3>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</h3>
 						<img src="images/executor-service.jpg" width="60%"/>
 					</section>
 					<section>
-						<h2>Concurrency evolution in the JVM</h2>
+						<h2>Concurrency models & evolution</h2>
 						<!-- <h3>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</h3> -->
 						<pre><code data-trim>
 public class ExecutorServiceBasic {
@@ -401,7 +569,7 @@ public class ExecutorServiceBasic {
 						</code></pre>
 					</section>
 					<section>
-						<h2>Concurrency evolution in the JVM</h2>
+						<h2>Concurrency models & evolution</h2>
 						<h3>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</h3>
 						<pre><code data-trim>
 Thread is running...
@@ -409,7 +577,7 @@ Example finished
 						</code></pre>
 					</section>
 					<section>
-						<h2>Concurrency evolution in the JVM</h2>
+						<h2>Concurrency models & evolution</h2>
 						<!-- <h3>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</h3>-->
 						<p>
 							References:
@@ -424,7 +592,7 @@ Example finished
 						</ul>
 					</section>
 					<section>
-						<h2>Concurrency evolution in the JVM</h2>
+						<h2>Concurrency models & evolution</h2>
 						<h3>Java 1.7 / Fork/join framework (07/07/2011)</h3>
 						<ul>
 							<li>PENDING</li>
@@ -439,7 +607,7 @@ Example finished
 					https://github.com/bejancsaba/java-concurrency-evolution-loom
 					-->
 					<section>
-						<h2>Concurrency evolution in the JVM</h2>
+						<h2>Concurrency models & evolution</h2>
 						<h3>Java 1.8 / CompletableFuture (18/03/2014)</h3>
 						<ul>
 							<li>PENDING</li>
@@ -449,7 +617,7 @@ Example finished
 						</ul>
 					</section>
 					<section>
-						<h2>Concurrency evolution in the JVM</h2>
+						<h2>Concurrency models & evolution</h2>
 						<h3>Java 19 / Virtual Threads, Structured Concurrency (20/09/2022)</h3>
 						<ul>
 							<li>PENDING</li>
@@ -464,9 +632,27 @@ Example finished
 						<h2>Design patterns that impacts you</h2>
 						<ul>
 							<li>CDI, Contexts and Dependency Injection</li>
+							<img src="images/spring-container.png" />
 						</ul>
 					</section>
+					<section>
+						<h2>Design patterns that impacts you</h2>
+						<h4>CDI, Contexts and Dependency Injection</h4>
+						<p>
+							CDI (Contexts and Dependency Injection) is a standard
+							dependency injection framework included in Jakarta EE.
+							It allows us to manage the lifecycle of
+							stateful components via domain-specific lifecycle
+							contexts and inject components (services) into client
+							objects in a type-safe way.
+						</p>
+					</section>
 				</section>
+				<section>
+					<h2>One example to ilustrate it</h2>
+					<img src="images/example1.png" />
+				</section>
+				<!--
 				<section>
 					<section>
 						<h2>Other concurrency approaches</h2>
@@ -476,6 +662,7 @@ Example finished
 						</ul>
 					</section>
 				</section>
+				-->
 				<!--
 				https://foojay.io/today/jcstress/
 				https://www.baeldung.com/java-testing-multithreaded#4-java-jcstress

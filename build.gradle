@@ -19,13 +19,14 @@ repositories {
 }
 
 dependencies {
+    compileOnly "net.jcip:jcip-annotations:1.0"
+
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.zalando:logbook-spring-boot-starter:2.14.0'
-    //TODO Review how to change the scope of this dependency
-    implementation "org.openjdk.jcstress:jcstress-core:${jcstressVersion}"
-    implementation "net.jcip:jcip-annotations:1.0"
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
 
+    testImplementation "org.openjdk.jcstress:jcstress-core:${jcstressVersion}"
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
