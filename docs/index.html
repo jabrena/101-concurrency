@@ -111,7 +111,7 @@
 						<ul>
 							<li>Engineering teams bad designed.</li>
 							<li>Cognitive load issues.</li>
-							<li>Lack of specialists in concurrency in BU.</li>
+							<li>Lack of specialists about concurrency in your BU.</li>
 							<li>Lack of internal trainings about concurrency.</li>
 							<li>Bad delegation of complex tasks.</li>
 							<li>Projects with non functional requirements well defined.</li>
@@ -328,7 +328,6 @@
 						<small>
 							<table>
 								<tr>
-									<th>Nature</th>
 									<th>Language</th>
 									<th>Shared memory</th>
 									<th>CSP</th>
@@ -341,7 +340,6 @@
 									<th>Green Threads</th>
 								</tr>
 								<tr>
-									<td>General</td>
 									<td>Java</td>
 									<td><a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-17.html" target="_blank">Yes</a></td>
 									<td>No</td>
@@ -357,7 +355,6 @@
                                 https://superfastpython.com/multiprocessing-in-python/
                                 -->
 								<tr>
-									<td>General</td>
 									<td>Python</td>
 									<td><a href="https://docs.python.org/3/library/multiprocessing.shared_memory.html" target="_blank">Yes</a></td>
 									<td>No</td>
@@ -370,7 +367,6 @@
 									<td>No</td>
 								</tr>
 								<tr>
-									<td>Web</td>
 									<td>Node.js</td>
 									<td>No</td>
 									<td>No</td>
@@ -383,7 +379,6 @@
 									<td>No</td>
 								</tr>
 								<tr>
-									<td>Web</td>
 									<td>PHP</td>
 									<td>No</td>
 									<td>No</td>
@@ -399,7 +394,6 @@
                                 https://medium.com/@aversanamichele/exploiting-multiple-cores-using-concurrency-and-task-groups-in-swift-adfbc5b7fbcf
                                 -->
 								<tr>
-									<td>Mobile</td>
 									<td>Swift</td>
 									<td>No</td>
 									<td><a href="https://www.swift.org/blog/distributed-actors/" target="_blank">Yes</a></td>
@@ -412,7 +406,6 @@
 									<td>Yes</td>
 								</tr>
 								<tr>
-									<td>Systems</td>
 									<td>Go</td>
 									<td>No</td>
 									<td><a href="https://go.dev/tour/concurrency/2" target="_blank">Yes</a></td>
@@ -425,7 +418,6 @@
 									<td>Yes</td>
 								</tr>
 								<tr>
-									<td>Systems</td>
 									<td>Rust</td>
 									<td>Yes</td>
 									<td>Yes</td>
@@ -650,6 +642,22 @@ Example finished
 						</p>
 					</section>
 				</section>
+				<!--
+				https://github.com/awspring/spring-cloud-aws/search?l=Java&q=%22synchronized+%28this.%22
+				https://github.com/search?l=Java&q=org%3Aspring-projects+%22import+java.util.concurrent.locks.%22&type=Code
+				https://github.com/search?l=Java&q=org%3Aspring-projects+%22volatile+%22&type=Code
+				https://github.com/search?l=Java&q=org%3Aspring-projects+%22synchronized+%28this%22&type=Code
+				https://github.com/search?l=Java&q=org%3Aquarkusio+%22volatile+%22&type=Code
+				https://github.com/search?q=org%3Aquarkusio+%22synchronized+%28this%22&type=code
+				https://github.com/search?q=org%3Aquarkusio+%22import+java.util.concurrent.locks.%22&type=code
+				https://github.com/search?l=Java&q=org%3Amicronaut-projects+%22import+java.util.concurrent.locks.%22&type=Code
+				https://github.com/search?q=org%3Amicronaut-projects+%22synchronized+%28this%22&type=code
+				https://github.com/search?l=Java&q=org%3Amicronaut-projects+%22volatile+%22&type=Code
+				https://github.com/search?q=org%3Areactor+jcstress&type=code
+				https://github.com/reactor/reactor-core/blob/main/reactor-core/src/jcstress/java/reactor/util/concurrent/MpscLinkedQueueStressTest.java
+				https://github.com/reactor/reactor-core/blob/main/reactor-core/src/test/java/reactor/util/concurrent/MpscLinkedQueueTest.java
+				https://github.com/reactor/reactor-core/blob/main/reactor-core/src/main/java/reactor/util/concurrent/MpscLinkedQueue.java
+				-->
 				<section>
 					<h2>One example to ilustrate it</h2>
 					<img src="images/example1.png" />
