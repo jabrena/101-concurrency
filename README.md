@@ -5,6 +5,8 @@ A review about Concurrency on the JVM for modern Java developers.
 ## How to run
 
 ```
+./gradlew bootRun
+http://localhost:8080/swagger-ui/index.html
 ./gradlew clean build jcstress
 ```
 
