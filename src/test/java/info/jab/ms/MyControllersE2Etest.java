@@ -35,7 +35,7 @@ public class MyControllersE2Etest {
     public void given_endpoint_when_sendParameters_then_Ok() {
 
         //Given
-        final String baseUrl = "http://localhost:" + randomServerPort + "/api/v1" + endpoint;
+        final String baseUrl = "http://localhost:" + randomServerPort + "/api/v4" + endpoint;
 
         //When
         Map sumParameters = new HashMap<String, String>();
@@ -51,6 +51,35 @@ public class MyControllersE2Etest {
                 .reduce(0, Long::sum);
         then(result.getStatusCode()).isEqualTo(HttpStatus.OK);
         then(result.getBody()).isEqualTo(expectedSum);
+    }
+
+    @Test
+    public void concurrencyOneTest() throws InterruptedException, ExecutionException {
+        ExecutorService service = Executors.newFixedThreadPool(2);
+
+        String version = "v5";
+        int numberOfIterations = 50;
+
+        //Test one endpoint
+        AtomicLong counter = new AtomicLong(0);
+        for (int j = 1; j < numberOfIterations; j++) {
+            List<ConcurrentTask> taskList = new ArrayList<>();
+            Long experimentParameter1 = counter.incrementAndGet();
+            Long experimentParameter2 = counter.incrementAndGet();
+            taskList.add(new ConcurrentTask(restTemplate, randomServerPort, "/api/" + version + endpoint, experimentParameter1));
+            taskList.add(new ConcurrentTask(restTemplate, randomServerPort, "/api/" + version + endpoint, experimentParameter2));
+
+            List<Future<Long>> futures = service.invokeAll(taskList);
+            Long result1 = futures.get(0).get().longValue();
+            Long result2 = futures.get(1).get().longValue();
+
+            then(experimentParameter1 * 2).isEqualTo(result1);
+            then(experimentParameter2 * 2).isEqualTo(result2);
+            then(result1).isNotEqualTo(result2);
+        }
+
+        service.shutdown();
+        service.awaitTermination(10, TimeUnit.SECONDS);
     }
 
     @Test

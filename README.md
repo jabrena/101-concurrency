@@ -1,6 +1,6 @@
 # 101 concurrency
 
-A review about Concurrency on the JVM for modern Java developers.
+Detecting concurrency issues with JCStress
 
 ## How to run
 
@@ -8,6 +8,7 @@ A review about Concurrency on the JVM for modern Java developers.
 ./gradlew bootRun
 http://localhost:8080/swagger-ui/index.html
 ./gradlew clean build jcstress
+./gradlew clean jcstress --tests "Calculator4Test"
 ```
 
 ## Documentation

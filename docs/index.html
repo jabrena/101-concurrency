@@ -20,10 +20,9 @@
 			<div class="slides">
 				<section>
 					<section>
-						<h2 style="color:red">WIP</h2>
-						<img src="images/duke-threads.jpg" width="40%">
+						<img src="images/duke-threads2.png" width="60%">
 						<p>
-							Introduction about Concurrency bugs Hunting with JCStress.<br />
+							Detecting concurrency issues with JCStress<br />
 							<small>Juan Antonio Breña Moral</small>
 						</p>
 					</section>
@@ -51,15 +50,14 @@
 							<li>Expectations</li>
 							<li>Root causes</li>
 							<!-- <li>Context</li> -->
-							<li>Non funcional requirements</li>
-							<li>Concurrency models</li>
+							<!-- <li>Non funcional requirements</li> -->
+							<!-- <li>Concurrency models</li> -->
 							<!-- <li>Concurrency concepts</li> -->
 							<!-- <li>Concurrency evolution in the JVM</li> -->
-							<li>Design patterns that impacts you</li>
+							<!-- <li>Design patterns that impacts you</li> -->
 							<!-- <li>Other concurrency approaches</li> -->
 							<li>One example to ilustrate it</li>
 							<li>Concurrency tools: JCStress</li>
-							<li>How to help the team?</li>
 							<li>References</li>
 							<li>Q&A</li>
 						</ol>
@@ -101,31 +99,65 @@
 				<section>
 					<section>
 						<h2>Root causes</h2>
+						<h4>The agreement:</h4>
+						<p>
+							<strong>1/2:</strong> The JVM allow sharing data among different Threads
+							and provides enough Building blocks to handle the memory state.
+						</p>
+						<p>
+							<strong>2/2:</strong> The developer has the responsibility to maintain
+							the shared data in the proper way.
+						</p>
+						<p>
+
+						</p>
+					</section>
+					<section>
+						<h2>Root causes</h2>
+						<p>But..</p>
+						<p>
+							What do you think about possible root causes to generate Concurrency issues?
+						</p>
+						<img src="images/concurrency-issues.jpg" width="40%"/>
+					</section>
+					<section>
+						<img src="images/survey.png"/>
+					</section>
+					<section>
+						<p>
+							<a href="https://pollev.com/juanantoniobrenamoral114" target="_blank">https://pollev.com/juanantoniobrenamoral114</a>
+						</p>
+					</section>
+					<section>
+						<h2>Root causes</h2>
+						<p>I share some ideas about it:</p>
+					</section>
+					<section>
+						<h2>Root causes</h2>
 						<ul>
 							<li>Engineering teams bad designed.</li>
+							<li>Project bad estimated.</li>
 							<li>Cognitive load issues.</li>
 							<li>Lack of specialists about concurrency in your BU.</li>
-							<li>Lack of internal trainings about concurrency.</li>
+							<li>Lack of internal recurrent trainings about concurrency.</li>
 							<li>Bad delegation of complex tasks.</li>
-							<li>Projects with non functional requirements well defined.</li>
+							<li>Projects with non-functional requirements well defined.</li>
 							<li>Engineers more focused on cool features from Frameworks than language fundamentals.</li>
-							<li>Project bad estimated.</li>
-							<li>...</li>
 						</ul>
 					</section>
 					<section>
 						<h2>Root causes</h2>
 						<p>
-							And the party begin...
+							But if the developer doesn´t handle the JMM concepts...
 						</p>
-						<img src="images/lemmings.png" width="50%"/>
+						<img src="images/jmm-1.png" width="70%"/>
 					</section>
 					<section>
 						<h2>Root causes</h2>
 						<p>
-							What root causes are missing from your point of view?
+							the party begin...
 						</p>
-						<img src="images/feedback.png" width="30%"/>
+						<img src="images/lemmings.png" width="50%"/>
 					</section>
 				</section>
 				<!--
@@ -185,15 +217,24 @@
 				-->
 				<section>
 					<section>
-						<h2>Non funcional requirements</h2>
+						<h2>Root causes</h2>
+						<h4>Non funcional requirements</h4>
 						<p>
 							Do you define properly the non functional requirements in your projects?
 						</p>
 						<img src="images/iceberg.png" width="50%"/>
 					</section>
 					<section>
-						<h2>Non funcional requirements</h2>
-						<h4>ISO 25010</h4>
+						<h2>Root causes</h2>
+						<h4>Non funcional requirements</h4>
+						<p>
+							Do you know that exist an ISO Standard for Software Quality aspects?
+						</p>
+					</section>
+					<section>
+						<h2>Root causes</h2>
+						<h4>Non funcional requirements</h4>
+						<h5>ISO 25010</h5>
 						<p>
 							ISO 25010, titled “System and software quality models”, is a software quality standard.
 							It describes the models, consisting of characteristics and sub-characteristics,
@@ -206,8 +247,9 @@
 						</small>
 					</section>
 					<section>
-						<h2>Non funcional requirements</h2>
-						<h4>ISO 25010</h4>
+						<h2>Root causes</h2>
+						<h4>Non funcional requirements</h4>
+						<h5>ISO 25010</h5>
 						<img src="images/iso-25010.png" />
 						<br />
 						<small><strong>Source:</strong>
@@ -313,7 +355,8 @@
 				-->
 				<section>
 					<section>
-						<h2>Concurrency models</h2>
+						<h2>Root causes</h2>
+						<h4>Concurrency models</h4>
 						<img src="images/lang-rank-0122.png" width="50%">
 						<br />
 						<small><strong>Source:</strong>
@@ -322,10 +365,23 @@
 						</small>
 					</section>
 					<section>
-						<h2>Concurrency models</h2>
+						<h2>Root causes</h2>
+						<h4>Concurrency models</h4>
+						<p>
+							Every programming language implement different approaches about Concurrency
+							and not all of them are in the same stage.
+						</p>
+						<p>
+							That detail is important when you apply "T-shaped" strategies.
+						</p>
+					</section>
+					<section>
+						<h2>Root causes</h2>
+						<h4>Concurrency models</h4>
+						<!--
 						<p>
 						The evolution about concurrency model in different programming languages
-						</p>
+						</p>-->
 						<small>
 							<table>
 								<tr>
@@ -365,7 +421,7 @@
 									<td><a href="https://docs.python.org/3/library/threading.html" target="_blank">Yes*</a></td>
 									<td><a href="https://docs.python.org/3/library/multiprocessing.html" target="_blank">Yes*</a></td>
 									<td>Yes</td>
-									<td>No</td>
+									<td>Yes</td>
 								</tr>
 								<tr>
 									<td><a href="https://nodejs.org" target="_blank">Node.js</a></td>
@@ -374,7 +430,7 @@
 									<td>No</td>
 									<td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function" target="_blank">Yes</a></td>
 									<td>Yes</td>
-									<td>No</td>
+									<td>Yes</td>
 									<td><a href="https://nodejs.org/api/cluster.html" target="_blank">Yes*</a></td>
 									<td>Yes</td>
 									<td>No</td>
@@ -462,7 +518,8 @@
 					https://dzone.com/articles/java-concurrency-evolution
 					-->
 					<section>
-						<h2>Concurrency models</h2>
+						<h2>Root causes</h2>
+						<h4>Concurrency models</h4>
 						<p>
 							The evolution about concurrency model in Java
 						</p>
@@ -678,15 +735,16 @@ Example finished
 				</section>
 				<section>
 					<section>
-						<h2>Design patterns that impacts you</h2>
+						<h2>Root causes</h2>
+						<h4>Design patterns that impacts you</h4>
 						<ul>
 							<li>CDI, Contexts and Dependency Injection</li>
-							<img src="images/spring-container.png" />
 						</ul>
+						<img src="images/spring-container.png" width="50%" />
 					</section>
 					<section>
-						<h2>Design patterns that impacts you</h2>
-						<h4>CDI, Contexts and Dependency Injection</h4>
+						<h2>Root causes</h2>
+						<h4>Design patterns that impacts you</h4>
 						<p>
 							CDI (Contexts and Dependency Injection) is a standard
 							dependency injection framework included in Jakarta EE.
@@ -743,11 +801,12 @@ Example finished
 						<h2>Concurrency tools: JCStress</h2>
 						<ul>
 							<li>Introduction</li>
-							<li>Who is behind the library?</li>
+							<!-- <li>Who is behind the library?</li> -->
 							<li>What are the benefits?</li>
 							<li>Creating your first JCStress test</li>
 							<li>Does exist plugins?</li>
 							<li>What projects are using the JCStress?</li>
+							<li>Limitations</li>
 						</ul>
 					</section>
 					<section>
@@ -760,6 +819,7 @@ Example finished
 						</p>
 						<a href="https://github.com/openjdk/jcstress" target="_blank">https://github.com/openjdk/jcstress</a>
 					</section>
+					<!--
 					<section>
 						<h2>Concurrency tools: JCStress</h2>
 						<h3>Who is behind the library?</h3>
@@ -774,6 +834,7 @@ Example finished
 						</p>
 						<a href="https://shipilev.net/" target="_blank">https://shipilev.net/</a>
 					</section>
+					-->
 					<section>
 						<h2>Concurrency tools: JCStress</h2>
 						<h3>What are the benefits?</h3>
@@ -830,17 +891,6 @@ public class Account {
 						</ul>
 					</section>
 
-				</section>
-				<section>
-					<section>
-						<h2>How to help the team?</h2>
-						<ul>
-							<li>PENDING</li>
-							<li>PENDING</li>
-							<li>PENDING</li>
-							<li>PENDING</li>
-						</ul>
-					</section>
 				</section>
 				<section>
 					<section>
