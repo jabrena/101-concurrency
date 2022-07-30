@@ -1,5 +1,6 @@
 package info.jab.ms.controller;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Scenario 2: Shared state with an Atomic variable
  */
+@Hidden
 @RestController
 @RequestMapping(value = "api/v3", produces = MediaType.APPLICATION_JSON_VALUE)
 public class MyController3 {
