@@ -1,6 +1,6 @@
 execution:
   - iterations: 50000
-    concurrency: 10
+    concurrency: 100
     scenario: with_script
 
 scenarios:
