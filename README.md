@@ -17,9 +17,13 @@ sdk env
 http://localhost:8080/swagger-ui/index.html
 http://localhost:8080/v3/api-docs
 
-java -jar build/libs/101-concurrency-0.1.0-SNAPSHOT.jar
+java -Xms256m -Xmx256m -XX:+UseShenandoahGC -jar build/libs/101-concurrency-0.1.0-SNAPSHOT.jar
 sdk install jmeter
+jmeter -t jmeterConf.jmx
 jmeter -t jmeterConf.jmx -n
+
+sdk install visualvm
+visualvm --jdkhome  $JAVA_HOME
 
 brew install python
 python3 --version
@@ -38,3 +42,4 @@ jwebserver -p 8000 -d  $PWD/docs
 
 - https://plugins.gradle.org/plugin/io.github.reyerizo.gradle.jcstress
 - https://github.com/reyerizo/jcstress-gradle-plugin
+- https://wiki.openjdk.org/display/shenandoah/Main
