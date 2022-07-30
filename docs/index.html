@@ -48,6 +48,7 @@
 						<ol>
 							<li>Who I am</li>
 							<li>Expectations</li>
+							<li>Preamble</li>
 							<li>Root causes</li>
 							<!-- <li>Context</li> -->
 							<!-- <li>Non funcional requirements</li> -->
@@ -56,8 +57,8 @@
 							<!-- <li>Concurrency evolution in the JVM</li> -->
 							<!-- <li>Design patterns that impacts you</li> -->
 							<!-- <li>Other concurrency approaches</li> -->
-							<li>One example to ilustrate it</li>
 							<li>Concurrency tools: JCStress</li>
+							<li>Takeaways</li>
 							<li>References</li>
 							<li>Q&A</li>
 						</ol>
@@ -94,6 +95,101 @@
 							<li>Understand the evolution of concurrency in Java.</li>
 							<li>Learn how to use JCStress in your projects</li>
 						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Preamble</h2>
+						<p>
+							Imagine a development with some Business requirements:
+						</p>
+						<!--
+						https://cucumber.io/docs/gherkin/reference/
+						-->
+						<pre><code data-trim>
+Feature: Sum 2 numbers
+
+  Scenario: Sum 2 positive numbers
+	&nbsp;&nbsp;Given the POST endpoint /api/v1/sum2numbers
+	&nbsp;&nbsp;When the client send the request
+	&nbsp;&nbsp;Then the response includes the sum of the 2 parameters
+						</code></pre>
+					</section>
+					<section>
+						<h2>Preamble</h2>
+						<p>
+							The code has Unit Tests:
+						</p>
+						<img src="images/test-report.png" width="100%"/>
+					</section>
+					<section>
+						<h2>Preamble</h2>
+						<p>
+							The code has a good Code Coverage:
+						</p>
+						<img src="images/jacoco-report.png" width="100%"/>
+					</section>
+					<section>
+						<h2>Preamble</h2>
+						<p>
+							The code has a good Mutation Coverage:
+						</p>
+						<img src="images/pitest-report.png" width="100%"/>
+					</section>
+					<section>
+						<h2>Preamble</h2>
+						<ul>
+							<li>The code has a good Score in Sonar</li>
+							<li>The code was deployed automatically with Pipelines</li>
+							<li>The code has a good Throughput</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Preamble</h2>
+						<p>
+							One day, we receive an email from one User about unexpected results...
+						</p>
+						<img src="images/email.png" width="40%" />
+					</section>
+					<section>
+						<h2>Preamble</h2>
+						<img src="images/thinking1.jpg" width="50%" />
+						<p>
+							<strong>Developer:</strong> "Weird, everything is fine..."
+						</p>
+					</section>
+					<section>
+						<h2>Preamble</h2>
+						<img src="images/thinking3.png" width="40%" />
+						<p>
+							<strong>Developer:</strong> "...and testing the values with our tests, everything goes fine."
+						</p>
+					</section>
+					<section>
+						<h2>Preamble</h2>
+						<img src="images/thinking4.png" width="35%" />
+						<p>
+							<strong>Developer:</strong> "...maybe, I didn´t read the <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-17.html" target="_blank">JLS (Java Language Specification), section 17.4.</a> about Concurrency in Java"
+						</p>
+					</section>
+					<section>
+						<h2>Preamble</h2>
+						<img src="images/thinking5.png" width="35%" />
+						<p>
+							<strong>Developer:</strong> "...but now, we are in Production..."
+						</p>
+					</section>
+					<section>
+						<h2>Preamble</h2>
+						<hr />
+						<h3 style="color:green">
+							Java is a multithreading, multiprocessing programming language
+							and the concurrency model is based on <u>Shared Memory State</u>.
+						</h3>
+						<hr />
+						<p>
+							And every Java developer needs to know it.
+						</p>
 					</section>
 				</section>
 				<section>
@@ -771,10 +867,6 @@ Example finished
 				https://github.com/reactor/reactor-core/blob/main/reactor-core/src/test/java/reactor/util/concurrent/MpscLinkedQueueTest.java
 				https://github.com/reactor/reactor-core/blob/main/reactor-core/src/main/java/reactor/util/concurrent/MpscLinkedQueue.java
 				-->
-				<section>
-					<h2>One example to ilustrate it</h2>
-					<img src="images/example1.png" />
-				</section>
 				<!--
 				<section>
 					<section>

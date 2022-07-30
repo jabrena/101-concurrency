@@ -6,5 +6,7 @@ build
 *.gz
 .gradle
 .DS_Store
+*.log
+
 
 

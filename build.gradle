@@ -3,7 +3,9 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.12.RELEASE'
     id 'java'
     id 'idea'
-    id "io.github.reyerizo.gradle.jcstress" version "0.8.13"
+    id 'io.github.reyerizo.gradle.jcstress' version '0.8.13'
+    id 'jacoco'
+    id 'info.solidsoft.pitest' version '1.7.4'
 }
 
 group = 'info.jab.ms'
@@ -12,6 +14,10 @@ sourceCompatibility = '18'
 
 ext {
     jcstressVersion = '0.15'
+
+    //Metrics
+    minimumJacocoCodeCoverage = 0.80
+    minimumPitestCodeCoverage = 80
 }
 
 repositories {
@@ -24,14 +30,76 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.zalando:logbook-spring-boot-starter:2.14.0'
+    implementation 'org.springdoc:springdoc-openapi-core:1.1.49'
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
     testImplementation "org.openjdk.jcstress:jcstress-core:${jcstressVersion}"
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacoco {
+    toolVersion = "0.8.8"
+    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+    dependsOn test // tests are required to run before generating the report
+}
+
+jacocoTestCoverageVerification {
+    executionData tasks.withType(Test)
+    violationRules {
+        rule {
+            limit {
+                minimum = minimumJacocoCodeCoverage
+            }
+
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = minimumJacocoCodeCoverage
+            }
+            limit {
+                counter = 'BRANCH'
+                value = 'COVEREDRATIO'
+                minimum = minimumJacocoCodeCoverage
+            }
+            limit {
+                counter = 'METHOD'
+                value = 'COVEREDRATIO'
+                minimum = minimumJacocoCodeCoverage
+            }
+            limit {
+                counter = 'CLASS'
+                value = 'COVEREDRATIO'
+                minimum = minimumJacocoCodeCoverage
+            }
+        }
+    }
+}
+
+jacocoTestCoverageVerification.dependsOn jacocoTestReport
+
+pitest {
+    junit5PluginVersion = '1.0.0'
+    pitestVersion = '1.9.3'
+    outputFormats = ['XML', 'HTML']
+    timestampedReports = true
+
+    coverageThreshold = minimumPitestCodeCoverage
+    mutationThreshold = minimumPitestCodeCoverage
 }
 
 jcstress {

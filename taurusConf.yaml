@@ -1,0 +1,8 @@
+execution:
+  - iterations: 50000
+    concurrency: 10
+    scenario: with_script
+
+scenarios:
+  with_script:
+    script: jmeterConf.jmx

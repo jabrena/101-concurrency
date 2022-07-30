@@ -1,6 +1,7 @@
 package info.jab.ms.controller;
 
 import info.jab.ms.model.Calculator6;
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Scenario 6: No Shared state
  */
+@Hidden
 @RestController
 @RequestMapping(value = "api/v6", produces = MediaType.APPLICATION_JSON_VALUE)
 public class MyController6 {
