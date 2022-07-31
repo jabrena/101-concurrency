@@ -118,7 +118,7 @@ Feature: Sum 2 numbers
 					<section>
 						<h2>Preamble</h2>
 						<p>
-							The code has Unit Tests:
+							The code has a good Unit Tests:
 						</p>
 						<img src="images/test-report.png" width="100%"/>
 					</section>
@@ -169,9 +169,10 @@ Feature: Sum 2 numbers
 					</section>
 					<section>
 						<h2>Preamble</h2>
-						<img src="images/thinking6.png" width="35%" />
+						<img src="images/thinking6.png" width="30%" />
 						<p>
-							<strong>Developer:</strong> "...maybe, I didn´t read the <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-17.html" target="_blank">JLS (Java Language Specification), section 17.4.</a> about <u>Concurrency</u>"
+							<strong>Developer:</strong> "...maybe, I didn´t read the <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-17.html" target="_blank">JLS (Java Language Specification), section 17.4.</a> about <u>Concurrency</u>
+							and the <a href="https://download.oracle.com/otndocs/jcp/memory_model-1.0-pfd-spec-oth-JSpec/" target="_blank">JSR 133</a>"
 						</p>
 					</section>
 					<section>
@@ -186,7 +187,7 @@ Feature: Sum 2 numbers
 						<hr />
 						<h3 style="color:green">
 							Java is a multithreading & multiprocessing programming language
-							and the concurrency model is based on <u>Shared Memory State</u>.
+							and <u>Shared Memory</u> is the Inter-Process Communication (IPC) technique for Threads.
 						</h3>
 						<hr />
 						<p>
@@ -195,21 +196,6 @@ Feature: Sum 2 numbers
 					</section>
 				</section>
 				<section>
-					<section>
-						<h2>Root causes</h2>
-						<h4>The agreement:</h4>
-						<p>
-							<strong>1/2:</strong> The JVM allow sharing data among different Threads
-							and provides enough Building blocks to handle the memory state.
-						</p>
-						<p>
-							<strong>2/2:</strong> The developer has the responsibility to maintain
-							the shared data in the proper way.
-						</p>
-						<p>
-
-						</p>
-					</section>
 					<section>
 						<h2>Root causes</h2>
 						<p>But..</p>
@@ -237,7 +223,13 @@ Feature: Sum 2 numbers
 							<li>Project bad estimated.</li>
 							<li>Cognitive load issues.</li>
 							<li>Lack of specialists about concurrency in your BU.</li>
-							<li>Lack of internal recurrent trainings about concurrency.</li>
+							<li>Poliglot environments</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Root causes</h2>
+						<ul>
+							<li>Lack of internal trainings about concurrency.</li>
 							<li>Bad delegation of complex tasks.</li>
 							<li>Projects with non-functional requirements well defined.</li>
 							<li>Engineers more focused on cool features from Frameworks than language fundamentals.</li>
@@ -246,14 +238,14 @@ Feature: Sum 2 numbers
 					<section>
 						<h2>Root causes</h2>
 						<p>
-							But if the developer doesn´t handle the JMM concepts...
+							But if the developer doesn´t handle the JMM concepts in a fluent way...
 						</p>
 						<img src="images/jmm-1.png" width="70%"/>
 					</section>
 					<section>
 						<h2>Root causes</h2>
 						<p>
-							the party begin...
+							the party could begin in any moment...
 						</p>
 						<img src="images/lemmings.png" width="50%"/>
 					</section>
@@ -354,6 +346,67 @@ Feature: Sum 2 numbers
 							<a href="https://iso25000.com/index.php/en/iso-25000-standards/iso-25010" target="_blank">
 								https://iso25000.com/index.php/en/iso-25000-standards/iso-25010</a>
 						</small>
+					</section>
+					<section>
+						<h2>Root causes</h2>
+						<h4>Non funcional requirements</h4>
+						<h5>ISO 25010</h5>
+						<ul>
+							<li>Functional Suitability</li>
+							<li>Performance efficiency</li>
+							<li>Compatibility</li>
+							<li>Usability</li>
+							<li>Reliability</li>
+							<li>Security</li>
+							<li>Maintainability</li>
+							<li>Portability</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Root causes</h2>
+						<h4>Non funcional requirements</h4>
+						<h5>ISO 25010</h5>
+						<strong>Functional Suitability</strong>
+						<p>
+						This characteristic represents the degree to which a product or system provides functions
+						that meet stated and implied needs when used under specified conditions.
+						</p>
+					</section>
+					<section>
+						<h2>Root causes</h2>
+						<h4>Non funcional requirements</h4>
+						<h5>ISO 25010</h5>
+						<strong>Functional Suitability</strong>
+						<p>
+							This characteristic is composed of the following sub-characteristics:
+						</p>
+						<small>
+							<ul>
+								<li>Functional completeness - Degree to which the set of functions covers all the specified tasks and user objectives.</li>
+								<li><u>Functional correctness - Degree to which a product or system provides the correct results with the needed degree of precision.</u></li>
+								<li>Functional appropriateness - Degree to which the functions facilitate the accomplishment of specified tasks and objectives.</li>
+							</ul>
+						</small>
+					</section>
+					<section>
+						<h2>Root causes</h2>
+						<h4>Non funcional requirements</h4>
+						<h5>ISO 25010</h5>
+						<p>
+							Functional correctness - Degree to which a product or system provides the correct results with the needed degree of precision.
+						</p>
+					</section>
+					<section>
+						<h2>Root causes</h2>
+						<p>
+							"At the heart of any reasonable definition of thread safety is the concept of
+							correctness. If our definition of thread safety is fuzzy, it is because we lack a clear
+							definition of correctness.
+							Correctness means that a class conforms to its specification. A good specification
+							defines invariants constraining an object’s state and postconditions describing the
+							effects of its operations."
+						</p>
+						- <a href="https://jcip.net/" target="_blank">Java Concurrency in Practice</a>
 					</section>
 				</section>
 				<!--
