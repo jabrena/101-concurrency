@@ -2,8 +2,8 @@
 
 Detecting concurrency issues with JCStress
 
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=jabrena_101-concurrency)
 [![Java CI](https://github.com/jabrena/101-concurrency/actions/workflows/build.yml/badge.svg)](https://github.com/jabrena/101-concurrency/actions/workflows/build.yml)
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=jabrena_101-concurrency)
 
 ## How to run in local
 
@@ -40,6 +40,13 @@ jwebserver -p 8000 -d  $PWD/docs
 
 ## References
 
-- https://plugins.gradle.org/plugin/io.github.reyerizo.gradle.jcstress
+- https://docs.oracle.com/javase/specs/jls/se8/html/jls-17.html
+- https://download.oracle.com/otndocs/jcp/memory_model-1.0-pfd-spec-oth-JSpec/
+- https://gee.cs.oswego.edu/dl/jmm/cookbook.html
+- https://github.com/openjdk/jcstress
+- https://shipilev.net/talks/hydraconf-June2021-jcstress-workshop.pdf
+- https://shipilev.net/blog/2016/close-encounters-of-jmm-kind/
+- https://shipilev.net/blog/2014/safe-public-construction/
+- https://shipilev.net/blog/2014/jmm-pragmatics/
+- https://shipilev.net/jvm/anatomy-quarks/jvm-anatomy-quarks-complete.pdf
 - https://github.com/reyerizo/jcstress-gradle-plugin
-- https://wiki.openjdk.org/display/shenandoah/Main

@@ -163,8 +163,8 @@ Feature: Sum 2 numbers
 						<h2>Preamble</h2>
 						<img src="images/thinking3.png" width="40%" />
 						<p>
-							<strong>Developer:</strong> "...and testing with the values provided from the User doesn´t
-							raise any issue in my developer computer."
+							<strong>Developer:</strong> "...and using the data provided from the User,
+							the new test doesn´t reproduce the issue in my local dev environment."
 						</p>
 					</section>
 					<section>
@@ -998,6 +998,7 @@ Example finished
 							<li>With that list of classes, try to create JCStress tests</li>
 						</ul>
 					</section>
+					<!--
 					<section>
 						<h2>Concurrency tools: JCStress</h2>
 						<h4>Creating your first JCStress test</h4>
@@ -1016,6 +1017,70 @@ public class Account {
         return this.balance;
     }
 }
+						</code></pre>
+					</section>
+					-->
+					<section>
+						<h2>Concurrency tools: JCStress</h2>
+						<p>
+							Define the expectations after the test execution:
+						</p>
+						<pre><code data-trim>
+@JCStressTest
+@State
+@Outcome(id="2",
+	expect = Expect.ACCEPTABLE,desc = "both update")
+@Outcome(id="1",
+	expect = Expect.FORBIDDEN,desc = "lost one update")
+public class AtomicIntegerTest {
+	//
+}
+						</code></pre>
+					</section>
+					<section>
+						<h2>Concurrency tools: JCStress</h2>
+						<pre><code data-trim>
+public class AtomicIntegerTest {
+	private final AtomicInteger sequencer = new AtomicInteger();
+
+	@Actor
+	public void actor1(){sequencer.incrementAndGet();}
+
+	@Actor
+	public void actor2(){sequencer.incrementAndGet();}
+
+	@Arbiter
+	public void arbiter(I_Result r){
+		r.r1= sequencer.get();
+	}
+}
+						</code></pre>
+					</section>
+					<section>
+						<h2>Concurrency tools: JCStress</h2>
+						<p>
+							In every class you could define an @Actor simulating a thread interacting with the class.
+						</p>
+						<p>
+							@Arbiter interact with the object and review the values with the expectations:
+						</p>
+						<pre><code data-trim>
+@Outcome(id="2", expect = Expect.ACCEPTABLE, desc = "both update")
+@Outcome(id="1", expect = Expect.FORBIDDEN, desc = "lost one update")
+						</code></pre>
+					</section>
+					<section>
+						<h2>Concurrency tools: JCStress</h2>
+						<pre><code data-trim>
+./gradlew clean jcstress --tests "AtomicIntegerTest"
+
+---
+
+Results across all configurations:
+
+RESULT      SAMPLES     FREQ      EXPECT  DESCRIPTION
+   1            0    0.00%   Forbidden  lost one update
+   2  490,964,992  100.00%  Acceptable  both update
 						</code></pre>
 					</section>
 					<section>
@@ -1047,8 +1112,14 @@ public class Account {
 							<li>http://www.cs.umd.edu/~pugh/java/memoryModel/jsr-133-faq.html</li>
 							<li>https://web.archive.org/web/20220601003130/http://gee.cs.oswego.edu/dl/jmm/cookbook.html</li>
 							<li>https://web.archive.org/web/20220601003130/http://gee.cs.oswego.edu/dl/html/j9mm.html</li>
+							<li>https://download.oracle.com/otndocs/jcp/memory_model-1.0-pfd-spec-oth-JSpec/</li>
 							<li>https://openjdk.org/jeps/193</li>
 						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<img src="images/summary.png" width="50%">
 					</section>
 				</section>
 				<section>
