@@ -2,19 +2,23 @@ package info.jab.examples;
 
 import org.openjdk.jcstress.annotations.Actor;
 import org.openjdk.jcstress.annotations.Expect;
+import org.openjdk.jcstress.annotations.JCStressTest;
 import org.openjdk.jcstress.annotations.Outcome;
 import org.openjdk.jcstress.annotations.State;
 import org.openjdk.jcstress.infra.results.II_Result;
 
+@JCStressTest
 
-//@JCStressTest
-@Outcome(id = "1, 1", expect = Expect.FORBIDDEN, desc = "Both actors came up with the same value: atomicity failure.")
+// These are the test outcomes.
+@Outcome(id = "1, 1", expect = Expect.ACCEPTABLE_INTERESTING, desc = "Both actors came up with the same value: atomicity failure.")
 @Outcome(id = "1, 2", expect = Expect.ACCEPTABLE, desc = "actor1 incremented, then actor2.")
 @Outcome(id = "2, 1", expect = Expect.ACCEPTABLE, desc = "actor2 incremented, then actor1.")
-@State
-public class ConcurrencyTest {
 
-    volatile int v;
+// This is a state object
+@State
+public class Example_01 {
+
+    int v;
 
     @Actor
     public void actor1(II_Result r) {
@@ -25,4 +29,5 @@ public class ConcurrencyTest {
     public void actor2(II_Result r) {
         r.r2 = ++v; // record result from actor2 to field r2
     }
+
 }
