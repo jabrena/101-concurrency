@@ -97,6 +97,28 @@
 						</ul>
 						<h3 style="color:red">WIP</h3>
 					</section>
+
+					<!--
+					https://www.baeldung.com/java-variable-handles
+					-->
+					<section>
+						<h2>Expectations</h2>
+						<p>
+							The talk with not talk about:
+						</p>
+						<ul>
+							<li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/invoke/VarHandle.html" target="_blank">java.lang.invoke.VarHandle</a></li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<h2>Disclaimer</h2>
+					<img src="images/disclaimer.png" width="30%"/>
+					<p>
+						<strong>Note:</strong> I am not the author of JCStress <br/>
+						(<a href="https://shipilev.net/" target="_blank">Aleksey Shipilëv</a>), but I will do my best.
+						<br/>😊
+					</p>
 				</section>
 				<section>
 					<section>
@@ -527,144 +549,6 @@ Feature: Sum 2 numbers
 							That detail is important when you apply "T-shaped" strategies.
 						</p>
 					</section>
-					<section>
-						<h2>Root causes</h2>
-						<h4>Concurrency models</h4>
-						<!--
-						<p>
-						The evolution about concurrency model in different programming languages
-						</p>-->
-						<small>
-							<table>
-								<tr>
-									<th>Lang</th>
-									<th>Shared memory</th>
-									<th>CSP</th>
-									<th>Actors</th>
-									<th>Async Await</th>
-									<th>Mono thread</th>
-									<th>Multi threads</th>
-									<th>Multi core</th>
-									<th>OS Threads</th>
-									<th>Green Threads</th>
-								</tr>
-								<tr>
-									<td><a href="https://www.java.com/" target="_blank">Java</a></td>
-									<td><a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-17.html" target="_blank">Yes</a></td>
-									<td>No</td>
-									<td>No</td>
-									<td>No</td>
-									<td>No</td>
-									<td>Yes</td>
-									<td>Yes</td>
-									<td>Yes</td>
-									<td>Yes</td>
-								</tr>
-								<!--
-                                https://superfastpython.com/multiprocessing-in-python/
-                                -->
-								<tr>
-									<td><a href="https://www.python.org/" target="_blank">Python</a></td>
-									<td><a href="https://docs.python.org/3/library/multiprocessing.shared_memory.html" target="_blank">Yes</a></td>
-									<td>No</td>
-									<td>No</td>
-									<td><a href="https://docs.python.org/3/library/asyncio.html" target="_blank">Yes</a></td>
-									<td><a href="https://docs.python.org/3/c-api/init.html#thread-state-and-the-global-interpreter-lock" target="_blank">Yes</a></td>
-									<td><a href="https://docs.python.org/3/library/threading.html" target="_blank">Yes*</a></td>
-									<td><a href="https://docs.python.org/3/library/multiprocessing.html" target="_blank">Yes*</a></td>
-									<td>Yes</td>
-									<td>Yes</td>
-								</tr>
-								<tr>
-									<td><a href="https://nodejs.org" target="_blank">Node.js</a></td>
-									<td>No</td>
-									<td>No</td>
-									<td>No</td>
-									<td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function" target="_blank">Yes</a></td>
-									<td>Yes</td>
-									<td>Yes</td>
-									<td><a href="https://nodejs.org/api/cluster.html" target="_blank">Yes*</a></td>
-									<td>Yes</td>
-									<td>No</td>
-								</tr>
-								<tr>
-									<td><a href="https://www.php.net/" target="_blank">PHP</a></td>
-									<td>No</td>
-									<td>No</td>
-									<td>No</td>
-									<td>No</td>
-									<td>Yes</td>
-									<td>No</td>
-									<td>No</td>
-									<td>Yes</td>
-									<td><a href="https://wiki.php.net/rfc/fibers" target="_blank">Yes*</a></td>
-								</tr>
-								<tr>
-									<td><a href="https://elixir-lang.org/" target="_blank">Elixir</a></td>
-									<td>No</td>
-									<td><a href="https://elixir-lang.org/getting-started/processes.html" target="_blank">Yes</a></td>
-									<td>Yes</td>
-									<td><a href="https://hexdocs.pm/elixir/1.13/Task.html" target="_blank">Yes</a></td>
-									<td>No</td>
-									<td>Yes</td>
-									<td>Yes</td>
-									<td>Yes</td>
-									<td>Yes</td>
-								</tr>
-								<!--
-                                https://medium.com/@aversanamichele/exploiting-multiple-cores-using-concurrency-and-task-groups-in-swift-adfbc5b7fbcf
-                                -->
-								<tr>
-									<td><a href="https://www.swift.org/" target="_blank">Swift</a></td>
-									<td>No</td>
-									<td><a href="https://www.swift.org/blog/distributed-actors/" target="_blank">Yes</a></td>
-									<td><a href="https://www.swift.org/blog/distributed-actors/" target="_blank">Yes</a></td>
-									<td><a href="https://www.swift.org/blog/distributed-actors/" target="_blank">Yes</a></td>
-									<td>No</td>
-									<td><a href="https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html" target="_blank">Yes</a></td>
-									<td>Yes</td>
-									<td>Yes</td>
-									<td>No</td>
-								</tr>
-								<tr>
-									<td><a href="https://dart.dev/" target="_blank">Dart</a></td>
-									<td>No</td>
-									<td><a href="https://dart.dev/guides/language/concurrency" target="_blank">Yes</a></td>
-									<td>No</td>
-									<td><a href="https://dart.dev/codelabs/async-await" target="_blank">Yes</a></td>
-									<td>No</td>
-									<td>Yes</td>
-									<td>Yes</td>
-									<td>Yes</td>
-									<td>No</td>
-								</tr>
-								<tr>
-									<td><a href="https://go.dev/" target="_blank">Go</a></td>
-									<td>No</td>
-									<td><a href="https://go.dev/tour/concurrency/2" target="_blank">Yes</a></td>
-									<td>No</td>
-									<td>No</td>
-									<td>No</td>
-									<td>Yes</td>
-									<td>Yes</td>
-									<td>No</td>
-									<td>Yes</td>
-								</tr>
-								<tr>
-									<td><a href="https://www.rust-lang.org/" target="_blank">Rust</a></td>
-									<td>Yes</td>
-									<td>Yes</td>
-									<td>No</td>
-									<td>Yes</td>
-									<td>No</td>
-									<td>Yes</td>
-									<td>Yes</td>
-									<td>Yes</td>
-									<td>No</td>
-								</tr>
-							</table>
-						</small>
-					</section>
 					<!--
 					https://www.baeldung.com/java-thread-lifecycle
 					https://dzone.com/articles/java-concurrency-evolution
@@ -673,7 +557,7 @@ Feature: Sum 2 numbers
 						<h2>Root causes</h2>
 						<h4>Concurrency models</h4>
 						<p>
-							The evolution about concurrency model in Java
+							How Concurrency evolves in Java:
 						</p>
 						<small>
 							<table>
@@ -924,17 +808,6 @@ Example finished
 				https://github.com/reactor/reactor-core/blob/main/reactor-core/src/main/java/reactor/util/concurrent/MpscLinkedQueue.java
 				-->
 				<!--
-				<section>
-					<section>
-						<h2>Other concurrency approaches</h2>
-						<ul>
-							<li>Actor model</li>
-							<li>CPS, Communicating Sequential Processes</li>
-						</ul>
-					</section>
-				</section>
-				-->
-				<!--
 				https://foojay.io/today/jcstress/
 				https://www.baeldung.com/java-testing-multithreaded#4-java-jcstress
 				https://shipilev.net/talks/geecon-May2018-jmm.pdf
@@ -995,99 +868,139 @@ Example finished
 						<h2>Concurrency tools: JCStress</h2>
 						<h4>Creating your first JCStress test</h4>
 						<ul>
-							<li>Review in your project, classes where you are maintaing state</li>
-							<li>With that list of classes, try to create JCStress tests</li>
+							<li>Review in your project, classes where the team consider that it is necessary to maintaing the state.</li>
+							<li>Review what Java concurrency tools are more suitable for the problem.</li>
 						</ul>
 					</section>
-					<!--
 					<section>
 						<h2>Concurrency tools: JCStress</h2>
 						<h4>Creating your first JCStress test</h4>
-						<pre><code data-trim>
-@NotThreadSafe
-public class Account {
-    private int balance;
-    public Account(int balance) {
-        this.balance = balance;
-    }
-    public int getBalance() {
-        return this.balance;
-    }
-    public int withdraw(int amount) {
-        this.balance = this.balance - amount;
-        return this.balance;
-    }
-}
-						</code></pre>
+						<p>
+							In Java, you could use:
+						</p>
+						<ul>
+							<li>volatile</li>
+							<li>Locks</li>
+							<li>Atomic objects</li>
+						</ul>
 					</section>
+					<section>
+						<h2>Concurrency tools: JCStress</h2>
+						<h4>Creating your first JCStress test</h4>
+						<p>
+							There are 3 main issues with multithreading:
+						</p>
+						<ol>
+							<li>Atomicity</li>
+							<li>Visibility</li>
+							<li>Reordering</li>
+						</ol>
+					</section>
+					<!--
+					https://www.javacodegeeks.com/2014/08/java-concurrency-tutorial-atomicity-and-race-conditions.html
 					-->
 					<section>
 						<h2>Concurrency tools: JCStress</h2>
+						<h4>Creating your first JCStress test</h4>
+						<ul>
+							<li>Atomicity / Race Conditions: Atomicity is one of the key concepts in multi-threaded programs. We say a set of actions is atomic if they all execute as a single operation, in an indivisible manner.</li>
+						</ul>
 						<p>
-							Define the expectations after the test execution:
+							Check-then-act
+							Read-modify-write
 						</p>
-						<pre><code data-trim>
-@JCStressTest
-@State
-@Outcome(id="2",
-	expect = Expect.ACCEPTABLE,desc = "both update")
-@Outcome(id="1",
-	expect = Expect.FORBIDDEN,desc = "lost one update")
-public class AtomicIntegerTest {
-	//
-}
-						</code></pre>
 					</section>
 					<section>
 						<h2>Concurrency tools: JCStress</h2>
-						<pre><code data-trim>
-public class AtomicIntegerTest {
-	private final AtomicInteger sequencer = new AtomicInteger();
-
-	@Actor
-	public void actor1(){sequencer.incrementAndGet();}
-
-	@Actor
-	public void actor2(){sequencer.incrementAndGet();}
-
-	@Arbiter
-	public void arbiter(I_Result r){
-		r.r1= sequencer.get();
-	}
-}
-						</code></pre>
+						<h4>Creating your first JCStress test</h4>
+						<p>
+							Atomicity / Race Conditions:
+						</p>
+						<img src="images/jmm-1.png" width="50%"/>
 					</section>
 					<section>
 						<h2>Concurrency tools: JCStress</h2>
-						<p>
-							In every class you could define an @Actor simulating a thread interacting with the class.
-						</p>
-						<p>
-							@Arbiter interact with the object and review the values with the expectations:
-						</p>
-						<pre><code data-trim>
-@Outcome(id="2", expect = Expect.ACCEPTABLE, desc = "both update")
-@Outcome(id="1", expect = Expect.FORBIDDEN, desc = "lost one update")
-						</code></pre>
+						<h4>Creating your first JCStress test</h4>
+						<ul>
+							<li>Visibility / Caching / stale memory : which means ensuring that a change to a shared variable made by one thread is visible to the rest of the thread.</li>
+						</ul>
+					</section>
+					<!--
+					https://jenkov.com/tutorials/java-concurrency/java-happens-before-guarantee.html
+					-->
+					<section>
+						<h2>Concurrency tools: JCStress</h2>
+						<h4>Creating your first JCStress test</h4>
+						<ul>
+							<li>Reordering / Compiler and CPU optimisations: The JVM could change the order of executions.</li>
+						</ul>
 					</section>
 					<section>
 						<h2>Concurrency tools: JCStress</h2>
+						<h4>Creating your first JCStress test</h4>
+						<ol>
+							<li>Atomicity</li>
+							<li>Visibility</li>
+							<li>Reordering</li>
+						</ol>
+						<p>
+							<strong>volatile</strong> can solve 2 & 3, but can't solve 1. <strong>synchronized/explicit locks</strong> can solve 1, 2 & 3.
+						</p>
+						<small>
+							<strong>Source:</strong> <a href="https://stackoverflow.com/questions/3519664/difference-between-volatile-and-synchronized-in-java" target="_blank">Stack Overflow</a>
+						</small>
+					</section>
+					<section>
+						<h2>Concurrency tools: JCStress</h2>
+						<h4>Creating your first JCStress test</h4>
 						<pre><code data-trim>
-./gradlew clean jcstress --tests "AtomicIntegerTest"
+./gradlew clean jcstress --tests "Example_01"
+./gradlew clean jcstress --tests "Example_02"
+						</code></pre>
+						<img src="images/demo.png" width="60%" />
+					</section>
+					<section>
+						<h2>Concurrency tools: JCStress</h2>
+						<h4>Creating your first JCStress test</h4>
+						<pre><code data-trim>
+./gradlew clean jcstress --tests "Example_01"
 
----
+RESULT      SAMPLES     FREQ       EXPECT  DESCRIPTION
+1, 1   67,175,767   12.75%  Interesting  Both actors came up with the same value: atomicity failure.
+1, 2  230,619,181   43.76%   Acceptable  actor1 incremented, then actor2.
+2, 1  229,163,644   43.49%   Acceptable  actor2 incremented, then actor1.
 
-Results across all configurations:
+./gradlew clean jcstress --tests "Example_02"
 
-RESULT      SAMPLES     FREQ      EXPECT  DESCRIPTION
-   1            0    0.00%   Forbidden  lost one update
-   2  490,964,992  100.00%  Acceptable  both update
+RESULT      SAMPLES     FREQ       EXPECT  DESCRIPTION
+1, 1   50,158,990   11.27%  Interesting  Both actors came up with the same value: atomicity failure.
+1, 2  198,225,259   44.55%   Acceptable  actor1 incremented, then actor2.
+2, 1  196,592,903   44.18%   Acceptable  actor2 incremented, then actor1.
 						</code></pre>
 					</section>
 					<section>
 						<h2>Concurrency tools: JCStress</h2>
 						<h4>Creating your first JCStress test</h4>
-						<img src="images/demo.png" />
+						<p>
+							Fixing the first issue:
+						</p>
+						<pre><code data-trim>
+./gradlew clean jcstress --tests "Example_03"
+./gradlew clean jcstress --tests "Example_04"
+./gradlew clean jcstress --tests "Example_05"
+						</code></pre>
+						<img src="images/demo.png" width="60%" />
+					</section>
+					<section>
+						<h2>Concurrency tools: JCStress</h2>
+						<h4>Creating your first JCStress test</h4>
+						<pre><code data-trim>
+@JCStressTest : Annotation which allow executing the class
+@Outcome : Annotation to define expected results
+@State : The class annotated with state will store the object state
+@Actor : The elements which run the
+@Result
+						</code></pre>
 					</section>
 					<section>
 						<h2>Concurrency tools: JCStress</h2>

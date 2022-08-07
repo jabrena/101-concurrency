@@ -14,7 +14,7 @@ import org.openjdk.jcstress.infra.results.I_Result;
 @Outcome(id = "1", expect = ACCEPTABLE_INTERESTING, desc = "One update lost.")
 @Outcome(id = "2", expect = ACCEPTABLE, desc = "Both updates.")
 @State
-public class MyCounterTest {
+public class Example_11 {
 
     private MyCounter counter = new MyCounter();
 
@@ -31,6 +31,20 @@ public class MyCounterTest {
     @Arbiter
     public void arbiter(I_Result r) {
         r.r1 = counter.getCount();
+    }
+
+    public static class MyCounter {
+
+        private volatile int count;
+
+        public void increment() {
+            int temp = count;
+            count = temp + 1;
+        }
+
+        public int getCount() {
+            return count;
+        }
     }
 
 }
