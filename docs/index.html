@@ -57,7 +57,8 @@
 							<!-- <li>Concurrency evolution in the JVM</li> -->
 							<!-- <li>Design patterns that impacts you</li> -->
 							<!-- <li>Other concurrency approaches</li> -->
-							<li>Concurrency tools: JCStress</li>
+							<li>Multithreading issues</li>
+							<li>Tooling: JCStress</li>
 							<li>Takeaways</li>
 							<li>References</li>
 							<li>Q&A</li>
@@ -148,7 +149,7 @@ Feature: Sum 2 numbers
 					<section>
 						<h2>Preamble</h2>
 						<p>
-							The code has a good Code Coverage:
+							The code has a good Test Coverage:
 						</p>
 						<img src="images/jacoco-report.png" width="100%"/>
 					</section>
@@ -594,180 +595,10 @@ Feature: Sum 2 numbers
 							</table>
 						</small>
 					</section>
-					<!--
-					<section>
-						<h2>Concurrency models & evolution</h2>
-						<h3>Java 1.0 / Java Threads (23/01/1996)</h3>
-						<ul>
-							<li>PENDING</li>
-							<li>PENDING</li>
-							<li>PENDING</li>
-							<li>PENDING</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Concurrency evolution in the JVM</h2>
-						<h3>Java 1.0 / Java Threads (23/01/1996)</h3>
-						<img src="images/thread-life-cycle.jpg" width="50%"/>
-					</section>
-					<section>
-						<h2>Concurrency models & evolution</h2>
-						<h3>Java 1.0 / Java Threads (23/01/1996)</h3>
-						<img src="images/os-threads.png" width="70%"/>
-					</section>
-					<section>
-						<h2>Concurrency models & evolution</h2>
-						<h3>Java 1.0 / Java Threads (23/01/1996)</h3>
-						<pre><code data-trim>
-class Process implements Runnable {
-    public void run() {
-        System.out.println("Thread is running...");
-    }
-}
-public class ThreadBasic {
-    public static void main(String args[]) throws InterruptedException {
-        Process m1 = new Process();
-        Thread t1 =new Thread(m1);
-        t1.start();
-        t1.join();
-        System.out.println("Example finished");
-    }
-}
-
-						</code></pre>
-					</section>
-					<section>
-						<h2>Concurrency models & evolution</h2>
-						<h3>Java 1.0 / Java Threads (23/01/1996)</h3>
-						<pre><code data-trim>
-Thread is running...
-Example finished
-						</code></pre>
-					</section>
-					<section>
-						<h2>Concurrency models & evolution</h2>
-						<h3>Java 1.0 / Java Threads (23/01/1996)</h3>
-						<p>
-							Javadocs:
-						</p>
-						<ul>
-							<li><a href="http://web.archive.org/web/19990202194011/http://java.sun.com/products/jdk/1.0.2/api/" target="_blank">Java 1.0.2 Javadocs</a> (Web Archive)</li>
-							<li><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html" target="_blank">Thread</a> </li>
-							<li><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html" target="_blank">Runnable</a> </li>
-						</ul>
-					</section>
 					<! --
 					https://en.wikipedia.org/wiki/Java_memory_model
 					https://jenkov.com/tutorials/java-concurrency/java-memory-model.html
 					-- >
-					<section>
-						<h2>Concurrency models & evolution</h2>
-						<h3>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</h3>
-						<ul>
-							<li>PENDING</li>
-							<li>PENDING</li>
-							<li>PENDING</li>
-							<li>PENDING</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Concurrency models & evolution</h2>
-						<h3>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</h3>
-						<img src="images/java-memory-model-4.png" width="40%"/>
-					</section>
-					<section>
-						<h2>Concurrency models & evolution</h2>
-						<h3>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</h3>
-						<img src="images/java-memory-model-3.png" width="40%"/>
-					</section>
-					<section>
-						<h2>Concurrency models & evolution</h2>
-						<h3>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</h3>
-						<img src="images/executor-service.jpg" width="60%"/>
-					</section>
-					<section>
-						<h2>Concurrency models & evolution</h2>
-						<! -- <h3>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</h3> -- >
-						<pre><code data-trim>
-public class ExecutorServiceBasic {
-    private static CountDownLatch latch = new CountDownLatch(1);
-    public static void main(String args[]) throws InterruptedException {
-        ExecutorService executor = Executors.newFixedThreadPool(2);
-        executor.submit(new Process2());
-        latch.await();
-        executor.shutdown();
-        executor.awaitTermination(60, TimeUnit.SECONDS);
-        System.out.println("Example finished");
-    }
-    static class Process2 implements Runnable {
-        public void run() {
-            System.out.println("Thread is running...");
-            latch.countDown();
-        }
-    }
-}
-
-						</code></pre>
-					</section>
-					<section>
-						<h2>Concurrency models & evolution</h2>
-						<h3>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</h3>
-						<pre><code data-trim>
-Thread is running...
-Example finished
-						</code></pre>
-					</section>
-					<section>
-						<h2>Concurrency models & evolution</h2>
-						<! -- <h3>Java 1.5 / JSR 133, java.util.concurrent.* (30/09/2004)</h3>-- >
-						<p>
-							References:
-						</p>
-						<ul>
-							<li><a href="https://docs.oracle.com/javase/1.5.0/docs/api/" target="_blank">Java 1.5.0 Javadocs</a></li>
-							<li><a href="https://download.oracle.com/otndocs/jcp/memory_model-1.0-pfd-spec-oth-JSpec/" target="_blank">JSR-133 Java Memory Model and Thread Specification 1.0</a> </li>
-							<li><a href="https://docs.oracle.com/javase/1.5.0/docs/api/java/util/concurrent/ExecutorService.html" target="_blank">ExecutorService</a></li>
-							<li><a href="https://docs.oracle.com/javase/1.5.0/docs/api/java/util/concurrent/Future.html" target="_blank">Future</a></li>
-							<li><a href="https://docs.oracle.com/javase/1.5.0/docs/api/java/util/concurrent/atomic/package-summary.html">Package java.util.concurrent.atomic</a></li>
-							<li><a href="https://docs.oracle.com/javase/1.5.0/docs/api/java/util/concurrent/locks/package-summary.html">Package java.util.concurrent.locks</a> </li>
-						</ul>
-					</section>
-					<section>
-						<h2>Concurrency models & evolution</h2>
-						<h3>Java 1.7 / Fork/join framework (07/07/2011)</h3>
-						<ul>
-							<li>PENDING</li>
-							<li>PENDING</li>
-							<li>PENDING</li>
-							<li>PENDING</li>
-						</ul>
-					</section>
-					<! --
-					http://rashidnoorani.blogspot.com/2012/08/how-to-use-fork-join-framework-features.html
-					https://github.com/bejancsaba/java-concurrency-evolution
-					https://github.com/bejancsaba/java-concurrency-evolution-loom
-					-- >
-					<section>
-						<h2>Concurrency models & evolution</h2>
-						<h3>Java 1.8 / CompletableFuture (18/03/2014)</h3>
-						<ul>
-							<li>PENDING</li>
-							<li>PENDING</li>
-							<li>PENDING</li>
-							<li>PENDING</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Concurrency models & evolution</h2>
-						<h3>Java 19 / Virtual Threads, Structured Concurrency (20/09/2022)</h3>
-						<ul>
-							<li>PENDING</li>
-							<li>PENDING</li>
-							<li>PENDING</li>
-							<li>PENDING</li>
-						</ul>
-					</section>
-					-->
 				</section>
 				<section>
 					<section>
@@ -819,74 +650,7 @@ Example finished
 				-->
 				<section>
 					<section>
-						<h2>Concurrency tools: JCStress</h2>
-						<ul>
-							<li>Introduction</li>
-							<!-- <li>Who is behind the library?</li> -->
-							<li>What are the benefits?</li>
-							<li>Creating your first JCStress test</li>
-							<li>Does exist plugins?</li>
-							<li>What projects are using the JCStress?</li>
-							<li>Limitations</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Concurrency tools: JCStress</h2>
-						<h3>Introduction</h3>
-						<p>
-							The Java Concurrency Stress (jcstress) is the experimental harness and
-							a suite of tests to aid the research in the correctness of concurrency support
-							in the JVM, class libraries, and hardware.
-						</p>
-						<a href="https://github.com/openjdk/jcstress" target="_blank">https://github.com/openjdk/jcstress</a>
-					</section>
-					<!--
-					<section>
-						<h2>Concurrency tools: JCStress</h2>
-						<h3>Who is behind the library?</h3>
-						<p>
-							Aleksey Shipilëv is working on Java performance for 10+ years.
-							Today he is employed by Red Hat, where he does OpenJDK development and performance work.
-							Aleksey develops and maintains a number of OpenJDK subprojects,
-							including
-							<a href="https://github.com/openjdk/jmh" target="_blank">JMH</a>,
-							<a href="https://github.com/openjdk/jol" target="_blank">JOL</a> and
-							<a href="https://github.com/openjdk/jcstress" target="_blank">JCStress</a>.
-						</p>
-						<a href="https://shipilev.net/" target="_blank">https://shipilev.net/</a>
-					</section>
-					-->
-					<section>
-						<h2>Concurrency tools: JCStress</h2>
-						<h3>What are the benefits?</h3>
-						<ul>
-							<li>Increase the capacity to test for concurrency in your Java classes
-								that you know that the class is sharing state.</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Concurrency tools: JCStress</h2>
-						<h4>Creating your first JCStress test</h4>
-						<ul>
-							<li>Review in your project, classes where the team consider that it is necessary to maintaing the state.</li>
-							<li>Review what Java concurrency tools are more suitable for the problem.</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Concurrency tools: JCStress</h2>
-						<h4>Creating your first JCStress test</h4>
-						<p>
-							In Java, you could use:
-						</p>
-						<ul>
-							<li>volatile</li>
-							<li>Locks</li>
-							<li>Atomic objects</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Concurrency tools: JCStress</h2>
-						<h4>Creating your first JCStress test</h4>
+						<h2>Multithreading issues</h2>
 						<p>
 							There are 3 main issues with multithreading:
 						</p>
@@ -900,58 +664,113 @@ Example finished
 					https://www.javacodegeeks.com/2014/08/java-concurrency-tutorial-atomicity-and-race-conditions.html
 					-->
 					<section>
-						<h2>Concurrency tools: JCStress</h2>
-						<h4>Creating your first JCStress test</h4>
+						<h2>Multithreading issues</h2>
 						<ul>
-							<li>Atomicity / Race Conditions: Atomicity is one of the key concepts in multi-threaded programs. We say a set of actions is atomic if they all execute as a single operation, in an indivisible manner.</li>
+							<li>Atomicity: Atomicity is one of the key concepts in multi-threaded programs. We say a set of actions is atomic if they all execute as a single operation, in an indivisible manner.</li>
 						</ul>
-						<p>
-							Check-then-act
-							Read-modify-write
-						</p>
 					</section>
 					<section>
-						<h2>Concurrency tools: JCStress</h2>
-						<h4>Creating your first JCStress test</h4>
+						<h2>Multithreading issues</h2>
 						<p>
-							Atomicity / Race Conditions:
+							Atomicity:
 						</p>
-						<img src="images/jmm-1.png" width="50%"/>
+						<img src="images/jmm-1.png" width="60%"/>
 					</section>
 					<section>
-						<h2>Concurrency tools: JCStress</h2>
-						<h4>Creating your first JCStress test</h4>
+						<h2>Multithreading issues</h2>
 						<ul>
-							<li>Visibility / Caching / stale memory : which means ensuring that a change to a shared variable made by one thread is visible to the rest of the thread.</li>
+							<li>Visibility / Caching / stale memory : which means ensuring that a change to a shared variable made by one thread is visible to the rest of the threads.</li>
 						</ul>
 					</section>
 					<!--
 					https://jenkov.com/tutorials/java-concurrency/java-happens-before-guarantee.html
 					-->
 					<section>
-						<h2>Concurrency tools: JCStress</h2>
-						<h4>Creating your first JCStress test</h4>
+						<h2>Multithreading issues</h2>
 						<ul>
 							<li>Reordering / Compiler and CPU optimisations: The JVM could change the order of executions.</li>
 						</ul>
 					</section>
 					<section>
-						<h2>Concurrency tools: JCStress</h2>
-						<h4>Creating your first JCStress test</h4>
-						<ol>
-							<li>Atomicity</li>
-							<li>Visibility</li>
-							<li>Reordering</li>
-						</ol>
+						<h2>Multithreading issues</h2>
+						<table>
+							<tr>
+								<th>#</th>
+								<th>Atomicity</th>
+								<th>Visibility</th>
+								<th>Reordering</th>
+							</tr>
+							<tr>
+								<td>volatile</td>
+								<td></td>
+								<td>x</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>synchronized / explicit locks</td>
+								<td>x</td>
+								<td>x</td>
+								<td>x</td>
+							</tr>
+						</table>
+					</section>
+					<section>
+						<h2>Multithreading issues</h2>
 						<p>
-							<strong>volatile</strong> can solve 2 & 3, but can't solve 1. <strong>synchronized/explicit locks</strong> can solve 1, 2 & 3.
+							In Java, you could use the following alternatives to manage the shared memory:
+						</p>
+						<ul>
+							<li>volatile</li>
+							<li>synchronized / <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/package-summary.html" target="_blank">java.util.concurrent.locks</a></li>
+							<li><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/package-summary.html" target="_blank">java.util.concurrent.atomic</a></li>
+							<li><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/package-summary.html" target="_blank">java.util.concurrent.*</a>(Queues, Synchronizers, Concurrent Collections)</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<ul>
+							<li>Introduction</li>
+							<li>What are the benefits?</li>
+							<li>Creating your first JCStress test</li>
+							<li>Reviewing a JCStress in detail</li>
+							<li>Does exist plugins?</li>
+							<li>Who is using JCStress?</li>
+							<li>Limitations</li>
+							<li>Next steps</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Introduction</h4>
+						<p>
+							The Java Concurrency Stress (jcstress) is the experimental harness and
+							a suite of tests to aid the research in the correctness of concurrency support
+							in the JVM, class libraries, and hardware.
 						</p>
 						<small>
-							<strong>Source:</strong> <a href="https://stackoverflow.com/questions/3519664/difference-between-volatile-and-synchronized-in-java" target="_blank">Stack Overflow</a>
+						<strong>Project: </strong><a href="https://github.com/openjdk/jcstress" target="_blank">https://github.com/openjdk/jcstress</a>
 						</small>
 					</section>
 					<section>
-						<h2>Concurrency tools: JCStress</h2>
+						<h2>Tooling: JCStress</h2>
+						<h4>What are the benefits?</h4>
+						<ul>
+							<li>Increase the capacity to test for concurrency in your Java classes
+								that you know that the class is sharing state.</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Creating your first JCStress test</h4>
+						<ul>
+							<li>Review in your project, the classes where the team consider that it is necessary to maintaing the state.</li>
+							<li>Review what Java concurrency tools are more suitable for each scenario.</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
 						<h4>Creating your first JCStress test</h4>
 						<pre><code data-trim>
 ./gradlew clean jcstress --tests "Example_01"
@@ -960,7 +779,7 @@ Example finished
 						<img src="images/demo.png" width="60%" />
 					</section>
 					<section>
-						<h2>Concurrency tools: JCStress</h2>
+						<h2>Tooling: JCStress</h2>
 						<h4>Creating your first JCStress test</h4>
 						<pre><code data-trim>
 ./gradlew clean jcstress --tests "Example_01"
@@ -979,8 +798,8 @@ RESULT      SAMPLES     FREQ       EXPECT  DESCRIPTION
 						</code></pre>
 					</section>
 					<section>
-						<h2>Concurrency tools: JCStress</h2>
-						<h4>Creating your first JCStress test</h4>
+						<h2>Tooling: JCStress</h2>
+						<h4>Reviewing a JCStress in detail</h4>
 						<p>
 							Fixing the first issue:
 						</p>
@@ -992,10 +811,11 @@ RESULT      SAMPLES     FREQ       EXPECT  DESCRIPTION
 						<img src="images/demo.png" width="60%" />
 					</section>
 					<section>
-						<h2>Concurrency tools: JCStress</h2>
-						<h4>Creating your first JCStress test</h4>
+						<h2>Tooling: JCStress</h2>
+						<h4>Reviewing a JCStress in detail</h4>
 						<pre><code data-trim>
 @JCStressTest : Annotation which allow executing the class
+@Description : Test description
 @Outcome : Annotation to define expected results
 @State : The class annotated with state will store the object state
 @Actor : The elements which run the
@@ -1003,22 +823,112 @@ RESULT      SAMPLES     FREQ       EXPECT  DESCRIPTION
 						</code></pre>
 					</section>
 					<section>
-						<h2>Concurrency tools: JCStress</h2>
+						<h2>Tooling: JCStress</h2>
+						<h4>Reviewing a JCStress in detail</h4>
+						<p>JCStress provides a solution for every Java datatype:</p>
+						<small>
+							<ul>
+								<li>I:  int</li>
+								<li>Z:  boolean</li>
+								<li>F:  float</li>
+								<li>J:  long</li>
+								<li>S:  short</li>
+								<li>B:  byte</li>
+								<li>C:  char</li>
+								<li>D:  double</li>
+								<li>L:  object</li>
+							</ul>
+						</small>
+						<p>
+							<small>
+								<strong>Source:</strong> <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html" target="_blank">Java datatypes</a>
+							</small>
+						</p>
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Reviewing a JCStress in detail</h4>
+						<pre><code data-trim>
+//In this example the results are stored in a II_Result object
+//II_Result stores 2 integer to evaluate
+public class Example_03 {
+    AuxExample_03 v = new AuxExample_03();
+
+    @Actor
+    public void actor1(II_Result r) {
+        r.r1 = v.add1();
+    }
+    @Actor
+    public void actor2(II_Result r) {
+        r.r2 = v.add2();
+    }
+}
+						</code></pre>
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Does exist plugins?</h4>
+						<p>
+							Today exist a plugin for Gradle, but not for Maven.
+						</p>
+						<small><strong>Source:</strong>
+							<a href="https://github.com/reyerizo/jcstress-gradle-plugin" target="_blank">
+								https://github.com/reyerizo/jcstress-gradle-plugin</a>
+						</small>
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Does exist plugins?</h4>
+						<pre><code data-trim>
+plugins {
+    id 'io.github.reyerizo.gradle.jcstress' version '0.8.13'
+}
+ext {
+    jcstressVersion = '0.15'
+}
+jcstress {
+    jcstressDependency "org.openjdk.jcstress:jcstress-core:${jcstressVersion}"
+    verbose = true
+    timeMillis = "200"
+    spinStyle = "THREAD_YIELD"
+}
+						</code></pre>
+						<small><strong>Source:</strong>
+							<a href="https://github.com/reyerizo/jcstress-gradle-plugin/blob/master/README.md" target="_blank">
+								https://github.com/reyerizo/jcstress-gradle-plugin/blob/master/README.md</a>
+						</small>
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Who is using JCStress?</h4>
 						<ul>
-							<li>I:  int</li>
-							<li>Z:  boolean</li>
-							<li>F:  float</li>
-							<li>J:  long</li>
-							<li>S:  short</li>
-							<li>B:  byte</li>
-							<li>C:  char</li>
-							<li>D:  double</li>
-							<li>L:  object</li>
+							<li>https://github.com/openjdk</li>
+							<li>https://github.com/reactor/reactor-pool</li>
+							<li>https://github.com/reactor/reactor-core</li>
+							<li>https://github.com/rsocket/rsocket-java</li>
+							<li>https://github.com/LMAX-Exchange/disruptor</li>
+							<li>https://github.com/resilience4j/resilience4j</li>
+							<li>https://github.com/real-logic/agrona</li>
 						</ul>
 					</section>
 					<section>
-						<h2>Concurrency tools: JCStress</h2>
-						<h3 style="color:red">WIP</h3>
+						<h2>Tooling: JCStress</h2>
+						<h4>Limitations</h4>
+						<ul>
+							<li>Lack of Maven plugin</li>
+							<li>Very low level tests</li>
+							<li>Solution not integrated with JUnit</li>
+							<li>What happen if your class has IO?</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Next steps</h4>
+						<p>
+							Review
+							<a href="https://github.com/openjdk/jcstress/tree/master/jcstress-samples/src/main/java/org/openjdk/jcstress/samples">samples</a>
+							from JCStress project.
+						</p>
 					</section>
 				</section>
 				<section>
