@@ -8,10 +8,10 @@ import org.openjdk.jcstress.annotations.State;
 import org.openjdk.jcstress.infra.results.II_Result;
 
 @JCStressTest
-@State
 @Outcome(id = "0, 1", expect = Expect.ACCEPTABLE)
 @Outcome(id = "1, 1", expect = Expect.ACCEPTABLE)
 @Outcome(id = "1, 0", expect = Expect.ACCEPTABLE)
+@State
 public class Example_07 {
     volatile int x;
     volatile int y;
