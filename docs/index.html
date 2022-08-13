@@ -44,6 +44,47 @@
 				</section>
 				<section>
 					<section>
+						<p>
+						"Testing show the presence, not the absence of bugs"
+						</p>
+						- <a href="https://en.wikipedia.org/wiki/Edsger_W._Dijkstra" target="_blank">Edsger W. Dijkstra</a>
+					</section>
+					<section>
+						<p>
+						"Quality is never an accident. It is always the result of intelligent effort."
+						</p>
+						- <a href="https://en.wikipedia.org/wiki/John_Ruskin" target="_blank">John Ruskin</a>
+					</section>
+					<section>
+						<p>
+							"At the heart of <u>any reasonable definition of thread safety is the concept of
+							correctness</u>. If our definition of thread safety is fuzzy, it is because we lack a clear
+							definition of correctness.
+							<u>Correctness means that a class conforms to its specification</u>. A good specification
+							defines invariants constraining an object’s state and postconditions describing the
+							effects of its operations."
+						</p>
+						- <a href="https://jcip.net/" target="_blank">Brian Goetz, Java Concurrency in Practice, 2006</a>
+					</section>
+					<section>
+						<img src="images/quadrants-of-concurrency1.png" width="50%">
+						<small><strong>Source:</strong>
+							<a href="https://twitter.com/mariofusco/status/579664916539432960" target="_blank">
+								https://twitter.com/mariofusco/status/579664916539432960
+							</a>
+						</small>
+					</section>
+					<section>
+						<img src="images/quadrants-of-concurrency2.png" width="80%">
+						<small><strong>Source:</strong>
+							<a href="https://ericnormand.me/issues/purelyfunctional-tv-newsletter-416-why-do-we-program-in-hard-mode" target="_blank">
+								https://ericnormand.me/issues/purelyfunctional-tv-newsletter-416-why-do-we-program-in-hard-mode
+							</a>
+						</small>
+					</section>
+				</section>
+				<section>
+					<section>
 						<h2>Agenda</h2>
 						<ol>
 							<li>Who I am</li>
@@ -91,12 +132,10 @@
 					<section>
 						<h2>Expectations</h2>
 						<ul>
-							<li>Generate curiosity about potential issues by concurrency.</li>
-							<li>Understand better the Java Memory Model.</li>
-							<li>Understand the evolution of concurrency in Java.</li>
+							<li>Generate awareness about concurrency issues.</li>
+							<li>Review some root causes about concurrency issues.</li>
 							<li>Learn how to use JCStress in your projects</li>
 						</ul>
-						<h3 style="color:red">WIP</h3>
 					</section>
 
 					<!--
@@ -105,13 +144,14 @@
 					<section>
 						<h2>Expectations</h2>
 						<p>
-							The talk with not talk about:
+							The session will not enter in aspects like:
 						</p>
 						<ul>
 							<li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/invoke/VarHandle.html" target="_blank">java.lang.invoke.VarHandle</a></li>
 						</ul>
 					</section>
 				</section>
+				<!--
 				<section>
 					<h2>Disclaimer</h2>
 					<img src="images/disclaimer.png" width="30%"/>
@@ -121,6 +161,7 @@
 						<br/>😊
 					</p>
 				</section>
+				-->
 				<section>
 					<section>
 						<h2>Preamble</h2>
@@ -259,6 +300,7 @@ Feature: Sum 2 numbers
 							<li>Engineers more focused on cool features from Frameworks than language fundamentals.</li>
 						</ul>
 					</section>
+					<!--
 					<section>
 						<h2>Root causes</h2>
 						<p>
@@ -266,10 +308,11 @@ Feature: Sum 2 numbers
 						</p>
 						<img src="images/jmm-1.png" width="70%"/>
 					</section>
+					-->
 					<section>
 						<h2>Root causes</h2>
 						<p>
-							the party could begin in any moment...
+							the projects could be headed to the cliff like Lemmings:
 						</p>
 						<img src="images/lemmings.png" width="50%"/>
 					</section>
@@ -338,6 +381,7 @@ Feature: Sum 2 numbers
 						</p>
 						<img src="images/iceberg.png" width="50%"/>
 					</section>
+					<!--
 					<section>
 						<h2>Root causes</h2>
 						<h4>Non funcional requirements</h4>
@@ -345,6 +389,7 @@ Feature: Sum 2 numbers
 							Do you know that exist an ISO Standard for Software Quality aspects?
 						</p>
 					</section>
+					-->
 					<section>
 						<h2>Root causes</h2>
 						<h4>Non funcional requirements</h4>
@@ -371,6 +416,7 @@ Feature: Sum 2 numbers
 								https://iso25000.com/index.php/en/iso-25000-standards/iso-25010</a>
 						</small>
 					</section>
+					<!--
 					<section>
 						<h2>Root causes</h2>
 						<h4>Non funcional requirements</h4>
@@ -386,6 +432,7 @@ Feature: Sum 2 numbers
 							<li>Portability</li>
 						</ul>
 					</section>
+					-->
 					<section>
 						<h2>Root causes</h2>
 						<h4>Non funcional requirements</h4>
@@ -412,14 +459,7 @@ Feature: Sum 2 numbers
 							</ul>
 						</small>
 					</section>
-					<section>
-						<h2>Root causes</h2>
-						<h4>Non funcional requirements</h4>
-						<h5>ISO 25010</h5>
-						<p>
-							Functional correctness - Degree to which a product or system provides the correct results with the needed degree of precision.
-						</p>
-					</section>
+					<!--
 					<section>
 						<h2>Root causes</h2>
 						<p>
@@ -432,6 +472,7 @@ Feature: Sum 2 numbers
 						</p>
 						- <a href="https://jcip.net/" target="_blank">Brian Goetz, Java Concurrency in Practice, 2006</a>
 					</section>
+					-->
 				</section>
 				<!--
 				<section>
@@ -650,7 +691,8 @@ Feature: Sum 2 numbers
 				-->
 				<section>
 					<section>
-						<h2>Multithreading issues</h2>
+						<h2>Root causes</h2>
+						<h4>Multithreading issues</h4>
 						<p>
 							There are 3 main issues with multithreading:
 						</p>
@@ -664,20 +706,23 @@ Feature: Sum 2 numbers
 					https://www.javacodegeeks.com/2014/08/java-concurrency-tutorial-atomicity-and-race-conditions.html
 					-->
 					<section>
-						<h2>Multithreading issues</h2>
+						<h2>Root causes</h2>
+						<h4>Multithreading issues</h4>
 						<ul>
 							<li>Atomicity: Atomicity is one of the key concepts in multi-threaded programs. We say a set of actions is atomic if they all execute as a single operation, in an indivisible manner.</li>
 						</ul>
 					</section>
 					<section>
-						<h2>Multithreading issues</h2>
+						<h2>Root causes</h2>
+						<h4>Multithreading issues</h4>
 						<p>
 							Atomicity:
 						</p>
 						<img src="images/jmm-1.png" width="60%"/>
 					</section>
 					<section>
-						<h2>Multithreading issues</h2>
+						<h2>Root causes</h2>
+						<h4>Multithreading issues</h4>
 						<ul>
 							<li>Visibility / Caching / stale memory : which means ensuring that a change to a shared variable made by one thread is visible to the rest of the threads.</li>
 						</ul>
@@ -686,13 +731,15 @@ Feature: Sum 2 numbers
 					https://jenkov.com/tutorials/java-concurrency/java-happens-before-guarantee.html
 					-->
 					<section>
-						<h2>Multithreading issues</h2>
+						<h2>Root causes</h2>
+						<h4>Multithreading issues</h4>
 						<ul>
 							<li>Reordering / Compiler and CPU optimisations: The JVM could change the order of executions.</li>
 						</ul>
 					</section>
 					<section>
-						<h2>Multithreading issues</h2>
+						<h2>Root causes</h2>
+						<h4>Multithreading issues</h4>
 						<table>
 							<tr>
 								<th>#</th>
@@ -715,7 +762,8 @@ Feature: Sum 2 numbers
 						</table>
 					</section>
 					<section>
-						<h2>Multithreading issues</h2>
+						<h2>Root causes</h2>
+						<h4>Multithreading issues</h4>
 						<p>
 							In Java, you could use the following alternatives to manage the shared memory:
 						</p>
@@ -732,7 +780,7 @@ Feature: Sum 2 numbers
 						<h2>Tooling: JCStress</h2>
 						<ul>
 							<li>Introduction</li>
-							<li>What are the benefits?</li>
+							<!-- <li>What are the benefits?</li> -->
 							<li>Creating your first JCStress test</li>
 							<li>Reviewing a JCStress in detail</li>
 							<li>Does exist plugins?</li>
@@ -753,6 +801,7 @@ Feature: Sum 2 numbers
 						<strong>Project: </strong><a href="https://github.com/openjdk/jcstress" target="_blank">https://github.com/openjdk/jcstress</a>
 						</small>
 					</section>
+					<!--
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>What are the benefits?</h4>
@@ -761,6 +810,56 @@ Feature: Sum 2 numbers
 								that you know that the class is sharing state.</li>
 						</ul>
 					</section>
+					-->
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Creating your first JCStress test</h4>
+						<img src="images/demo.png" width="60%" />
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Creating your first JCStress test</h4>
+						<pre><code data-trim class="stretch">
+1) Post-Increment (i++):
+we use i++ in our statement if we want to use the current
+value, and then we want to increment the value of i by 1.
+
+2) Pre-Increment(++i):
+We use ++i in our statement if we want to increment the value of i by 1
+and then use it in our statement.
+
+Example
+
+int i = 3;
+int a = i++; // a = 3, i = 4
+int b = ++a; // b = 4, a = 4
+						</code></pre>
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Creating your first JCStress test</h4>
+
+						<pre><code data-trim class="stretch">
+@JCStressTest
+@Outcome(id = "1, 1", expect = Expect.ACCEPTABLE_INTERESTING, desc = "Both actors came up with the same value: atomicity failure.")
+@Outcome(id = "1, 2", expect = Expect.ACCEPTABLE, desc = "actor1 incremented, then actor2.")
+@Outcome(id = "2, 1", expect = Expect.ACCEPTABLE, desc = "actor2 incremented, then actor1.")
+@State
+public class Example_01 {
+    int v;
+
+    @Actor
+    public void actor1(II_Result r) {
+        r.r1 = ++v; // record result from actor1 to field r1
+    }
+    @Actor
+    public void actor2(II_Result r) {
+        r.r2 = ++v; // record result from actor2 to field r2
+    }
+}
+						</code></pre>
+					</section>
+					<!--
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Creating your first JCStress test</h4>
@@ -769,44 +868,55 @@ Feature: Sum 2 numbers
 							<li>Review what Java concurrency tools are more suitable for each scenario.</li>
 						</ul>
 					</section>
+					-->
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Creating your first JCStress test</h4>
-						<pre><code data-trim>
+						<pre><code data-trim class="stretch">
 ./gradlew clean jcstress --tests "Example_01"
-./gradlew clean jcstress --tests "Example_02"
 						</code></pre>
 						<img src="images/demo.png" width="60%" />
 					</section>
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Creating your first JCStress test</h4>
-						<pre><code data-trim>
+						<pre><code data-trim class="stretch">
 ./gradlew clean jcstress --tests "Example_01"
 
-RESULT      SAMPLES     FREQ       EXPECT  DESCRIPTION
-1, 1   67,175,767   12.75%  Interesting  Both actors came up with the same value: atomicity failure.
-1, 2  230,619,181   43.76%   Acceptable  actor1 incremented, then actor2.
-2, 1  229,163,644   43.49%   Acceptable  actor2 incremented, then actor1.
+[OK] info.jab.examples.Example_01
 
-./gradlew clean jcstress --tests "Example_02"
+Results across all configurations:
 
 RESULT      SAMPLES     FREQ       EXPECT  DESCRIPTION
-1, 1   50,158,990   11.27%  Interesting  Both actors came up with the same value: atomicity failure.
-1, 2  198,225,259   44.55%   Acceptable  actor1 incremented, then actor2.
-2, 1  196,592,903   44.18%   Acceptable  actor2 incremented, then actor1.
+1, 1   66,396,660   12.80%  Interesting  Both actors came up with the same value: atomicity failure.
+1, 2  228,406,917   44.05%   Acceptable  actor1 incremented, then actor2.
+2, 1  223,758,215   43.15%   Acceptable  actor2 incremented, then actor1.
 						</code></pre>
 					</section>
 					<section>
 						<h2>Tooling: JCStress</h2>
-						<h4>Reviewing a JCStress in detail</h4>
+						<h4>Creating your first JCStress test</h4>
 						<p>
-							Fixing the first issue:
+							Why I receive cases for: <u>@Outcome(id = "1, 1", expect = Expect.ACCEPTABLE_INTERESTING)</u>
+						</p>
+						<p>
+						++ operator is not atomic
+						</p>
+						<p>
+							It is actually more than 1 instruction being executed under the hood
+						</p>
+						<p>
+							++i; it is load/add/store
+						</p>
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Creating your first JCStress test</h4>
+						<p>
+							How to fix the issue?:
 						</p>
 						<pre><code data-trim>
-./gradlew clean jcstress --tests "Example_03"
-./gradlew clean jcstress --tests "Example_04"
-./gradlew clean jcstress --tests "Example_05"
+./gradlew clean jcstress --tests "Example_02"
 						</code></pre>
 						<img src="images/demo.png" width="60%" />
 					</section>
@@ -965,7 +1075,7 @@ jcstress {
 		<script src="./reveal.js/plugin/notes/notes.js"></script>
 		<script src="./reveal.js/plugin/markdown/markdown.js"></script>
 		<script src="./reveal.js/plugin/highlight/highlight.js"></script>
-
+		<script src="./reveal.js-plugins/embed-tweet/plugin.js"></script>
 		<script>
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
@@ -974,7 +1084,7 @@ jcstress {
 				hash: true,
 
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealEmbedTweet ]
 			});
 		</script>
 	</body>
