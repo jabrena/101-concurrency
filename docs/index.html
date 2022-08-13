@@ -99,6 +99,7 @@
 							<!-- <li>Design patterns that impacts you</li> -->
 							<!-- <li>Other concurrency approaches</li> -->
 							<li>Tooling: JCStress</li>
+							<li>The next step</li>
 							<li>Takeaways</li>
 							<li>References</li>
 							<li>Q&A</li>
@@ -228,7 +229,7 @@ Feature: Sum 2 numbers
 						<img src="images/thinking6.png" width="30%" />
 						<p>
 							<strong>Developer:</strong> "...maybe, I didn´t read the <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-17.html" target="_blank">JLS (Java Language Specification), section 17.4.</a> about <u>Concurrency</u>
-							and the <a href="https://download.oracle.com/otndocs/jcp/memory_model-1.0-pfd-spec-oth-JSpec/" target="_blank">JSR 133</a>"
+							and the <a href="https://download.oracle.com/otndocs/jcp/memory_model-1.0-pfd-spec-oth-JSpec/" target="_blank">JSR-133 Java Memory Model and Thread Specification</a>"
 						</p>
 					</section>
 					<section>
@@ -247,7 +248,7 @@ Feature: Sum 2 numbers
 						</h3>
 						<hr />
 						<p>
-							And every Java developer needs to know it.
+							And <u>every Java developer needs to know it</u>.
 						</p>
 					</section>
 				</section>
@@ -559,16 +560,6 @@ Feature: Sum 2 numbers
 					<section>
 						<h2>Root causes</h2>
 						<h4>Concurrency models</h4>
-						<img src="images/lang-rank-0122.png" width="50%">
-						<br />
-						<small><strong>Source:</strong>
-							<a href="https://redmonk.com/sogrady/2022/03/28/language-rankings-1-22/" target="_blank">
-								https://redmonk.com/sogrady/2022/03/28/language-rankings-1-22/</a>
-						</small>
-					</section>
-					<section>
-						<h2>Root causes</h2>
-						<h4>Concurrency models</h4>
 						<p>
 							Every programming language implement different approaches about Concurrency
 							and not all of them are in the same stage.
@@ -576,6 +567,16 @@ Feature: Sum 2 numbers
 						<p>
 							That detail is important when you apply "T-shaped" strategies.
 						</p>
+					</section>
+					<section>
+						<h2>Root causes</h2>
+						<h4>Concurrency models</h4>
+						<img src="images/lang-rank-0122.png" width="50%">
+						<br />
+						<small><strong>Source:</strong>
+							<a href="https://redmonk.com/sogrady/2022/03/28/language-rankings-1-22/" target="_blank">
+								https://redmonk.com/sogrady/2022/03/28/language-rankings-1-22/</a>
+						</small>
 					</section>
 					<!--
 					https://www.baeldung.com/java-thread-lifecycle
@@ -802,7 +803,7 @@ RESULT      SAMPLES     FREQ       EXPECT  DESCRIPTION
 						</code></pre>
 					</section>
 					<section>
-						<h2>Root causes</h2>
+						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading issues</h4>
 						<p>
 							Using JCStress tests, it is possible to detect
@@ -819,7 +820,7 @@ RESULT      SAMPLES     FREQ       EXPECT  DESCRIPTION
 					https://research.ibm.com/haifa/Workshops/verification2005/present/atomicity.pdf
 					-->
 					<section>
-						<h2>Root causes</h2>
+						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading issues</h4>
 						<ul>
 							<li>Atomicity: We say a set of actions is atomic if they all execute as a single operation, in an indivisible manner.</li>
@@ -827,7 +828,7 @@ RESULT      SAMPLES     FREQ       EXPECT  DESCRIPTION
 						<img src="images/jmm-1.png" width="50%"/>
 					</section>
 					<section>
-						<h2>Root causes</h2>
+						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading issues</h4>
 						<ul>
 							<li>Visibility: ensuring that a change to a shared variable made by one thread is visible to the rest of the threads.</li>
@@ -841,14 +842,14 @@ RESULT      SAMPLES     FREQ       EXPECT  DESCRIPTION
 					https://jenkov.com/tutorials/java-concurrency/java-happens-before-guarantee.html
 					-->
 					<section>
-						<h2>Root causes</h2>
+						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading issues</h4>
 						<ul>
 							<li>Reordering / Compiler and CPU optimisations: The JVM could change the order of executions.</li>
 						</ul>
 					</section>
 					<section>
-						<h2>Root causes</h2>
+						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading issues</h4>
 						<p>
 							With volatile or synchronized / explicit locks,
@@ -876,7 +877,7 @@ RESULT      SAMPLES     FREQ       EXPECT  DESCRIPTION
 						</table>
 					</section>
 					<section>
-						<h2>Root causes</h2>
+						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading issues</h4>
 						<p>
 							But in Java, you several alternatives to manage the shared memory:
@@ -889,7 +890,7 @@ RESULT      SAMPLES     FREQ       EXPECT  DESCRIPTION
 						</ul>
 					</section>
 					<section>
-						<h2>Root causes</h2>
+						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading issues</h4>
 						<p>
 							To understand the concept, we will use JCSTress to
@@ -1147,12 +1148,29 @@ jcstress {
 						<h4>Who is using JCStress?</h4>
 						<ul>
 							<li><a href="https://github.com/openjdk" target="_blank">https://github.com/openjdk</a></li>
+							<li><a href="https://github.com/adoptium/aqa-tests" target="_blank">https://github.com/adoptium/aqa-tests</a></li>
+							<li><a href="https://github.com/real-logic/agrona" target="_blank">https://github.com/real-logic/agrona</a></li>
+							<li><a href="https://github.com/eclipse/eclipse-collections" target="_blank">https://github.com/eclipse/eclipse-collections</a></li>
+						</ul>
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Who is using JCStress?</h4>
+						<ul>
 							<li><a href="https://github.com/reactor/reactor-core" target="_blank">https://github.com/reactor/reactor-core</a></li>
 							<li><a href="https://github.com/reactor/reactor-pool" target="_blank">https://github.com/reactor/reactor-pool</a></li>
 							<li><a href="https://github.com/rsocket/rsocket-java" target="_blank">https://github.com/rsocket/rsocket-java</a></li>
 							<li><a href="https://github.com/LMAX-Exchange/disruptor" target="_blank">https://github.com/LMAX-Exchange/disruptor</a></li>
 							<li><a href="https://github.com/resilience4j/resilience4j" target="_blank">https://github.com/resilience4j/resilience4j</a></li>
-							<li><a href="https://github.com/real-logic/agrona" target="_blank">https://github.com/real-logic/agrona</a></li>
+							<li><a href="https://github.com/dropwizard/metrics" target="_blank">https://github.com/dropwizard/metrics</a></li>
+						</ul>
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Who is using JCStress?</h4>
+						<ul>
+							<li><a href="https://github.com/scala/scala" target="_blank">https://github.com/scala/scala</a></li>
+							<li><a href="https://github.com/sbt/sbt-jcstress" target="_blank">https://github.com/sbt/sbt-jcstress</a></li>
 							<li><a href="https://github.com/zio/zio" target="_blank">https://github.com/zio/zio</a></li>
 						</ul>
 					</section>
@@ -1168,16 +1186,28 @@ jcstress {
 					</section>
 				</section>
 				<section>
+					<h2>The next step</h2>
+					<p>
+						Organize a session with your Dev team to review the
+						<a href="https://github.com/openjdk/jcstress/tree/master/jcstress-samples/src/main/java/org/openjdk/jcstress/samples">samples</a>
+						from JCStress repository:
+					</p>
+					<ul>
+						<li><a href="https://github.com/openjdk/jcstress/tree/master/jcstress-samples/src/main/java/org/openjdk/jcstress/samples/jmm" target="_blank">jmm</a></li>
+						<li><a href="https://github.com/openjdk/jcstress/tree/master/jcstress-samples/src/main/java/org/openjdk/jcstress/samples/primitives" target="_blank">primitives</a></li>
+					</ul>
+					<p>
+					<img src="images/smart-genius.gif" width="40%"/>
+					</p>
+				</section>
+				<section>
 					<h2>Takeaways</h2>
 					<ul>
-						<li><u>Review
-							<a href="https://github.com/openjdk/jcstress/tree/master/jcstress-samples/src/main/java/org/openjdk/jcstress/samples">samples</a>
-							from JCStress project.</u></li>
 						<li>Minimize the number of Beans in your projects</li>
 						<li>Maximize immutability in your projects</li>
 						<li>Run recurrent training about Concurrency in your Developer teams are necessary</li>
 						<li>Improve your knowledge about Language fundamentals, not only about frameworks & libraries.</li>
-						<li>Save time for learning weekly in your 40 working hours.</li>
+						<li>Weekly, save time for learning activities in your working time.</li>
 					</ul>
 				</section>
 				<section>
