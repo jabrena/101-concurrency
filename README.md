@@ -23,6 +23,10 @@ The talk will review root causes for Concurrency issues, and it will do an
 introduction about the Java tool `JCStress` explaining how to create tests
 for those Java class which share state.
 
+## When
+
+- https://www.meetup.com/nl-NL/amsterdam-java-user-group/events/287658432/
+
 ## How to run in local
 
 Running the example in local:
