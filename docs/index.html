@@ -85,6 +85,11 @@
 					<section>
 						<img src="images/joke.png" width="55%">
 					</section>
+					<!--
+					<section>
+						<img src="images/joke2.png" width="45%">
+					</section>
+					-->
 				</section>
 				<section>
 					<section>
@@ -378,6 +383,7 @@ Feature: Sum 2 numbers
 						</p>
 					</section>
 					-->
+					<!--
 					<section>
 						<h2>Root causes</h2>
 						<h4>Non funcional requirements</h4>
@@ -393,11 +399,15 @@ Feature: Sum 2 numbers
 								https://iso25000.com/index.php/en/iso-25000-standards/iso-25010</a>
 						</small>
 					</section>
+					-->
 					<section>
 						<h2>Root causes</h2>
 						<h4>Non funcional requirements</h4>
 						<h5>ISO 25010</h5>
-						<img src="images/iso-25010.png" />
+						<p>
+							ISO 25010, titled “System and software quality models”, is a software quality standard.
+						</p>
+						<img src="images/iso-25010.png" width="65%"/>
 						<br />
 						<small><strong>Source:</strong>
 							<a href="https://iso25000.com/index.php/en/iso-25000-standards/iso-25010" target="_blank">
@@ -564,11 +574,14 @@ Feature: Sum 2 numbers
 						<h2>Root causes</h2>
 						<h4>Concurrency models</h4>
 						<p>
-							Every programming language implement different approaches about Concurrency
-							and not all of them are in the same stage.
+							Not all programming languages follow the same Design criterias to tackle the Concurrency.
 						</p>
 						<p>
-							That detail is important when you apply "T-shaped" strategies.
+							That detail is important when you apply "T-shaped" strategies in your Dev Teams.
+						</p>
+						<p>
+							Concurrency in dynamic languages like Python, Javascript or PHP behaves in a very different way if
+							you compare with <strong>Java</strong>.
 						</p>
 					</section>
 					<section>
@@ -685,8 +698,7 @@ Feature: Sum 2 numbers
 						<ul>
 							<li>Introduction</li>
 							<!-- <li>What are the benefits?</li> -->
-							<li>Creating your first JCStress test</li>
-							<li>Reviewing a JCStress in detail</li>
+							<li>A JCStress tour</li>
 							<li>Multithreading issues</li>
 							<li>Does exist plugins?</li>
 							<li>Who is using JCStress?</li>
@@ -705,71 +717,261 @@ Feature: Sum 2 numbers
 						<strong>Project: </strong><a href="https://github.com/openjdk/jcstress" target="_blank">https://github.com/openjdk/jcstress</a>
 						</small>
 					</section>
-					<!--
 					<section>
 						<h2>Tooling: JCStress</h2>
-						<h4>What are the benefits?</h4>
-						<ul>
-							<li>Increase the capacity to test for concurrency in your Java classes
-								that you know that the class is sharing state.</li>
-						</ul>
-					</section>
-					-->
-					<section>
-						<h2>Tooling: JCStress</h2>
-						<h4>Creating your first JCStress test</h4>
-						<pre><code data-trim class="stretch">
+						<h4>A JCStress tour</h4>
+						<pre><code data-trim data-noescape class="stretch">
 @JCStressTest
-@Outcome(id = "1, 1", expect = Expect.ACCEPTABLE_INTERESTING, desc = "Both actors came up with the same value: atomicity failure.")
-@Outcome(id = "1, 2", expect = Expect.ACCEPTABLE, desc = "actor1 incremented, then actor2.")
-@Outcome(id = "2, 1", expect = Expect.ACCEPTABLE, desc = "actor2 incremented, then actor1.")
+@Outcome(id = "1, 1", expect = ACCEPTABLE_INTERESTING, desc = "Both actors came up with the same value: atomicity failure.")
+@Outcome(id = "1, 2", expect = ACCEPTABLE, desc = "actor1 incremented, then actor2.")
+@Outcome(id = "2, 1", expect = ACCEPTABLE, desc = "actor2 incremented, then actor1.")
 @State
-public class Example_01 {
+public class API_01_Simple {
 
-	int v;
+    int v;
 
-	@Actor
-	public void actor1(II_Result r) {
-		r.r1 = ++v; // record result from actor1 to field r1
-	}
-	@Actor
-	public void actor2(II_Result r) {
-		r.r2 = ++v; // record result from actor2 to field r2
-	}
+    @Actor
+    public void actor1(II_Result r) {
+        r.r1 = ++v; // record result from actor1 to field r1
+    }
+    @Actor
+    public void actor2(II_Result r) {
+        r.r2 = ++v; // record result from actor2 to field r2
+    }
 }
 						</code></pre>
 					</section>
 					<section>
 						<h2>Tooling: JCStress</h2>
-						<h4>Creating your first JCStress test</h4>
+						<h4>A JCStress tour</h4>
 						<p>
-							How to run the test?
+							Suppose we want to see if the field increment is atomic. We can make test
+							with two actors, both actors incrementing the field and recording what
+							value they observed into the result object. As JCStress runs, it will
+							invoke these methods on the objects holding the field once per each actor
+							and instance, and record what results are coming from there.
+
+							Done enough times, we will get the history of observed results, and that
+							would tell us something about the concurrent behavior.
 						</p>
-						<pre><code data-trim class="stretch">
-./gradlew clean jcstress --tests "Example_01"
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>A JCStress tour</h4>
+						<pre><code data-trim data-noescape class="stretch">
+@JCStressTest
+@Outcome(id = "1", expect = ACCEPTABLE_INTERESTING, desc = "One update lost: atomicity failure.")
+@Outcome(id = "2", expect = ACCEPTABLE,             desc = "Actors updated independently.")
+@State
+public class API_02_Arbiters {
+    int v;
+    @Actor
+    public void actor1() {
+        v++;
+    }
+    @Actor
+    public void actor2() {
+        v++;
+    }
+    @Arbiter
+    public void arbiter(I_Result r) {
+        r.r1 = v;
+    }
+}
 						</code></pre>
 					</section>
 					<section>
 						<h2>Tooling: JCStress</h2>
-						<h4>Creating your first JCStress test</h4>
-						<img src="images/demo.png" width="60%" />
+						<h4>A JCStress tour</h4>
+						<p>
+							Another flavor of the same test as APISample_01_Simple is using arbiters.
+							Arbiters run after both actors, and therefore can observe the final result.
+
+							This allows to observe the permanent atomicity failure after both actors
+							finished.
+						</p>
 					</section>
 					<section>
 						<h2>Tooling: JCStress</h2>
-						<h4>Reviewing a JCStress in detail</h4>
-						<pre><code data-trim>
-@JCStressTest : Annotation which allow executing the class
-@Description : Test description
-@Outcome : Annotation to define expected results
-@State : The class annotated with state will store the object state
-@Actor : The elements which run the
-@Result
+						<h4>A JCStress tour</h4>
+						<pre><code data-trim data-noescape class="stretch">
+@JCStressTest(Mode.Termination)
+@Outcome(id = "TERMINATED", expect = ACCEPTABLE,             desc = "Gracefully finished.")
+@Outcome(id = "STALE",      expect = ACCEPTABLE_INTERESTING, desc = "Test hung up.")
+@State
+public class API_03_Termination {
+    @Actor
+    public void actor1() throws InterruptedException {
+        synchronized (this) {
+            wait();
+        }
+    }
+    @Signal
+    public void signal() {
+        synchronized (this) {
+            notify();
+        }
+    }
+}
 						</code></pre>
 					</section>
 					<section>
 						<h2>Tooling: JCStress</h2>
-						<h4>Reviewing a JCStress in detail</h4>
-						<p>JCStress provides a solution for every Java datatype:</p>
+						<h4>A JCStress tour</h4>
+						<p>
+							Some concurrency tests are not following the "run continously" pattern. One
+							of interesting test groups is that asserts if the code had terminated after
+							a signal.
+
+							Here, we use a single @Actor that busy-waits on a field, and a @Signal that
+							sets that field. JCStress would start actor, and then deliver the signal.
+							If it exits in reasonable time, it will record "TERMINATED" result, otherwise
+							record "STALE".
+						</p>
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>A JCStress tour</h4>
+						<small>
+						<pre><code data-trim data-noescape class="stretch">
+public class API_04_Nesting {
+
+    @JCStressTest
+    @Outcome(id = "1, 1", expect = ACCEPTABLE_INTERESTING, desc = "Both actors came up with the same value: atomicity failure.")
+    @Outcome(id = "1, 2", expect = ACCEPTABLE,             desc = "actor1 incremented, then actor2.")
+    @Outcome(id = "2, 1", expect = ACCEPTABLE,             desc = "actor2 incremented, then actor1.")
+    @State
+    public static class PlainTest {
+        int v;
+        @Actor
+        public void actor1(II_Result r) {
+            r.r1 = ++v;
+        }
+        @Actor
+        public void actor2(II_Result r) {
+            r.r2 = ++v;
+        }
+    }
+
+    @JCStressTest
+    @Outcome(id = "1, 1", expect = ACCEPTABLE_INTERESTING, desc = "Both actors came up with the same value: atomicity failure.")
+    @Outcome(id = "1, 2", expect = ACCEPTABLE,             desc = "actor1 incremented, then actor2.")
+    @Outcome(id = "2, 1", expect = ACCEPTABLE,             desc = "actor2 incremented, then actor1.")
+    @State
+    public static class VolatileTest {
+        volatile int v;
+        @Actor
+        public void actor1(II_Result r) {
+            r.r1 = ++v;
+        }
+        @Actor
+        public void actor2(II_Result r) {
+            r.r2 = ++v;
+        }
+    }
+}
+						</code></pre>
+						</small>
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>A JCStress tour</h4>
+						<p>
+							It is sometimes convenient to put the tests in the same source file for
+							better comparison. JCStress allows to nest tests.
+						</p>
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>A JCStress tour</h4>
+						<small>
+						<pre><code data-trim data-noescape class="stretch">
+@Outcome(id = "1, 1", expect = ACCEPTABLE_INTERESTING, desc = "Both actors came up with the same value: atomicity failure.")
+@Outcome(id = "1, 2", expect = ACCEPTABLE,             desc = "actor1 incremented, then actor2.")
+@Outcome(id = "2, 1", expect = ACCEPTABLE,             desc = "actor2 incremented, then actor1.")
+public class API_05_SharedMetadata {
+    @JCStressTest
+    @JCStressMeta(API_05_SharedMetadata.class)
+    @State
+    public static class PlainTest {
+        int v;
+        @Actor
+        public void actor1(II_Result r) {
+            r.r1 = ++v;
+        }
+        @Actor
+        public void actor2(II_Result r) {
+            r.r2 = ++v;
+        }
+    }
+    @JCStressTest
+    @JCStressMeta(API_05_SharedMetadata.class)
+    @State
+    public static class VolatileTest {
+        volatile int v;
+        @Actor
+        public void actor1(II_Result r) {
+            r.r1 = ++v;
+        }
+        @Actor
+        public void actor2(II_Result r) {
+            r.r2 = ++v;
+        }
+    }
+}
+						</code></pre>
+						</small>
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>A JCStress tour</h4>
+						<p>
+							In many cases, tests share the outcomes and other metadata. To common them,
+							there is a special @JCStressMeta annotation that says to look up the metadata
+							at another class.
+						</p>
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>A JCStress tour</h4>
+						<pre><code data-trim data-noescape class="stretch">
+@JCStressTest
+@Description("Sample Hello World test")
+@Ref("http://openjdk.java.net/projects/code-tools/jcstress/")
+@Outcome(id = "1, 1", expect = ACCEPTABLE_INTERESTING, desc = "Both actors came up with the same value: atomicity failure.")
+@Outcome(id = "1, 2", expect = ACCEPTABLE,             desc = "actor1 incremented, then actor2.")
+@Outcome(id = "2, 1", expect = ACCEPTABLE,             desc = "actor2 incremented, then actor1.")
+@State
+public class API_06_Descriptions {
+    int v;
+
+    @Actor
+    public void actor1(II_Result r) {
+        r.r1 = ++v;
+    }
+    @Actor
+    public void actor2(II_Result r) {
+        r.r2 = ++v;
+    }
+}
+						</code></pre>
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>A JCStress tour</h4>
+						<p>
+							JCStress also allows to put the descriptions and references right at the test.
+							This helps to identify the goal for the test, as well as the discussions about
+							the behavior in question.
+						</p>
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>A JCStress tour</h4>
+						<p>
+							If you observe, tests using Actors or Arbiters require
+							the usage of Results objets which accept different Datatypes:
+						</p>
 						<small>
 							<ul>
 								<li>I:  int</li>
@@ -791,20 +993,31 @@ public class Example_01 {
 					</section>
 					<section>
 						<h2>Tooling: JCStress</h2>
-						<h4>Reviewing a JCStress in detail</h4>
-						<pre><code data-trim class="stretch">
-./gradlew clean jcstress --tests "Example_01"
-
-[OK] info.jab.examples.Example_01.Case1
-
-Results across all configurations:
-
-RESULT      SAMPLES     FREQ       EXPECT  DESCRIPTION
-1, 1   62,368,453   12.29%  Interesting  Both actors came up with the same value: atomicity failure.
-1, 2  226,809,622   44.69%   Acceptable  actor1 incremented, then actor2.
-2, 1  218,355,237   43.02%   Acceptable  actor2 incremented, then actor1.
+						<h4>A JCStress tour</h4>
+						<p>
+							How to run the examples?
+						</p>
+						<pre><code data-trim data-noescape class="stretch">
+./gradlew clean jcstress --tests "API_01_Simple"
+./gradlew clean jcstress --tests "API_02_Arbiters"
+./gradlew clean jcstress --tests "API_03_Termination"
+./gradlew clean jcstress --tests "API_04_Nesting"
+./gradlew clean jcstress --tests "API_05_SharedMetadata"
+./gradlew clean jcstress --tests "API_06_Descriptions"
 						</code></pre>
+						<p>
+							<small>
+								<strong>Source:</strong> <a href="https://github.com/openjdk/jcstress/tree/master/jcstress-samples/src/main/java/org/openjdk/jcstress/samples/api" target="_blank">https://github.com/openjdk/jcstress/tree/master/jcstress-samples/src/main/java/org/openjdk/jcstress/samples/api</a>
+							</small>
+						</p>
 					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>A JCStress tour</h4>
+						<img src="images/demo.png" width="60%" />
+					</section>
+				</section>
+				<section>
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading issues</h4>
@@ -1113,6 +1326,8 @@ public class Example_04 {
 						<h4>Multithreading / Ordering</h4>
 						<img src="images/demo.png" width="60%" />
 					</section>
+				</section>
+				<section>
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Does exist plugins?</h4>
@@ -1201,7 +1416,7 @@ jcstress {
 					<h2>The next step</h2>
 					<p>
 						Organize a session with your Dev team to review the
-						<a href="https://github.com/openjdk/jcstress/tree/master/jcstress-samples/src/main/java/org/openjdk/jcstress/samples">samples</a>
+						<a href="https://github.com/openjdk/jcstress/tree/master/jcstress-samples/src/main/java/org/openjdk/jcstress/samples" target="_blank">samples</a>
 						from JCStress repository:
 					</p>
 					<ul>
