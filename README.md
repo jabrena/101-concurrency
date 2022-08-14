@@ -7,6 +7,8 @@ Detecting concurrency issues with JCStress
 
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=jabrena_101-concurrency)
 
+[![](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/jabrena/101-concurrency)
+
 ## Elevator Pitch
 
 Java is a very popular programming language
