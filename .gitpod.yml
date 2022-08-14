@@ -1,5 +1,5 @@
 tasks:
-  - before: sdk env
+  - before: sdk install java 18.0.2-amzn
   - init: ./gradlew clean build
 image:
   file: .gitpod.Dockerfile
