@@ -86,7 +86,6 @@
 						<img src="images/joke.png" width="55%">
 					</section>
 					<section>
-						👇👇👇
 						<img src="images/shipilev-joke.png" style="border: 5px solid #555;">
 						<small><strong>Source:</strong>
 							<a href="https://twitter.com/shipilev/status/1451421321770979350?s=21&t=Q-XETmFH8zVT3Ugk1zllAA" target="_blank">
@@ -94,7 +93,7 @@
 							</a>
 						</small>
 						<p>
-							<strong>Let´s fear this fear today!</strong>
+							<strong>Let´s face this fear together!</strong>
 						</p>
 					</section>
 					<!--
@@ -590,10 +589,7 @@ Feature: Sum 2 numbers
 						</p>
 						<p>
 							That detail is important when you apply "T-shaped" strategies in your Dev Teams.
-						</p>
-						<p>
-							Concurrency in dynamic languages like Python, Javascript or PHP behaves in a very different way if
-							you compare with <strong>Java</strong>.
+							Concurrency in dynamic languages are pretty different that in <strong>Java</strong>.
 						</p>
 					</section>
 					<section>
@@ -844,46 +840,28 @@ public class API_03_Termination {
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>A JCStress tour</h4>
-						<small>
 						<pre><code data-trim data-noescape class="stretch">
 public class API_04_Nesting {
-
-    @JCStressTest
-    @Outcome(id = "1, 1", expect = ACCEPTABLE_INTERESTING, desc = "Both actors came up with the same value: atomicity failure.")
-    @Outcome(id = "1, 2", expect = ACCEPTABLE,             desc = "actor1 incremented, then actor2.")
-    @Outcome(id = "2, 1", expect = ACCEPTABLE,             desc = "actor2 incremented, then actor1.")
-    @State
-    public static class PlainTest {
-        int v;
-        @Actor
-        public void actor1(II_Result r) {
-            r.r1 = ++v;
-        }
-        @Actor
-        public void actor2(II_Result r) {
-            r.r2 = ++v;
-        }
-    }
-
-    @JCStressTest
-    @Outcome(id = "1, 1", expect = ACCEPTABLE_INTERESTING, desc = "Both actors came up with the same value: atomicity failure.")
-    @Outcome(id = "1, 2", expect = ACCEPTABLE,             desc = "actor1 incremented, then actor2.")
-    @Outcome(id = "2, 1", expect = ACCEPTABLE,             desc = "actor2 incremented, then actor1.")
-    @State
-    public static class VolatileTest {
-        volatile int v;
-        @Actor
-        public void actor1(II_Result r) {
-            r.r1 = ++v;
-        }
-        @Actor
-        public void actor2(II_Result r) {
-            r.r2 = ++v;
-        }
-    }
+	@JCStressTest
+	@Outcome(id = "1, 1", expect = ACCEPTABLE_INTERESTING, desc = "Both actors came up with the same value: atomicity failure.")
+	@Outcome(id = "1, 2", expect = ACCEPTABLE,             desc = "actor1 incremented, then actor2.")
+	@Outcome(id = "2, 1", expect = ACCEPTABLE,             desc = "actor2 incremented, then actor1.")
+	@State
+	public static class PlainTest {
+		int v;
+		@Actor
+		public void actor1(II_Result r) {
+			r.r1 = ++v;
+		}
+		@Actor
+		public void actor2(II_Result r) {
+			r.r2 = ++v;
+		}
+	}
+	@JCStressTest
+	//Another test
 }
 						</code></pre>
-						</small>
 					</section>
 					<section>
 						<h2>Tooling: JCStress</h2>
@@ -896,43 +874,26 @@ public class API_04_Nesting {
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>A JCStress tour</h4>
-						<small>
 						<pre><code data-trim data-noescape class="stretch">
 @Outcome(id = "1, 1", expect = ACCEPTABLE_INTERESTING, desc = "Both actors came up with the same value: atomicity failure.")
 @Outcome(id = "1, 2", expect = ACCEPTABLE,             desc = "actor1 incremented, then actor2.")
 @Outcome(id = "2, 1", expect = ACCEPTABLE,             desc = "actor2 incremented, then actor1.")
 public class API_05_SharedMetadata {
-    @JCStressTest
-    @JCStressMeta(API_05_SharedMetadata.class)
-    @State
-    public static class PlainTest {
-        int v;
-        @Actor
-        public void actor1(II_Result r) {
-            r.r1 = ++v;
-        }
-        @Actor
-        public void actor2(II_Result r) {
-            r.r2 = ++v;
-        }
-    }
-    @JCStressTest
-    @JCStressMeta(API_05_SharedMetadata.class)
-    @State
-    public static class VolatileTest {
-        volatile int v;
-        @Actor
-        public void actor1(II_Result r) {
-            r.r1 = ++v;
-        }
-        @Actor
-        public void actor2(II_Result r) {
-            r.r2 = ++v;
-        }
-    }
+	@JCStressTest
+	@JCStressMeta(API_05_SharedMetadata.class)
+	@State
+	public static class PlainTest {
+		int v;
+		@Actor
+		public void actor1(II_Result r) { r.r1 = ++v; }
+		@Actor
+		public void actor2(II_Result r) { r.r2 = ++v; }
+	}
+	@JCStressTest
+	@JCStressMeta(API_05_SharedMetadata.class)
+	//Another test
 }
 						</code></pre>
-						</small>
 					</section>
 					<section>
 						<h2>Tooling: JCStress</h2>
@@ -982,7 +943,7 @@ public class API_06_Descriptions {
 						<h4>A JCStress tour</h4>
 						<p>
 							If you observe, tests using Actors or Arbiters require
-							the usage of Results objets which accept different Datatypes:
+							the usage of Results objets which accept different primitive Datatypes:
 						</p>
 						<small>
 							<ul>
@@ -999,7 +960,7 @@ public class API_06_Descriptions {
 						</small>
 						<p>
 							<small>
-								<strong>Source:</strong> <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html" target="_blank">Java datatypes</a>
+								<strong>Source:</strong> <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html" target="_blank">https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.htmls</a>
 							</small>
 						</p>
 					</section>
@@ -1034,8 +995,7 @@ public class API_06_Descriptions {
 						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading issues</h4>
 						<p>
-							Using JCStress tests, it is possible to detect
-							multithreading issues about:
+							Using JCStress, it is possible to detect multithreading issues about:
 						</p>
 						<ol>
 							<li>Atomicity</li>
@@ -1051,88 +1011,17 @@ public class API_06_Descriptions {
 						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading issues</h4>
 						<ul>
-							<li>Atomicity: We say a set of actions is atomic if they all execute as a single operation, in an indivisible manner.</li>
+							<li><strong>Atomicity:</strong> We say a set of actions is atomic if they all execute as a single operation, in an indivisible manner.</li>
 						</ul>
 						<img src="images/jmm-1.png" width="50%"/>
 					</section>
 					<section>
 						<h2>Tooling: JCStress</h2>
-						<h4>Multithreading issues</h4>
-						<ul>
-							<li>Visibility: ensuring that a change to a shared variable made by one thread is visible to the rest of the threads.</li>
-						</ul>
-						<img src="images/java-visibility-1.png" width="30%" />
-						<small>
-							<strong>Source:</strong> <a href="https://jenkov.com/tutorials/java-concurrency/volatile.html" target="_blank">https://jenkov.com/tutorials/java-concurrency/volatile.html</a>
-						</small>
-					</section>
-					<!--
-					https://jenkov.com/tutorials/java-concurrency/java-happens-before-guarantee.html
-					-->
-					<section>
-						<h2>Tooling: JCStress</h2>
-						<h4>Multithreading issues</h4>
-						<ul>
-							<li>Reordering / Compiler and CPU optimisations: The JVM could change the order of executions.</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Tooling: JCStress</h2>
-						<h4>Multithreading issues</h4>
-						<p>
-							With volatile or synchronized / explicit locks,
-							you could fix the following issues:
-						</p>
-						<table>
-							<tr>
-								<th>#</th>
-								<th>Atomicity</th>
-								<th>Visibility</th>
-								<th>Reordering</th>
-							</tr>
-							<tr>
-								<td>volatile</td>
-								<td></td>
-								<td>x</td>
-								<td>x</td>
-							</tr>
-							<tr>
-								<td>synchronized / explicit locks</td>
-								<td>x</td>
-								<td>x</td>
-								<td>x</td>
-							</tr>
-						</table>
-					</section>
-					<section>
-						<h2>Tooling: JCStress</h2>
-						<h4>Multithreading issues</h4>
-						<p>
-							But in Java, you several alternatives to manage the shared memory:
-						</p>
-						<ul>
-							<li>volatile</li>
-							<li>synchronized / <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/package-summary.html" target="_blank">java.util.concurrent.locks</a></li>
-							<li><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/package-summary.html" target="_blank">java.util.concurrent.atomic</a></li>
-							<li><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/package-summary.html" target="_blank">java.util.concurrent.*</a>(Queues, Synchronizers, Concurrent Collections)</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Tooling: JCStress</h2>
-						<h4>Multithreading issues</h4>
-						<p>
-							To understand the concept, we will use JCSTress to
-							review scenarios for <u>Atomicity, Visibility, Ordering</u>.
-						</p>
-					</section>
-					<section>
-						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading / Atomicity</h4>
 						<p>
-							Imagine that you need to use the following class in project.
-							How to verify that this class is <u>Thread Safe</u>?
+							Imagine that you need to use the following class in your project.
 						</p>
-						<pre><code data-trim class="stretch">
+						<pre><code data-trim data-noescape class="stretch">
 public static class AuxCase2 {
 
 	private int v;
@@ -1142,6 +1031,9 @@ public static class AuxCase2 {
 	}
 }
 						</code></pre>
+						<p>
+							How to verify that this class is <u>Thread Safe</u>?
+						</p>
 					</section>
 					<section>
 						<h2>Tooling: JCStress</h2>
@@ -1149,7 +1041,7 @@ public static class AuxCase2 {
 						<p>
 							Notes about Pre-Increment operator:
 						</p>
-						<pre><code data-trim class="stretch">
+						<pre><code data-trim data-noescape class="stretch">
 1) Post-Increment (i++):
 we use i++ in our statement if we want to use the current
 value, and then we want to increment the value of i by 1.
@@ -1168,17 +1060,16 @@ int b = ++a; // b = 4, a = 4
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading / Atomicity</h4>
-						<p>
-							We will create a test:
-						</p>
-						<pre><code data-trim class="stretch">
+						<pre><code data-trim data-noescape class="stretch">
 @JCStressTest
 @Outcome(id = "1, 1", expect = Expect.ACCEPTABLE_INTERESTING, desc = "Both actors came up with the same value: atomicity failure.")
 @Outcome(id = "1, 2", expect = Expect.ACCEPTABLE, desc = "actor1 incremented, then actor2.")
 @Outcome(id = "2, 1", expect = Expect.ACCEPTABLE, desc = "actor2 incremented, then actor1.")
 @State
 public static class Example_01 {
+
 	AuxCase2 v = new AuxCase2();
+
 	@Actor
 	public void actor1(II_Result r) {
 		r.r1 = v.add(); // record result from actor1 to field r1
@@ -1196,9 +1087,10 @@ public static class Example_01 {
 						<p>
 							Execute the test to verify it:
 						</p>
-						<pre><code data-trim class="stretch">
+						<pre><code data-trim data-noescape class="stretch">
 ./gradlew clean jcstress --tests "Example_01"
 						</code></pre>
+						<img src="images/demo.png" width="60%" />
 					</section>
 					<section>
 						<h2>Tooling: JCStress</h2>
@@ -1223,14 +1115,63 @@ public static class Example_01 {
 						<p>
 							How to fix the issue?:
 						</p>
-						<pre><code data-trim>
+						<pre><code data-trim data-noescape class="stretch">
 ./gradlew clean jcstress --tests "Example_02"
 						</code></pre>
+						<img src="images/demo.png" width="60%" />
 					</section>
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading / Atomicity</h4>
-						<img src="images/demo.png" width="60%" />
+						<p>
+							Other examples:
+						</p>
+						<pre><code data-trim data-noescape class="stretch">
+/**
+ * Add the given singleton object to the singleton cache of this factory.
+ * To be called for eager registration of singletons.
+ */
+protected void addSingleton(String beanName, Object singletonObject) {
+	synchronized (this.singletonObjects) {
+		this.singletonObjects.put(beanName, singletonObject);
+		this.singletonFactories.remove(beanName);
+		this.earlySingletonObjects.remove(beanName);
+		this.registeredSingletons.add(beanName);
+	}
+}
+						</code></pre>
+						<p>
+							<small>
+								<strong>Source:</strong> <a href="https://github.com/spring-projects/spring-framework/blob/main/spring-beans/src/main/java/org/springframework/beans/factory/support/DefaultSingletonBeanRegistry.java" target="_blank">https://github.com/spring-projects/spring-framework/blob/main/spring-beans/src/main/java/org/springframework/beans/factory/support/DefaultSingletonBeanRegistry.java</a>
+							</small>
+						</p>
+					</section>
+					<!--
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Multithreading / Atomicity</h4>
+						<p>
+							Some additional examples about Atomicity:
+						</p>
+						<small>
+						<ul>
+							<li><a href="https://github.com/search?l=Java&q=org%3Aspring-projects+synchronized&type=Code" target="_blank">https://github.com/search?l=Java&q=org%3Aspring-projects+synchronized&type=Code</a></li>
+							<li><a href="https://github.com/search?l=Java&q=org%3Aquarkusio+synchronized&type=Code" target="_blank">https://github.com/search?l=Java&q=org%3Aquarkusio+synchronized&type=Code</a></li>
+							<li><a href="https://github.com/search?l=Java&q=org%3Amicronaut-projects+synchronized&type=Code" target="_blank">https://github.com/search?l=Java&q=org%3Amicronaut-projects+synchronized&type=Code</a></li>
+						</ul>
+						</small>
+					</section>
+					-->
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Multithreading issues</h4>
+						<ul>
+							<li>Visibility: ensuring that a change to a shared variable made by one thread is visible to the rest of the threads.</li>
+						</ul>
+						<img src="images/java-visibility-1.png" width="30%" />
+						<small>
+							<strong>Source:</strong> <a href="https://jenkov.com/tutorials/java-concurrency/volatile.html" target="_blank">https://jenkov.com/tutorials/java-concurrency/volatile.html</a>
+						</small>
 					</section>
 					<!--
 					https://vmlens.com/articles/ct/visibility_bugs/
@@ -1238,7 +1179,7 @@ public static class Example_01 {
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading / Visibility</h4>
-						<pre><code data-trim class="stretch">
+						<pre><code data-trim data-noescape class="stretch">
 public class AuxCase5 {
 
 	boolean flag = false;
@@ -1258,7 +1199,7 @@ public class AuxCase5 {
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading / Visibility</h4>
-						<pre><code data-trim class="stretch">
+						<pre><code data-trim data-noescape class="stretch">
 @JCStressTest(Mode.Termination)
 @Outcome(id = "TERMINATED", expect = Expect.ACCEPTABLE, desc = "Gracefully finished.")
 @Outcome(id = "STALE", expect = Expect.ACCEPTABLE_INTERESTING, desc = "Test hung up.")
@@ -1285,14 +1226,55 @@ public static class Example_03 {
 						<p>
 							Execute the test to verify it:
 						</p>
-						<pre><code data-trim class="stretch">
+						<pre><code data-trim data-noescape class="stretch">
 ./gradlew clean jcstress --tests "Example_03"
+						</code></pre>
+						<img src="images/demo.png" width="60%" />
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Multithreading / Visibility</h4>
+						<pre><code data-trim data-noescape class="stretch">
+[OK] info.jab.examples.Example_03.Case5
+
+Results across all configurations:
+
+RESULT  SAMPLES     FREQ       EXPECT  DESCRIPTION
+STALE        8   33.33%  Interesting  Test hung up.
+TERMINATED       16   66.67%   Acceptable  Gracefully finished.
+
+Messages:
+Have stale threads, forcing VM to exit for proper cleanup.
+Have stale threads, forcing VM to exit for proper cleanup.
+Have stale threads, forcing VM to exit for proper cleanup.
+Have stale threads, forcing VM to exit for proper cleanup.
+Have stale threads, forcing VM to exit for proper cleanup.
+Have stale threads, forcing VM to exit for proper cleanup.
+Have stale threads, forcing VM to exit for proper cleanup.
+Have stale threads, forcing VM to exit for proper cleanup.
+
 						</code></pre>
 					</section>
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading / Visibility</h4>
+						<p>
+							How to fix the issue?:
+						</p>
+						<pre><code data-trim data-noescape class="stretch">
+./gradlew clean jcstress --tests "Example_04"
+						</code></pre>
 						<img src="images/demo.png" width="60%" />
+					</section>
+					<!--
+					https://jenkov.com/tutorials/java-concurrency/java-happens-before-guarantee.html
+					-->
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Multithreading issues</h4>
+						<ul>
+							<li>Reordering / Compiler and CPU optimisations: The JVM could change the order of executions.</li>
+						</ul>
 					</section>
 					<!--
 					https://blog.katastros.com/a?ID=01650-44d39e31-fbb5-46d5-990e-a9563e1c2a92
@@ -1300,13 +1282,12 @@ public static class Example_03 {
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading / Ordering</h4>
-						<pre><code data-trim class="stretch">
+						<pre><code data-trim data-noescape class="stretch">
 @JCStressTest
 @Outcome(id = {"0, 1", "1, 0", "1, 1"}, expect = ACCEPTABLE, desc = "ok")
 @Outcome(id = "0, 0", expect = ACCEPTABLE_INTERESTING, desc = "danger")
 @State
-public class Example_04 {
-
+public class Example_05 {
     int x, y;
 
     @Actor
@@ -1314,7 +1295,6 @@ public class Example_04 {
         x = 1;
         r.r2 = y;
     }
-
     @Actor
     public void actor2(II_Result r) {
         y = 1;
@@ -1329,32 +1309,61 @@ public class Example_04 {
 						<p>
 							Execute the test to verify it:
 						</p>
-						<pre><code data-trim class="stretch">
-./gradlew clean jcstress --tests "Example_04"
+						<pre><code data-trim data-noescape class="stretch">
+./gradlew clean jcstress --tests "Example_05"
+						</code></pre>
+						<img src="images/demo.png" width="60%" />
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Multithreading / Ordering</h4>
+						<pre><code data-trim data-noescape class="stretch">
+[OK] info.jab.examples.Example_05
+
+Results across all configurations:
+
+RESULT      SAMPLES     FREQ       EXPECT  DESCRIPTION
+0, 0   71,847,305   13.78%  Interesting  danger
+0, 1  222,854,613   42.76%   Acceptable  ok
+1, 0  226,487,672   43.45%   Acceptable  ok
+1, 1       14,122   <0.01%   Acceptable  ok
 						</code></pre>
 					</section>
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading / Ordering</h4>
+						<p>
+							How to fix the issue?:
+						</p>
+						<pre><code data-trim data-noescape class="stretch">
+./gradlew clean jcstress --tests "Example_06"
+						</code></pre>
 						<img src="images/demo.png" width="60%" />
 					</section>
+					<!--
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Multithreading issues</h4>
+						<p>
+							But in Java, you several alternatives to manage the shared memory:
+						</p>
+						<ul>
+							<li>volatile</li>
+							<li>synchronized / <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/package-summary.html" target="_blank">java.util.concurrent.locks</a></li>
+							<li><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/package-summary.html" target="_blank">java.util.concurrent.atomic</a></li>
+							<li><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/package-summary.html" target="_blank">java.util.concurrent.*</a>(Queues, Synchronizers, Concurrent Collections)</li>
+						</ul>
+					</section>
+					-->
 				</section>
 				<section>
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Does exist plugins?</h4>
 						<p>
-							Today exist a plugin for Gradle, but not for Maven.
+							Exist a plugin for Gradle, but not for Maven.
 						</p>
-						<small><strong>Source:</strong>
-							<a href="https://github.com/reyerizo/jcstress-gradle-plugin" target="_blank">
-								https://github.com/reyerizo/jcstress-gradle-plugin</a>
-						</small>
-					</section>
-					<section>
-						<h2>Tooling: JCStress</h2>
-						<h4>Does exist plugins?</h4>
-						<pre><code data-trim>
+						<pre><code data-trim data-noescape class="stretch">
 plugins {
     id 'io.github.reyerizo.gradle.jcstress' version '0.8.13'
 }
@@ -1373,6 +1382,8 @@ jcstress {
 								https://github.com/reyerizo/jcstress-gradle-plugin/blob/master/README.md</a>
 						</small>
 					</section>
+				</section>
+				<section>
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Who is using JCStress?</h4>
@@ -1410,17 +1421,19 @@ jcstress {
 						<p>
 							In what stage is JCStress? (Early majority)
 						</p>
-						<img src="images/chasm.png" width="70%"/>
+						<img src="images/chasm.png" width="65%"/>
 					</section>
-
+				</section>
+				<section>
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Limitations</h4>
 						<ul>
-							<li>Lack of Maven plugin</li>
+							<li>Lack of a Maven plugin</li>
 							<li>Very low level tests</li>
 							<li>Solution not integrated with JUnit</li>
 							<li>What happen if your class has IO?</li>
+							<li>If you framework classes has a complex hierarchy, it is complex to integrate with JCStress</li>
 						</ul>
 					</section>
 				</section>
@@ -1440,14 +1453,40 @@ jcstress {
 					</p>
 				</section>
 				<section>
-					<h2>Takeaways</h2>
-					<ul>
-						<li>Minimize the number of Beans in your projects</li>
-						<li>Maximize immutability in your projects</li>
-						<li>Run recurrent training about Concurrency in your Developer teams if it is necessary</li>
-						<li>Improve your knowledge about Language fundamentals, not only about frameworks & libraries.</li>
-						<li>Weekly, save time for learning activities in your working time.</li>
-					</ul>
+					<section>
+						<h2>Takeaways</h2>
+						<ul>
+							<li>Minimize the number of Beans in your projects</li>
+							<li>Maximize immutability in your projects</li>
+							<li>Run recurrent training about Concurrency in your Developer teams if it is necessary</li>
+							<li>Improve your knowledge about Language fundamentals, not only about frameworks & libraries.</li>
+							<li>Weekly, save time for learning activities in your working time.</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Takeaways</h2>
+						<table>
+							<tr>
+								<th>#</th>
+								<th>Atomicity</th>
+								<th>Visibility</th>
+								<th>Reordering</th>
+							</tr>
+							<tr>
+								<td>volatile</td>
+								<td></td>
+								<td>x</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>synchronized / explicit locks</td>
+								<td>x</td>
+								<td>x</td>
+								<td>x</td>
+							</tr>
+						</table>
+					</section>
 				</section>
 				<section>
 					<section>
