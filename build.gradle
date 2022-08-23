@@ -6,6 +6,7 @@ plugins {
     id 'io.github.reyerizo.gradle.jcstress' version '0.8.13'
     id 'jacoco'
     id 'info.solidsoft.pitest' version '1.7.4'
+    id "org.openapi.generator" version "6.0.1"
 }
 
 group = 'info.jab.ms'
@@ -30,7 +31,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.zalando:logbook-spring-boot-starter:2.14.0'
-    implementation 'org.springdoc:springdoc-openapi-core:1.1.49'
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -38,6 +38,32 @@ dependencies {
     testImplementation "org.openjdk.jcstress:jcstress-core:${jcstressVersion}"
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
+
+sourceSets {
+    main.java.srcDirs += "src/gen/java"
+}
+
+openApiValidate {
+    inputSpec = "$rootDir/src/main/resources/openapi/openapi.json".toString()
+    recommend = true
+}
+
+openApiGenerate {
+    generatorName = "spring"
+    inputSpec = "$rootDir/src/main/resources/openapi/openapi.json".toString()
+    outputDir = "$rootDir/src/gen/java".toString()
+    apiPackage = "info.jab.ms.api"
+    modelPackage = "info.jab.ms.api.model"
+    modelNameSuffix = "Dto"
+    configOptions = [
+            interfaceOnly: "true",
+            openApiNullable: "false",
+            skipDefaultInterface: "true",
+            dateLibrary: "java8"
+    ]
+}
+
+compileJava.dependsOn tasks.openApiGenerate
 
 test {
     useJUnitPlatform()

@@ -10,12 +10,12 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="endpoint" elementType="Argument">
             <stringProp name="Argument.name">endpoint</stringProp>
-            <stringProp name="Argument.value">/api/v4/sum2numbers</stringProp>
+            <stringProp name="Argument.value">/api/v5/sum2numbers</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="iterations" elementType="Argument">
             <stringProp name="Argument.name">iterations</stringProp>
-            <stringProp name="Argument.value">100</stringProp>
+            <stringProp name="Argument.value">10000</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>

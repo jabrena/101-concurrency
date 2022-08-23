@@ -1,7 +1,10 @@
-package info.jab.ms;
+package info.jab.ms.model;
 
-import info.jab.ms.model.Calculator5;
-import org.openjdk.jcstress.annotations.*;
+import org.openjdk.jcstress.annotations.Actor;
+import org.openjdk.jcstress.annotations.Expect;
+import org.openjdk.jcstress.annotations.JCStressTest;
+import org.openjdk.jcstress.annotations.Outcome;
+import org.openjdk.jcstress.annotations.State;
 import org.openjdk.jcstress.infra.results.JJ_Result;
 
 @JCStressTest
@@ -10,9 +13,9 @@ import org.openjdk.jcstress.infra.results.JJ_Result;
 @Outcome(id = "2, 2", expect = Expect.FORBIDDEN, desc = "actor1 incremented, then actor2.")
 @Outcome(id = "4, 4", expect = Expect.FORBIDDEN, desc = "actor1 incremented, then actor2.")
 @State
-public class Calculator5Test {
+public class Calculator6Test {
 
-    Calculator5 calculator = new Calculator5();;
+    Calculator6 calculator = new Calculator6();
 
     @Actor
     void actor1(JJ_Result res) {

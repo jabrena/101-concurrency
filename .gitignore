@@ -8,6 +8,6 @@ build
 .DS_Store
 *.log
 *.pdf
-
+src/gen/**
 
 
