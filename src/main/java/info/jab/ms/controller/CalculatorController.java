@@ -21,7 +21,7 @@ public class CalculatorController implements info.jab.ms.api.ApiApi {
         return ResponseEntity.ok(calculator.calculate(sumRequestDto.getOperator1(), sumRequestDto.getOperator2()));
     }
 
-    @GetMapping("/api/v1/stats/hits")
+    @Override
     public ResponseEntity<Long> getHitCounter() {
         return ResponseEntity.ok(counter);
     }
