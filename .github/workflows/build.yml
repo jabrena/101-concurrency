@@ -18,4 +18,4 @@ jobs:
           distribution: 'corretto'
           java-version: '18'
       - name: Build with Maven Wrapper
-        run: ./gradlew build jcstress
+        run: ./gradlew build
