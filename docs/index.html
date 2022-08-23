@@ -130,7 +130,7 @@
 							<!-- <li>Design patterns that impacts you</li> -->
 							<!-- <li>Other concurrency approaches</li> -->
 							<li>Tooling: JCStress</li>
-							<li>The next step</li>
+							<!-- <li>The next step</li> -->
 							<li>Takeaways</li>
 							<li>References</li>
 							<li>Q&A</li>
@@ -165,9 +165,11 @@
 						<ul>
 							<li>Generate awareness about potentials concurrency issues in your projects.</li>
 							<li>Review root causes about concurrency issues.</li>
-							<li>Learn how to use JCStress in your projects</li>
+							<li>Learn when use JCStress in your projects</li>
+							<!--
 							<li><strike>The usage of <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/invoke/VarHandle.html" target="_blank">java.lang.invoke.VarHandle</a></strike></li>
 							<li><strike><a href="https://en.wikipedia.org/wiki/Deadlock" target="_blank">Deadlocks</a> scenarios</strike></li>
+							-->
 						</ul>
 					</section>
 					<!--
@@ -281,6 +283,10 @@ Feature: Sum 2 numbers
 						<p>
 							And <u>every Java developer needs to know it</u>.
 						</p>
+					</section>
+					<section>
+						<h2>Preamble</h2>
+						<img src="images/demo.png" width="100%" />
 					</section>
 				</section>
 				<!--
@@ -741,6 +747,8 @@ Feature: Sum 2 numbers
 							<li>Does exist plugins?</li>
 							<li>Who is using JCStress?</li>
 							<li>Limitations</li>
+							<!-- <li>Opportunities</li> -->
+							<li>The next step</li>
 						</ul>
 					</section>
 					<section>
@@ -1013,7 +1021,7 @@ public class API_06_Descriptions {
 								<strong>Source:</strong> <a href="https://github.com/openjdk/jcstress/tree/master/jcstress-samples/src/main/java/org/openjdk/jcstress/samples/api" target="_blank">https://github.com/openjdk/jcstress/tree/master/jcstress-samples/src/main/java/org/openjdk/jcstress/samples/api</a>
 							</small>
 						</p>
-						<img src="images/demo.png" width="0%" />
+						<img src="images/demo.png" width="30%" />
 					</section>
 				</section>
 				<section>
@@ -1456,15 +1464,47 @@ jcstress {
 						<h4>Limitations</h4>
 						<ul>
 							<li>Lack of a Maven plugin</li>
-							<li>Very low level tests</li>
+							<li>Plugins should be hosted in main repository</li>
+							<li>A very low level solution</li>
 							<li>Solution not integrated with JUnit</li>
 							<li>What happen if your class has IO?</li>
-							<li>If you framework classes has a complex hierarchy, it is complex to integrate with JCStress</li>
+							<li>It is not possible to apply in all cases</li>
 						</ul>
 					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Limitations</h4>
+						<ul>
+							<li>If your class has a complex class hierarchy or it is composed in a complex way or involve IO, JCStress will not help:</li>
+						</ul>
+						<hr />
+						<ul>
+							<li><a href="https://github.com/quarkusio/quarkus/blob/main/extensions/vertx-http/runtime/src/main/java/io/quarkus/vertx/http/runtime/VertxInputStream.java#L176-#L225" target="_blank">VertxInputStream.java</a></li>
+							<li><a href="https://github.com/spring-projects/spring-boot/blob/main/spring-boot-project/spring-boot-devtools/src/main/java/org/springframework/boot/devtools/tunnel/server/HttpTunnelServer.java#L425-L438" target="_blank">HttpTunnelServer.java</a></li>
+							<li><a href="https://github.com/quarkusio/quarkus/blob/main/independent-projects/bootstrap/core/src/main/java/io/quarkus/bootstrap/classloading/PathTreeClassPathElement.java#L240-L310" target="_blank">PathTreeClassPathElement.java</a></li>
+						</ul>
+						<p>
+							For that case, you will have to test without this tool. 🤷‍♂️
+						</p>
+					</section>
 				</section>
+				<!--
 				<section>
-					<h2>The next step</h2>
+					<h2>Opportunities</h2>
+					<p>
+						Exist in the Open Source ecosystems opportunities to apply JCStress:
+					</p>
+					<p>
+						<strong>Examples:</strong>
+					</p>
+					<ul>
+						<li><a href="https://github.com/spring-projects/spring-framework/tree/main/spring-core/src/main/java/org/springframework/util/concurrent" target="_blank">org/springframework/util/concurrent/*</a></li>
+					</ul>
+				</section>
+				-->
+				<section>
+					<h2>Tooling: JCStress</h2>
+					<h4>The next step</h4>
 					<p>
 						Organize a session with your Dev team to review the
 						<a href="https://github.com/openjdk/jcstress/tree/master/jcstress-samples/src/main/java/org/openjdk/jcstress/samples" target="_blank">samples</a>
@@ -1474,22 +1514,27 @@ jcstress {
 						<li><a href="https://github.com/openjdk/jcstress/tree/master/jcstress-samples/src/main/java/org/openjdk/jcstress/samples/jmm" target="_blank">jmm</a></li>
 						<li><a href="https://github.com/openjdk/jcstress/tree/master/jcstress-samples/src/main/java/org/openjdk/jcstress/samples/primitives" target="_blank">primitives</a></li>
 					</ul>
+					<!--
 					<p>
 					<img src="images/smart-genius.gif" width="40%"/>
 					</p>
+					-->
 				</section>
 				<section>
 					<section>
 						<h2>Takeaways</h2>
 						<ul>
-							<li>Minimize the number of Beans in your projects</li>
-							<li>Maximize immutability in your projects</li>
-							<li>Run recurrent training about Concurrency in your Developer teams if it is necessary</li>
-							<li>Improve your knowledge about Language fundamentals, not only about frameworks & libraries.</li>
-							<li>Weekly, save time for learning activities in your working time.</li>
+							<li>JCStress is not a Silver Bullet.</li>
+							<li>Minimize the number of Beans in your projects.</li>
+							<li>Maximize immutability in your projects.</li>
+							<li>Understand all Concurrent features provided by the JVM.</li>
+							<li>Invest time for refactoring, some concurrency scenarios could be implemented with another approach.</li>
+							<li>Run recurrent training about Concurrency in your Developer teams if it is necessary.</li>
+							<!-- <li>Improve your knowledge about Language fundamentals, not only about frameworks & libraries.</li> -->
+							<!-- <li>Weekly, save time for learning activities in your working time.</li> -->
 						</ul>
 					</section>
-
+					<!--
 					<section>
 						<h2>Takeaways</h2>
 						<table>
@@ -1513,6 +1558,7 @@ jcstress {
 							</tr>
 						</table>
 					</section>
+					-->
 				</section>
 				<section>
 					<section>
