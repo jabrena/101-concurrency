@@ -11,12 +11,7 @@ public class Calculator5 {
     private Long result;
 
     public Long calculate(Long operator1, Long operator2) {
-        mutex.lock();
-        try {
-            this.result = operator1 + operator2;
-            return result;
-        } finally {
-            mutex.unlock();
-        }
+        this.result = operator1 + operator2;
+        return this.result;
     }
 }

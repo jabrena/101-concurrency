@@ -1,4 +1,4 @@
-package info.jab.ms;
+package info.jab.ms.controller;
 
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
