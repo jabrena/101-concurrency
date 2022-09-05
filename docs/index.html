@@ -97,9 +97,11 @@
 					<section>
 						<img src="images/joke.png" width="55%">
 					</section>
+					<!--
 					<section>
 						<img src="images/joke2.png" width="45%">
 					</section>
+					-->
 					<section>
 						<img src="images/shipilev-joke.png" style="border: 5px solid #555;">
 						<small><strong>Source:</strong>
@@ -599,6 +601,7 @@ Feature: Sum 2 numbers
 				</section>
 				-->
 				<section>
+					<!--
 					<section>
 						<h2>Root causes</h2>
 						<h4>Concurrency models</h4>
@@ -613,15 +616,18 @@ Feature: Sum 2 numbers
 							Concurrency in dynamic languages are pretty different that in <strong>Java</strong>.
 						</p>
 					</section>
+					-->
 					<section>
 						<h2>Root causes</h2>
 						<h4>Concurrency models</h4>
-						<img src="images/lang-rank-0122.png" width="50%">
-						<br />
+						<img src="images/lang-rank-0122.png" width="30%">
 						<small><strong>Source:</strong>
 							<a href="https://redmonk.com/sogrady/2022/03/28/language-rankings-1-22/" target="_blank">
 								https://redmonk.com/sogrady/2022/03/28/language-rankings-1-22/</a>
 						</small>
+						<p>
+							Not all programming languages follow the same Design criterias to tackle the Concurrency.
+						</p>
 					</section>
 					<!--
 					https://www.baeldung.com/java-thread-lifecycle
@@ -661,6 +667,16 @@ Feature: Sum 2 numbers
 									<td>18/03/2014</td>
 								</tr>
 								<tr>
+									<td>Java 9</td>
+									<td>VarHandle</td>
+									<td>21/09/2017</td>
+								</tr>
+								<tr>
+									<td>Java 14</td>
+									<td>Records</td>
+									<td>17/03/2020</td>
+								</tr>
+								<tr>
 									<td>Java 19</td>
 									<td>Virtual Threads, Structured Concurrency</td>
 									<td>20/09/2022</td>
@@ -677,11 +693,13 @@ Feature: Sum 2 numbers
 					<section>
 						<h2>Root causes</h2>
 						<h4>Design patterns that impacts you</h4>
-						<ul>
-							<li>CDI, Contexts and Dependency Injection</li>
-						</ul>
-						<img src="images/spring-container.png" width="50%" />
+						<p>
+							CDI, Contexts and Dependency Injection allows the developer to manage <u>the lifecycle of
+							stateful components</u>.
+						</p>
+						<img src="images/spring-container.png" width="40%" />
 					</section>
+					<!--
 					<section>
 						<h2>Root causes</h2>
 						<h4>Design patterns that impacts you</h4>
@@ -694,14 +712,48 @@ Feature: Sum 2 numbers
 							objects in a type-safe way.
 						</p>
 					</section>
+					-->
+					<section>
+						<h2>Root causes</h2>
+						<h4>Design patterns that impacts you</h4>
+						<p>
+							Functional programming
+						</p>
+						<pre><code data-trim data-noescape class="stretch">
+public class EulerProblem01 {
+
+    private final int THREE = 3;
+    private final int FIVE = 5;
+    BiPredicate< Integer, Integer > isMultiple = (l, i) -> l % i == 0;
+    Predicate< Integer > isMultiple3 = number -> isMultiple.test(number, THREE);
+    Predicate< Integer > isMultiple5 = number -> isMultiple.test(number, FIVE);
+
+    public Integer solution(Integer limit) {
+        return IntStream.range(1, limit).boxed()
+                .filter(isMultiple3.or(isMultiple5))
+                .reduce(0, Integer::sum);
+    }
+}
+						</code></pre>
+					</section>
+					<section>
+						<h2>Root causes</h2>
+						<h4>Design patterns that impacts you</h4>
+						<p>
+							Immutability
+						</p>
+						<pre><code data-trim data-noescape class="stretch">
+public record Person (String name, String address) {}
+						</code></pre>
+					</section>
 				</section>
 				<section>
 					<section>
 						<h2>Root causes</h2>
 						<h4>Modern hardware</h4>
-						<ul>
-							<li>It is important to undertand how the JVM interacts with the hardware.</li>
-						</ul>
+						<p>
+							It is important to undertand how the JVM interacts with the hardware.
+						</p>
 						<img src="images/java-memory-model-5.png" width="50%" />
 						<br />
 						<small><strong>Source:</strong>
@@ -787,6 +839,7 @@ public class API_01_Simple {
 }
 						</code></pre>
 					</section>
+					<!--
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>A JCStress tour</h4>
@@ -801,6 +854,7 @@ public class API_01_Simple {
 							would tell us something about the concurrent behavior.
 						</p>
 					</section>
+					-->
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>A JCStress tour</h4>
@@ -826,6 +880,7 @@ public class API_02_Arbiters {
 }
 						</code></pre>
 					</section>
+					<!--
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>A JCStress tour</h4>
@@ -837,6 +892,7 @@ public class API_02_Arbiters {
 							finished.
 						</p>
 					</section>
+					-->
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>A JCStress tour</h4>
@@ -861,6 +917,7 @@ public class API_03_Termination {
 }
 						</code></pre>
 					</section>
+					<!--
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>A JCStress tour</h4>
@@ -875,6 +932,7 @@ public class API_03_Termination {
 							record "STALE".
 						</p>
 					</section>
+					-->
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>A JCStress tour</h4>
@@ -901,6 +959,7 @@ public class API_04_Nesting {
 }
 						</code></pre>
 					</section>
+					<!--
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>A JCStress tour</h4>
@@ -909,6 +968,7 @@ public class API_04_Nesting {
 							better comparison. JCStress allows to nest tests.
 						</p>
 					</section>
+					-->
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>A JCStress tour</h4>
@@ -933,6 +993,7 @@ public class API_05_SharedMetadata {
 }
 						</code></pre>
 					</section>
+					<!--
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>A JCStress tour</h4>
@@ -942,6 +1003,7 @@ public class API_05_SharedMetadata {
 							at another class.
 						</p>
 					</section>
+					-->
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>A JCStress tour</h4>
@@ -967,6 +1029,7 @@ public class API_06_Descriptions {
 }
 						</code></pre>
 					</section>
+					<!--
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>A JCStress tour</h4>
@@ -976,6 +1039,7 @@ public class API_06_Descriptions {
 							the behavior in question.
 						</p>
 					</section>
+					-->
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>A JCStress tour</h4>
@@ -1200,7 +1264,7 @@ protected void addSingleton(String beanName, Object singletonObject) {
 						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading issues</h4>
 						<ul>
-							<li>Visibility: ensuring that a change to a shared variable made by one thread is visible to the rest of the threads.</li>
+							<li><strong>Visibility</strong>: ensuring that a change to a shared variable made by one thread is visible to the rest of the threads.</li>
 						</ul>
 						<img src="images/java-visibility-1.png" width="30%" />
 						<small>
@@ -1416,6 +1480,33 @@ jcstress {
 								https://github.com/reyerizo/jcstress-gradle-plugin/blob/master/README.md</a>
 						</small>
 					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Does exist plugins?</h4>
+						<p>
+							But.. using Maven, you could do something similar...
+						</p>
+						<pre><code data-trim data-noescape class="stretch">
+< plugin>
+	< groupId>org.codehaus.mojo< /groupId>
+	< artifactId>exec-maven-plugin< /artifactId>
+	< version>3.0.0< /version>
+	< executions>
+		< execution>
+			< phase>integration-test< /phase>
+			< goals>
+				< goal>exec< /goal>
+			< /goals>
+		< /execution>
+	< /executions>
+< /plugin>
+						</code></pre>
+						<small><strong>Source:</strong>
+							<a href="https://github.com/search?l=Maven+POM&q=jcstress&type=Code" target="_blank">
+								https://github.com/search?l=Maven+POM&q=jcstress&type=Code</a>
+						</small>
+
+					</section>
 				</section>
 				<section>
 					<section>
@@ -1423,7 +1514,7 @@ jcstress {
 						<h4>Who is using JCStress?</h4>
 						<ul>
 							<li><a href="https://github.com/openjdk" target="_blank">https://github.com/openjdk</a></li>
-							<li><a href="https://github.com/adoptium/aqa-tests" target="_blank">https://github.com/adoptium/aqa-tests</a></li>
+							<li><strong><a href="https://github.com/adoptium/aqa-tests" target="_blank">https://github.com/adoptium/aqa-tests</a></strong></li>
 							<li><a href="https://github.com/real-logic/agrona" target="_blank">https://github.com/real-logic/agrona</a></li>
 							<li><a href="https://github.com/eclipse/eclipse-collections" target="_blank">https://github.com/eclipse/eclipse-collections</a></li>
 						</ul>
@@ -1584,11 +1675,32 @@ jcstress {
 							<li><a href="https://github.com/reyerizo/jcstress-gradle-plugin" target="_blank">JCStress Gradle plugin</a></li>
 						</ul>
 					</section>
-
+					<section>
+						<h2>References</h2>
+						<h3>Books</h3>
+						<p>
+							<img src="images/book-1.jpg" width="30%" />
+						</p>
+					</section>
+					<section>
+						<h2>References</h2>
+						<h3>Books</h3>
+						<p>
+							<img src="images/book-2.jpg" width="30%" />
+						</p>
+					</section>
+					<section>
+						<h2>References</h2>
+						<h3>Books</h3>
+						<p>
+							<img src="images/book-3.jpg" width="30%" />
+						</p>
+					</section>
 				</section>
 				<section>
 					<section>
-						<h2>Q & A</h2>
+						<h2>Many Thanks</h2>
+						<h1>🙏🙏🙏</h1>
 					</section>
 				</section>
 			</div>
