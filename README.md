@@ -12,26 +12,26 @@ Detecting concurrency issues with JCStress
 ## Elevator Pitch
 
 Java is a very popular programming language
-with a consistent set of multithreading & multiprocessing features to solve
-all kind of modern Enterprise problems and Threads share memory as part of the Java
-concurrency Model.
+with a consistent set of multithreading and multiprocessing features, which solve
+all kinds of modern enterprise problems and enable memory sharing across threads as part of the Java
+concurrency model.
 
 Developers use popular frameworks like `Spring`, `Quarkus`,
-`Micronaut`, `Akka` or `Spark` every day but in some scenarios, it is necessary to use
-concurrency, but it is a reality that learning curve is not easy and sometimes,
-software deployed on cloud includes some hidden concurrency bugs.
+`Micronaut`, `Akka` or `Spark` every day. In some scenarios, it is necessary to use
+concurrency, although in reality the learning curve is not easy and sometimes
+software gets deployed to cloud environments with some hidden concurrency bugs.
 
-The talk will review root causes for Concurrency issues, and it will do an
-introduction about the Java tool `JCStress` explaining how to create tests
-for those Java class which share state.
+The talk will review the root causes of concurrency issues, and give an
+introduction into the Java tool `JCStress` by explaining how to create tests
+for Java classes with shared states.
 
 ## When
 
 - https://www.meetup.com/nl-NL/amsterdam-java-user-group/events/287658432/
 
-## How to run in local
+## How to run locally
 
-Running the example in local:
+Running the example locally:
 
 ```
 sdk env

@@ -27,7 +27,7 @@
 						</p>
 					</section>
 					<section>
-						<p>Follow the talk from your smartphone:</p>
+						<p>Follow the talk on your smartphone:</p>
 						<img src="images/qrcode.png" width="40%" />
 					</section>
 					<section>
@@ -45,7 +45,7 @@
 				<section>
 					<section>
 						<p>
-						"Testing show the presence, not the absence of bugs"
+						"Testing shows the presence of bugs, not their absence"
 						</p>
 						- <a href="https://en.wikipedia.org/wiki/Edsger_W._Dijkstra" target="_blank">Edsger W. Dijkstra</a>
 					</section>
@@ -165,9 +165,9 @@
 					<section>
 						<h2>Expectations</h2>
 						<ul>
-							<li>Generate awareness about potentials concurrency issues in your projects.</li>
-							<li>Review root causes about concurrency issues.</li>
-							<li>Learn when use JCStress in your projects</li>
+							<li>Generate awareness about potential concurrency issues in your projects.</li>
+							<li>Review root causes of concurrency issues.</li>
+							<li>Learn when to use JCStress in your projects.</li>
 							<!--
 							<li><strike>The usage of <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/invoke/VarHandle.html" target="_blank">java.lang.invoke.VarHandle</a></strike></li>
 							<li><strike><a href="https://en.wikipedia.org/wiki/Deadlock" target="_blank">Deadlocks</a> scenarios</strike></li>
@@ -193,7 +193,7 @@
 					<section>
 						<h2>Preamble</h2>
 						<p>
-							Imagine a development with some Business requirements:
+							Imagine development with some business requirements:
 						</p>
 						<!--
 						https://cucumber.io/docs/gherkin/reference/
@@ -203,14 +203,14 @@ Feature: Sum 2 numbers
 
   Scenario: Sum 2 positive numbers
 	&nbsp;&nbsp;Given the POST endpoint /api/v1/sum2numbers
-	&nbsp;&nbsp;When the client send the request
+	&nbsp;&nbsp;When the client sends a request
 	&nbsp;&nbsp;Then the response includes the sum of the 2 parameters
 						</code></pre>
 					</section>
 					<section>
 						<h2>Preamble</h2>
 						<p>
-							The code has a good Unit Tests:
+							The code has a good Unit Test:
 						</p>
 						<img src="images/test-report.png" width="100%"/>
 					</section>
@@ -234,13 +234,13 @@ Feature: Sum 2 numbers
 							<li>The code has a good Score in Sonar.</li>
 							<li>The code doesn´t have any Memory leak.</li>
 							<li>The code has a good Throughput.</li>
-							<li>The code has a good Pipeline support.</li>
+							<li>The code has a good Pipeline Support.</li>
 						</ul>
 					</section>
 					<section>
 						<h2>Preamble</h2>
 						<p>
-							But..., one day we receive an email from one User about unexpected results...
+							But..., one day we received an email from a User about unexpected results...
 						</p>
 						<img src="images/email.png" width="40%" />
 					</section>
@@ -248,14 +248,14 @@ Feature: Sum 2 numbers
 						<h2>Preamble</h2>
 						<img src="images/thinking1.jpg" width="50%" />
 						<p>
-							<strong>Developer:</strong> "Weird, everything is fine in my side..."
+							<strong>Developer:</strong> "Weird, everything is fine on my side..."
 						</p>
 					</section>
 					<section>
 						<h2>Preamble</h2>
 						<img src="images/thinking3.png" width="40%" />
 						<p>
-							<strong>Developer:</strong> "...and using the data provided from the User,
+							<strong>Developer:</strong> "...and using the data provided by the User,
 							the new test doesn´t reproduce the issue in my local dev environment."
 						</p>
 					</section>
@@ -271,7 +271,7 @@ Feature: Sum 2 numbers
 						<h2>Preamble</h2>
 						<img src="images/thinking5.png" width="35%" />
 						<p>
-							<strong>Developer:</strong> "...but now, we are in Production..."
+							<strong>Developer:</strong> "...but now, we are already in Production..."
 						</p>
 					</section>
 					<section>
@@ -311,31 +311,31 @@ Feature: Sum 2 numbers
 					</section>
 					<section>
 						<h2>Root causes</h2>
-						<p>I share some ideas about it:</p>
+						<p>I will share some ideas about it:</p>
 					</section>
 					<section>
 						<h2>Root causes</h2>
 						<ul>
-							<li>Engineering teams bad designed.</li>
-							<li>Project bad estimated.</li>
+							<li>Engineering teams are poorly designed.</li>
+							<li>Project has been poorly estimated.</li>
 							<li>Cognitive load issues.</li>
-							<li>Lack of specialists about concurrency in your BU.</li>
-							<li>Poliglot environments</li>
+							<li>No concurrency specialists in your BU.</li>
+							<li>Poliglot environments.</li>
 						</ul>
 					</section>
 					<section>
 						<h2>Root causes</h2>
 						<ul>
-							<li>Lack of internal trainings about concurrency.</li>
-							<li>Bad delegation of complex tasks.</li>
-							<li>Projects with non-functional requirements well defined.</li>
-							<li>Engineers more focused on cool features from Frameworks than language fundamentals.</li>
+							<li>Lack of internal training about concurrency.</li>
+							<li>Poor delegation of complex tasks.</li>
+							<li>Projects with non-functional requirements are well defined.</li>
+							<li>Engineers are more focused on cool framework features rather than the language fundamentals.</li>
 						</ul>
 					</section>
 					<section>
 						<h2>Root causes</h2>
 						<p>
-							the projects could be headed to the cliff like Lemmings:
+							the projects could be headed for the cliff like  a herd of lemmings:
 						</p>
 						<img src="images/lemmings.png" width="50%"/>
 					</section>
@@ -346,17 +346,17 @@ Feature: Sum 2 numbers
 					<section>
 						<h2>Context</h2>
 						<ul>
-							<li>In many cases, non funcional requirements are not well defined.</li>
-							<li>If the team are using some kind of "Agile flavour", the definition of Done, doesnt´t define aspects about non funcional requirements.</li>
-							<li>The Java programming language has included Multithreading features since 1996 (Java 1.0).</li>
+							<li>In many cases, non-funcional requirements are not well defined.</li>
+							<li>If a team is using some kind of "Agile flavour", the definition of Done doesnt´t define the aspects of non-funcional requirements.</li>
+							<li>The Java programming language includes multithreading features since 1996 (Java 1.0).</li>
 						</ul>
 					</section>
 					<section>
 						<h2>Context</h2>
 						<ul>
-							<li>Not all Java developers understand how to program thread-safety code.</li>
-							<li>Handling shared memory is the main approach in Java but it is not the unique approach.</li>
-							<li>Is it still valid the term: "Write once, run everywhere"? (When you deploy multithreading code in production).</li>
+							<li>Not all Java developers understand how to write a thread-safety code.</li>
+							<li>Handling shared memory is the primary approach in Java but it is not the unique approach.</li>
+							<li>Is the term: "Write once, run everywhere" still valid? (When you deploy multithreading code to production).</li>
 						</ul>
 					</section>
 					<! --
@@ -365,7 +365,7 @@ Feature: Sum 2 numbers
 					</section>
 					<section>
 						<h2>Context</h2>
-						<h4>Question: What is the java version used in production?</h4>
+						<h4>Question: What Java version is used in production?</h4>
 						<p>
 							<a href="https://pollev.com/juanantoniobrenamoral114" target="_blank">https://pollev.com/juanantoniobrenamoral114</a>
 						</p>
@@ -381,14 +381,14 @@ Feature: Sum 2 numbers
 					</section>
 					<section>
 						<h2>Context</h2>
-						<h4>Question: Did you face in the past a Concurrency issue?</h4>
+						<h4>Question: Did you face a concurrency issue in the past?</h4>
 						<p>
 							<a href="https://pollev.com/juanantoniobrenamoral114" target="_blank">https://pollev.com/juanantoniobrenamoral114</a>
 						</p>
 					</section>
 					<section>
 						<h2>Context</h2>
-						<h4>Question: What kind of concurrency objects or language resources, do you use in your daily job?</h4>
+						<h4>Question: What kind of concurrency objects or language resources do you use in your daily job?</h4>
 						<p>
 							<a href="https://pollev.com/juanantoniobrenamoral114" target="_blank">https://pollev.com/juanantoniobrenamoral114</a>
 						</p>
@@ -399,25 +399,25 @@ Feature: Sum 2 numbers
 				<section>
 					<section>
 						<h2>Root causes</h2>
-						<h4>Non funcional requirements</h4>
+						<h4>Non0-funcional requirements</h4>
 						<p>
-							Do you define properly the non functional requirements in your projects?
+							Do you properly define the non-functional requirements for your projects?
 						</p>
 						<img src="images/iceberg.png" width="50%"/>
 					</section>
 					<!--
 					<section>
 						<h2>Root causes</h2>
-						<h4>Non funcional requirements</h4>
+						<h4>Non-funcional requirements</h4>
 						<p>
-							Do you know that exist an ISO Standard for Software Quality aspects?
+							Do you know that there is an ISO Standard for Software Quality aspects?
 						</p>
 					</section>
 					-->
 					<!--
 					<section>
 						<h2>Root causes</h2>
-						<h4>Non funcional requirements</h4>
+						<h4>Non-funcional requirements</h4>
 						<h5>ISO 25010</h5>
 						<p>
 							ISO 25010, titled “System and software quality models”, is a software quality standard.
@@ -433,7 +433,7 @@ Feature: Sum 2 numbers
 					-->
 					<section>
 						<h2>Root causes</h2>
-						<h4>Non funcional requirements</h4>
+						<h4>Non-funcional requirements</h4>
 						<h5>ISO 25010</h5>
 						<p>
 							ISO 25010, titled “System and software quality models”, is a software quality standard.
@@ -448,7 +448,7 @@ Feature: Sum 2 numbers
 					<!--
 					<section>
 						<h2>Root causes</h2>
-						<h4>Non funcional requirements</h4>
+						<h4>Non-funcional requirements</h4>
 						<h5>ISO 25010</h5>
 						<ul>
 							<li>Functional Suitability</li>
@@ -465,7 +465,7 @@ Feature: Sum 2 numbers
 					<!--
 					<section>
 						<h2>Root causes</h2>
-						<h4>Non funcional requirements</h4>
+						<h4>Non-funcional requirements</h4>
 						<h5>ISO 25010</h5>
 						<strong>Functional Suitability</strong>
 						<p>
@@ -475,7 +475,7 @@ Feature: Sum 2 numbers
 					</section>
 					<section>
 						<h2>Root causes</h2>
-						<h4>Non funcional requirements</h4>
+						<h4>Non-funcional requirements</h4>
 						<h5>ISO 25010</h5>
 						<strong>Functional Suitability</strong>
 						<p>
@@ -513,7 +513,7 @@ Feature: Sum 2 numbers
 							<li>Concurrency & Parallelism</li>
 							<li>Amdahl's law</li>
 							<li>Cache coherency</li>
-							<li>JMM, Java memory model</li>
+							<li>JMM, Java Memory Model</li>
 						</ul>
 					</section>
 					<section>
@@ -549,7 +549,7 @@ Feature: Sum 2 numbers
 					<!--
 					<section>
 						<h2>Concurrency concepts</h2>
-						<h4>JMM, Java memory model</h4>
+						<h4>JMM, Java Memory Model</h4>
 						<p>
 							Defines the semantics of multithreaded programs
 						</p>
@@ -562,7 +562,7 @@ Feature: Sum 2 numbers
 					</section>
 					<section>
 						<h2>Concurrency concepts</h2>
-						<h4>JMM, Java memory model</h4>
+						<h4>JMM, Java Memory Model</h4>
 						<ul>
 							<li>Modern hardware architecture</li>
 							<li>How JVM interacts with hardware</li>
@@ -571,7 +571,7 @@ Feature: Sum 2 numbers
 					</section>
 					<section>
 						<h2>Concurrency concepts</h2>
-						<h4>JMM, Java memory model</h4>
+						<h4>JMM, Java Memory Model</h4>
 						<ul>
 							<li>Atomicity:
 								Which instructions must have indivisible effects.
@@ -590,12 +590,12 @@ Feature: Sum 2 numbers
 					</section>
 					<section>
 						<h2>Concurrency concepts</h2>
-						<h4>JMM, Java memory model</h4>
+						<h4>JMM, Java Memory Model</h4>
 						<img src="images/jmm-1.png" width="70%" />
 					</section>
 					<section>
 						<h2>Concurrency concepts</h2>
-						<h4>JMM, Java memory model</h4>
+						<h4>JMM, Java Memory Model</h4>
 						<img src="images/jmm-2.png" width="70%" />
 					</section>
 				</section>
@@ -606,14 +606,14 @@ Feature: Sum 2 numbers
 						<h2>Root causes</h2>
 						<h4>Concurrency models</h4>
 						<p>
-							Not all programming languages follow the same Design criterias to tackle the Concurrency.
+							Not all programming languages follow the same design criteria to tackle the concurrency.
 						</p>
 						<p>
-							<u>Review your Concurrency skills for Java.</u>
+							<u>Review your concurrency skills in Java.</u>
 						</p>
 						<p>
 							That detail is important when you apply "T-shaped" strategies in your Dev Teams.
-							Concurrency in dynamic languages are pretty different that in <strong>Java</strong>.
+							Concurrency in dynamic languages are pretty different than in <strong>Java</strong>.
 						</p>
 					</section>
 					-->
@@ -626,7 +626,7 @@ Feature: Sum 2 numbers
 								https://redmonk.com/sogrady/2022/03/28/language-rankings-1-22/</a>
 						</small>
 						<p>
-							Not all programming languages follow the same Design criterias to tackle the Concurrency.
+							Not all programming languages follow the same design criteria to tackle the concurrency.
 						</p>
 					</section>
 					<!--
@@ -637,7 +637,7 @@ Feature: Sum 2 numbers
 						<h2>Root causes</h2>
 						<h4>Concurrency models</h4>
 						<p>
-							How Concurrency evolves in Java:
+							How concurrency evolves in Java:
 						</p>
 						<small>
 							<table>
@@ -692,7 +692,7 @@ Feature: Sum 2 numbers
 				<section>
 					<section>
 						<h2>Root causes</h2>
-						<h4>Design patterns that impacts you</h4>
+						<h4>Design patterns that impact you</h4>
 						<p>
 							CDI, Contexts and Dependency Injection allows the developer to manage <u>the lifecycle of
 							stateful components</u>.
@@ -715,7 +715,7 @@ Feature: Sum 2 numbers
 					-->
 					<section>
 						<h2>Root causes</h2>
-						<h4>Design patterns that impacts you</h4>
+						<h4>Design patterns that impact you</h4>
 						<p>
 							Functional programming
 						</p>
@@ -796,7 +796,7 @@ public record Person (String name, String address) {}
 							<!-- <li>What are the benefits?</li> -->
 							<li>A JCStress tour</li>
 							<li>Multithreading issues</li>
-							<li>Does exist plugins?</li>
+							<li>Do plugins exist?</li>
 							<li>Who is using JCStress?</li>
 							<li>Limitations</li>
 							<!-- <li>Opportunities</li> -->
@@ -807,7 +807,7 @@ public record Person (String name, String address) {}
 						<h2>Tooling: JCStress</h2>
 						<h4>Introduction</h4>
 						<p>
-							The Java Concurrency Stress (jcstress) is the experimental harness and
+							The Java Concurrency Stress (jcstress) is an experimental harness and
 							a suite of tests to aid the research in the correctness of concurrency support
 							in the JVM, class libraries, and hardware.
 						</p>
@@ -1044,8 +1044,8 @@ public class API_06_Descriptions {
 						<h2>Tooling: JCStress</h2>
 						<h4>A JCStress tour</h4>
 						<p>
-							If you observe, tests using Actors or Arbiters require
-							the usage of Results objets which accept different primitive Datatypes:
+							As you see, tests using actors or arbiters require
+							the use of results objets, which accept different primitive datatypes:
 						</p>
 						<small>
 							<ul>
@@ -1093,7 +1093,7 @@ public class API_06_Descriptions {
 						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading issues</h4>
 						<p>
-							Using JCStress, it is possible to detect multithreading issues about:
+							Using JCStress, is it possible to detect multithreading issues with:
 						</p>
 						<ol>
 							<li>Atomicity</li>
@@ -1109,7 +1109,7 @@ public class API_06_Descriptions {
 						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading issues</h4>
 						<ul>
-							<li><strong>Atomicity:</strong> We say a set of actions is atomic if they all execute as a single operation, in an indivisible manner.</li>
+							<li><strong>Atomicity:</strong> We call a set of actions atomic if all the actions execute as a single operation in an indivisible manner.</li>
 						</ul>
 						<img src="images/jmm-1.png" width="50%"/>
 					</section>
@@ -1194,14 +1194,14 @@ public static class Example_01 {
 						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading / Atomicity</h4>
 						<p>
-							Why I receive cases for: <u>@Outcome(id = "1, 1", expect = Expect.ACCEPTABLE_INTERESTING)</u>
+							Why do I receive cases for: <u>@Outcome(id = "1, 1", expect = Expect.ACCEPTABLE_INTERESTING)</u>
 						</p>
 						<p>
 							<strong>++ operator is not atomic</strong>
 						</p>
 						<p>
-							The Pre-Increment(++i) operator execute more
-							than 1 instruction being executed under the hood.
+							The Pre-Increment(++i) operator executes more
+							than 1 instruction under the hood.
 						</p>
 						<p>
 							++i; it is load/add/store
@@ -1457,9 +1457,9 @@ RESULT      SAMPLES     FREQ       EXPECT  DESCRIPTION
 				<section>
 					<section>
 						<h2>Tooling: JCStress</h2>
-						<h4>Does exist plugins?</h4>
+						<h4>Do plugins exist?</h4>
 						<p>
-							Exist a plugin for Gradle, but not for Maven.
+							There is a plugin for Gradle, but not for Maven.
 						</p>
 						<pre><code data-trim data-noescape class="stretch">
 plugins {
@@ -1482,9 +1482,9 @@ jcstress {
 					</section>
 					<section>
 						<h2>Tooling: JCStress</h2>
-						<h4>Does exist plugins?</h4>
+						<h4>Do plugins exist?</h4>
 						<p>
-							But.. using Maven, you could do something similar...
+							But... using Maven, you could do something similar...
 						</p>
 						<pre><code data-trim data-noescape class="stretch">
 < plugin>
@@ -1555,18 +1555,18 @@ jcstress {
 						<h4>Limitations</h4>
 						<ul>
 							<li>Lack of a Maven plugin</li>
-							<li>Plugins should be hosted in main repository</li>
+							<li>Plugins should be hosted in the main repository</li>
 							<li>A very low level solution</li>
-							<li>Solution not integrated with JUnit</li>
-							<li>What happen if your class has IO?</li>
-							<li>It is not possible to apply in all cases</li>
+							<li>Solution is not integrated with JUnit</li>
+							<li>What happens if your class has IO?</li>
+							<li>It is applicable to all cases</li>
 						</ul>
 					</section>
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Limitations</h4>
 						<ul>
-							<li>If your class has a complex class hierarchy or it is composed in a complex way or involve IO, JCStress will not help:</li>
+							<li>If your class has a complex hierarchy, structured in a complex way or involves IO, JCStress will not help:</li>
 						</ul>
 						<hr />
 						<ul>
@@ -1575,7 +1575,7 @@ jcstress {
 							<li><a href="https://github.com/quarkusio/quarkus/blob/main/independent-projects/bootstrap/core/src/main/java/io/quarkus/bootstrap/classloading/PathTreeClassPathElement.java#L240-L310" target="_blank">PathTreeClassPathElement.java</a></li>
 						</ul>
 						<p>
-							For that case, you will have to test without this tool. 🤷‍♂️
+							In that case, you will have to test without this tool. 🤷‍♂️
 						</p>
 					</section>
 				</section>
@@ -1583,7 +1583,7 @@ jcstress {
 				<section>
 					<h2>Opportunities</h2>
 					<p>
-						Exist in the Open Source ecosystems opportunities to apply JCStress:
+						There are opportunities in open source ecosystems to apply JCStress:
 					</p>
 					<p>
 						<strong>Examples:</strong>
@@ -1597,7 +1597,7 @@ jcstress {
 					<h2>Tooling: JCStress</h2>
 					<h4>The next step</h4>
 					<p>
-						Organize a session with your Dev team to review the
+						Set up a session with your Dev team to review the
 						<a href="https://github.com/openjdk/jcstress/tree/master/jcstress-samples/src/main/java/org/openjdk/jcstress/samples" target="_blank">samples</a>
 						from JCStress repository:
 					</p>
@@ -1615,14 +1615,14 @@ jcstress {
 					<section>
 						<h2>Takeaways</h2>
 						<ul>
-							<li>JCStress is not a Silver Bullet.</li>
-							<li>Minimize the number of Beans in your projects.</li>
+							<li>JCStress is not a silver bullet.</li>
+							<li>Minimize the number of beans in your projects.</li>
 							<li>Maximize immutability in your projects.</li>
-							<li>Understand all Concurrent features provided by the JVM.</li>
-							<li>Invest time for refactoring, some concurrency scenarios could be implemented with another approach.</li>
-							<li>Run recurrent training about Concurrency in your Developer teams if it is necessary.</li>
-							<!-- <li>Improve your knowledge about Language fundamentals, not only about frameworks & libraries.</li> -->
-							<!-- <li>Weekly, save time for learning activities in your working time.</li> -->
+							<li>Understand all concurrent features provided by the JVM.</li>
+							<li>Invest time in refactoring; some concurrency scenarios could be implemented with another approach.</li>
+							<li>Run recurrent training about concurrency for your development teams, if necessary.</li>
+							<!-- <li>Improve your knowledge about the language fundamentals, not only about frameworks & libraries.</li> -->
+							<!-- <li>Dedicate some time to learning activities in your working time on the weekly basis.</li> -->
 						</ul>
 					</section>
 					<!--
@@ -1699,7 +1699,7 @@ jcstress {
 				</section>
 				<section>
 					<section>
-						<h2>Many Thanks</h2>
+						<h2>Many thanks</h2>
 						<h1>🙏🙏🙏</h1>
 					</section>
 				</section>
