@@ -20,11 +20,13 @@
 			<div class="slides">
 				<section>
 					<section>
-						<img src="images/duke-threads2.png" width="60%">
+						<img src="images/duke-threads2.png" width="50%">
 						<p>
 							Detecting concurrency issues with JCStress<br />
-							<small>Juan Antonio Breña Moral</small>
+							<small>Juan Antonio Breña Moral</small><br />
+							<img src="images/logo-portal.png" width="20%"/>
 						</p>
+
 					</section>
 					<section>
 						<p>Follow the talk on your smartphone:</p>
@@ -286,10 +288,12 @@ Feature: Sum 2 numbers
 							And <u>every Java developer needs to know it</u>.
 						</p>
 					</section>
+					<!--
 					<section>
 						<h2>Preamble</h2>
 						<img src="images/demo.png" width="100%" />
 					</section>
+					-->
 				</section>
 				<!--
 				<section>
@@ -626,7 +630,7 @@ Feature: Sum 2 numbers
 								https://redmonk.com/sogrady/2022/03/28/language-rankings-1-22/</a>
 						</small>
 						<p>
-							Not all programming languages follow the same design criteria to tackle the concurrency.
+							Not all programming languages followed the same design criterias to tackle the concurrency.
 						</p>
 					</section>
 					<!--
@@ -666,6 +670,7 @@ Feature: Sum 2 numbers
 									<td>CompletableFuture</td>
 									<td>18/03/2014</td>
 								</tr>
+								<!--
 								<tr>
 									<td>Java 9</td>
 									<td>VarHandle</td>
@@ -676,12 +681,16 @@ Feature: Sum 2 numbers
 									<td>Records</td>
 									<td>17/03/2020</td>
 								</tr>
+								-->
 								<tr>
 									<td>Java 19</td>
 									<td>Virtual Threads, Structured Concurrency</td>
 									<td>20/09/2022</td>
 								</tr>
 							</table>
+							<p>
+								<strong>** Records (Java 14)</strong>
+							</p>
 						</small>
 					</section>
 					<! --
@@ -720,6 +729,30 @@ Feature: Sum 2 numbers
 							Functional programming
 						</p>
 						<pre><code data-trim data-noescape class="stretch">
+public class EulerProblem20 {
+    Function<Long, BigInteger> factorial = limit -> IntStream.iterate(limit.intValue(), i -> i - 1)
+            .limit(limit)
+            .mapToObj(BigInteger::valueOf)
+            .reduce((n1, n2) -> n1.multiply(n2)).get();
+    Function<BigInteger, Long> sumDigits = value -> value.toString().chars()
+            .mapToObj(c -> String.valueOf((char) c))
+            .mapToLong(Long::valueOf)
+            .reduce(0L, Long::sum);
+    public Long solution(Long limit) {
+        return factorial
+                .andThen(sumDigits)
+                .apply(limit);
+    }
+}
+</code></pre>
+					</section>
+					<section>
+						<h2>Root causes</h2>
+						<h4>Design patterns that impact you</h4>
+						<p>
+							Functional programming
+						</p>
+						<pre><code data-trim data-noescape class="stretch">
 public class EulerProblem01 {
 
     private final int THREE = 3;
@@ -740,24 +773,29 @@ public class EulerProblem01 {
 						<h2>Root causes</h2>
 						<h4>Design patterns that impacts you</h4>
 						<p>
-							Immutability
+							Java records are classes that act as transparent carriers for <u>immutable data</u>.
 						</p>
 						<pre><code data-trim data-noescape class="stretch">
 public record Person (String name, String address) {}
 						</code></pre>
+
+						<small><strong>Source:</strong>
+							<a href="https://openjdk.org/jeps/395" target="_blank">
+								https://openjdk.org/jeps/395</a>
+						</small>
 					</section>
 				</section>
-				<section>
+				<section data-background="images/modern-hardware2.jpg" style="color:white;">
 					<section>
-						<h2>Root causes</h2>
-						<h4>Modern hardware</h4>
+						<h2 style="color:white;">Root causes</h2>
+						<h4 style="color:white;">Modern hardware</h4>
 						<p>
 							It is important to undertand how the JVM interacts with the hardware.
 						</p>
 						<img src="images/java-memory-model-5.png" width="50%" />
 						<br />
 						<small><strong>Source:</strong>
-							<a href="https://jenkov.com/tutorials/java-concurrency/java-memory-model.html" target="_blank">
+							<a style="color:white;" href="https://jenkov.com/tutorials/java-concurrency/java-memory-model.html" target="_blank">
 								https://jenkov.com/tutorials/java-concurrency/java-memory-model.html</a>
 						</small>
 					</section>
@@ -795,7 +833,7 @@ public record Person (String name, String address) {}
 							<li>Introduction</li>
 							<!-- <li>What are the benefits?</li> -->
 							<li>A JCStress tour</li>
-							<li>Multithreading issues</li>
+							<!-- <li>Multithreading issues</li> -->
 							<li>Do plugins exist?</li>
 							<li>Who is using JCStress?</li>
 							<li>Limitations</li>
@@ -839,7 +877,6 @@ public class API_01_Simple {
 }
 						</code></pre>
 					</section>
-					<!--
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>A JCStress tour</h4>
@@ -854,7 +891,6 @@ public class API_01_Simple {
 							would tell us something about the concurrent behavior.
 						</p>
 					</section>
-					-->
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>A JCStress tour</h4>
@@ -880,7 +916,6 @@ public class API_02_Arbiters {
 }
 						</code></pre>
 					</section>
-					<!--
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>A JCStress tour</h4>
@@ -892,7 +927,7 @@ public class API_02_Arbiters {
 							finished.
 						</p>
 					</section>
-					-->
+					<!--
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>A JCStress tour</h4>
@@ -917,7 +952,6 @@ public class API_03_Termination {
 }
 						</code></pre>
 					</section>
-					<!--
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>A JCStress tour</h4>
@@ -1045,7 +1079,7 @@ public class API_06_Descriptions {
 						<h4>A JCStress tour</h4>
 						<p>
 							As you see, tests using actors or arbiters require
-							the use of results objets, which accept different primitive datatypes:
+							the use of results objets, which accept different primitives:
 						</p>
 						<small>
 							<ul>
@@ -1075,10 +1109,10 @@ public class API_06_Descriptions {
 						<pre><code data-trim data-noescape class="stretch">
 ./gradlew clean jcstress --tests "API_01_Simple"
 ./gradlew clean jcstress --tests "API_02_Arbiters"
-./gradlew clean jcstress --tests "API_03_Termination"
 ./gradlew clean jcstress --tests "API_04_Nesting"
 ./gradlew clean jcstress --tests "API_05_SharedMetadata"
 ./gradlew clean jcstress --tests "API_06_Descriptions"
+<!-- ./gradlew clean jcstress --tests "API_03_Termination" -->
 						</code></pre>
 						<p>
 							<small>
@@ -1088,6 +1122,7 @@ public class API_06_Descriptions {
 						<img src="images/demo.png" width="30%" />
 					</section>
 				</section>
+				<!--
 				<section>
 					<section>
 						<h2>Tooling: JCStress</h2>
@@ -1101,10 +1136,10 @@ public class API_06_Descriptions {
 							<li>Reordering</li>
 						</ol>
 					</section>
-					<!--
+					< !--
 					https://www.javacodegeeks.com/2014/08/java-concurrency-tutorial-atomicity-and-race-conditions.html
 					https://research.ibm.com/haifa/Workshops/verification2005/present/atomicity.pdf
-					-->
+					-- >
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading issues</h4>
@@ -1244,7 +1279,7 @@ protected void addSingleton(String beanName, Object singletonObject) {
 							</small>
 						</p>
 					</section>
-					<!--
+					< !--
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading / Atomicity</h4>
@@ -1259,7 +1294,7 @@ protected void addSingleton(String beanName, Object singletonObject) {
 						</ul>
 						</small>
 					</section>
-					-->
+					-- >
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading issues</h4>
@@ -1271,9 +1306,9 @@ protected void addSingleton(String beanName, Object singletonObject) {
 							<strong>Source:</strong> <a href="https://jenkov.com/tutorials/java-concurrency/volatile.html" target="_blank">https://jenkov.com/tutorials/java-concurrency/volatile.html</a>
 						</small>
 					</section>
-					<!--
+					< !--
 					https://vmlens.com/articles/ct/visibility_bugs/
-					-->
+					-- >
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading / Visibility</h4>
@@ -1364,9 +1399,9 @@ Have stale threads, forcing VM to exit for proper cleanup.
 						</code></pre>
 						<img src="images/demo.png" width="60%" />
 					</section>
-					<!--
+					< !--
 					https://jenkov.com/tutorials/java-concurrency/java-happens-before-guarantee.html
-					-->
+					-- >
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading issues</h4>
@@ -1374,9 +1409,9 @@ Have stale threads, forcing VM to exit for proper cleanup.
 							<li>Reordering / Compiler and CPU optimisations: The JVM could change the order of executions.</li>
 						</ul>
 					</section>
-					<!--
+					< !--
 					https://blog.katastros.com/a?ID=01650-44d39e31-fbb5-46d5-990e-a9563e1c2a92
-					-->
+					-- >
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading / Ordering</h4>
@@ -1438,7 +1473,7 @@ RESULT      SAMPLES     FREQ       EXPECT  DESCRIPTION
 						</code></pre>
 						<img src="images/demo.png" width="60%" />
 					</section>
-					<!--
+					< !--
 					<section>
 						<h2>Tooling: JCStress</h2>
 						<h4>Multithreading issues</h4>
@@ -1452,8 +1487,9 @@ RESULT      SAMPLES     FREQ       EXPECT  DESCRIPTION
 							<li><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/package-summary.html" target="_blank">java.util.concurrent.*</a>(Queues, Synchronizers, Concurrent Collections)</li>
 						</ul>
 					</section>
-					-->
+					-- >
 				</section>
+				-->
 				<section>
 					<section>
 						<h2>Tooling: JCStress</h2>
@@ -1484,28 +1520,26 @@ jcstress {
 						<h2>Tooling: JCStress</h2>
 						<h4>Do plugins exist?</h4>
 						<p>
-							But... using Maven, you could do something similar...
+							But using Maven, you could run your JCstress tests:
 						</p>
-						<pre><code data-trim data-noescape class="stretch">
-< plugin>
-	< groupId>org.codehaus.mojo< /groupId>
-	< artifactId>exec-maven-plugin< /artifactId>
-	< version>3.0.0< /version>
-	< executions>
-		< execution>
-			< phase>integration-test< /phase>
-			< goals>
-				< goal>exec< /goal>
-			< /goals>
-		< /execution>
-	< /executions>
-< /plugin>
-						</code></pre>
+						<img src="images/maven1.png" width="60%" />
 						<small><strong>Source:</strong>
-							<a href="https://github.com/search?l=Maven+POM&q=jcstress&type=Code" target="_blank">
-								https://github.com/search?l=Maven+POM&q=jcstress&type=Code</a>
+							<a href=https://github.com/gortiz/jcstress-mvn-test" target="_blank">
+								https://github.com/gortiz/jcstress-mvn-test</a>
 						</small>
-
+					</section>
+					<section>
+						<h2>Tooling: JCStress</h2>
+						<h4>Do plugins exist?</h4>
+						<p>
+							But using Maven, you could run your JCstress tests:
+						</p>
+						<img src="images/maven2.png" width="30%" />
+						<br />
+						<small><strong>Source:</strong>
+							<a href=https://github.com/gortiz/jcstress-mvn-test" target="_blank">
+								https://github.com/gortiz/jcstress-mvn-test</a>
+						</small>
 					</section>
 				</section>
 				<section>
@@ -1544,9 +1578,9 @@ jcstress {
 						<h2>Tooling: JCStress</h2>
 						<h4>Who is using JCStress?</h4>
 						<p>
-							In what stage is JCStress? (Early majority)
+							In what stage is JCStress?
 						</p>
-						<img src="images/chasm.png" width="65%"/>
+						<img src="images/chasm.png" width="60%"/>
 					</section>
 				</section>
 				<section>
@@ -1651,6 +1685,7 @@ jcstress {
 					</section>
 					-->
 				</section>
+				<!--
 				<section>
 					<section>
 						<h2>References</h2>
@@ -1697,6 +1732,7 @@ jcstress {
 						</p>
 					</section>
 				</section>
+				-->
 				<section>
 					<section>
 						<h2>Many thanks</h2>
