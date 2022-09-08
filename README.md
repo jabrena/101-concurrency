@@ -65,6 +65,16 @@ pip3 install bzt
 bzt taurusConf.yaml
 ```
 
+Running JCStress examples:
+
+```
+./gradlew clean jcstress --tests "API_01_Simple"
+./gradlew clean jcstress --tests "API_02_Arbiters"
+./gradlew clean jcstress --tests "API_04_Nesting"
+./gradlew clean jcstress --tests "API_05_SharedMetadata"
+./gradlew clean jcstress --tests "API_06_Descriptions"
+```
+
 ## Documentation
 
 ```
