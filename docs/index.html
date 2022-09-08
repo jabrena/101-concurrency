@@ -17,6 +17,20 @@
 	</head>
 	<body>
 		<div class="reveal">
+
+			<style>
+.footer {
+  position: absolute;
+  left: 10px;
+  bottom: 0px;
+  z-index: 999;
+}
+			</style>
+
+			<div class="footer">
+				<small><a href="https://twitter.com/juanantoniobm" target="_blank">Twitter: @juanantoniobm</a></small>
+			</div>
+
 			<div class="slides">
 				<section>
 					<section>
@@ -1751,7 +1765,14 @@ jcstress {
 				-->
 				<section>
 					<section>
-						<img src="images/qrcode.png" width="30%" />
+						<img src="images/qrcode.png" width="25%" />
+						<!--
+						<pre><code data-trim data-noescape class="stretch">
+docker run --rm -t -v `pwd`:/slides astefanutti/decktape -s 1280x800 reveal \
+https://jabrena.github.io/101-concurrency/index.html \
+101-concurrency.pdf
+						</code></pre>
+						-->
 						<h3>Many thanks</h3>
 						<h2>🙏🙏🙏</h2>
 						<p>
@@ -1759,6 +1780,7 @@ jcstress {
 								https://github.com/jabrena/101-concurrency
 							</a>
 						</p>
+
 					</section>
 				</section>
 			</div>
