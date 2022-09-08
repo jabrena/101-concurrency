@@ -94,4 +94,4 @@ jwebserver -p 8000 -d  $PWD/docs
 - https://shipilev.net/blog/2014/safe-public-construction/
 - https://shipilev.net/blog/2014/jmm-pragmatics/
 - https://shipilev.net/jvm/anatomy-quarks/jvm-anatomy-quarks-complete.pdf
-
+- https://jenkov.com/tutorials/java-concurrency/java-memory-model.html
