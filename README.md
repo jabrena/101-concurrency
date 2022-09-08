@@ -89,3 +89,9 @@ jwebserver -p 8000 -d  $PWD/docs
 - https://gee.cs.oswego.edu/dl/jmm/cookbook.html
 - https://github.com/openjdk/jcstress
 - https://github.com/reyerizo/jcstress-gradle-plugin
+- https://shipilev.net/talks/hydraconf-June2021-jcstress-workshop.pdf
+- https://shipilev.net/blog/2016/close-encounters-of-jmm-kind/
+- https://shipilev.net/blog/2014/safe-public-construction/
+- https://shipilev.net/blog/2014/jmm-pragmatics/
+- https://shipilev.net/jvm/anatomy-quarks/jvm-anatomy-quarks-complete.pdf
+
