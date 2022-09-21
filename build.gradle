@@ -11,7 +11,7 @@ plugins {
 
 group = 'info.jab.ms'
 version = '0.1.0-SNAPSHOT'
-sourceCompatibility = '18'
+sourceCompatibility = '11'
 
 ext {
     jcstressVersion = '0.15'
